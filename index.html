@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>Taranto 2026 — Live Status</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Taranto 2026 — Panagiotis</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
 
 *{
   box-sizing:border-box;
@@ -19,27 +19,28 @@ html{
 }
 
 body{
-  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:#0b0b0d;
-  color:#f5f5f5;
+  font-family:"DM Sans",sans-serif;
+  background:#f8f3e8;
+  color:#16324a;
   overflow-x:hidden;
 }
 
-body::-webkit-scrollbar{
-  display:none;
-}
-
 :root{
-  --bg:#0b0b0d;
-  --panel:#151518;
-  --soft:#9a9aa1;
-  --line:rgba(255,255,255,.11);
-  --white:#f6f6f6;
+  --cream:#f8f3e8;
+  --cream2:#fffaf0;
+  --blue:#2c77a4;
+  --deep:#16324a;
+  --sky:#d8eef7;
+  --sea:#9ed7e5;
+  --coral:#ef8f74;
+  --yellow:#f4d77b;
+  --green:#a7c9ae;
+  --muted:#708392;
 }
 
-.section{
+section{
   min-height:100svh;
-  padding:84px 22px 52px;
+  padding:72px 22px 48px;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -55,49 +56,36 @@ body::-webkit-scrollbar{
 .eyebrow{
   font-size:11px;
   letter-spacing:2px;
-  text-transform:uppercase;
-  color:#8a8a91;
   font-weight:800;
+  text-transform:uppercase;
+  color:#5c8197;
   margin-bottom:14px;
 }
 
+h1,h2,h3{
+  font-family:"Manrope",sans-serif;
+}
+
 h1{
-  font-size:clamp(44px,12vw,72px);
-  line-height:.95;
-  letter-spacing:-3px;
-  font-weight:900;
+  font-size:clamp(50px,13vw,80px);
+  line-height:.92;
+  letter-spacing:-4px;
 }
 
 h2{
-  font-size:clamp(30px,8vw,48px);
-  line-height:1;
-  letter-spacing:-2px;
-  font-weight:900;
+  font-size:clamp(34px,9vw,55px);
+  line-height:.96;
+  letter-spacing:-2.5px;
+}
+
+h3{
+  font-size:24px;
 }
 
 p{
   font-size:16px;
   line-height:1.55;
-  color:#a2a2a8;
-}
-
-.big{
-  font-size:clamp(54px,15vw,90px);
-  font-weight:900;
-  letter-spacing:-4px;
-  line-height:.9;
-}
-
-.small{
-  font-size:12px;
-  color:#7e7e84;
-}
-
-.rule{
-  width:100%;
-  height:1px;
-  background:var(--line);
-  margin:28px 0;
+  color:var(--muted);
 }
 
 .fade{
@@ -106,67 +94,110 @@ p{
   transition:.7s ease;
 }
 
-.fade.visible{
+.fade.show{
   opacity:1;
   transform:none;
 }
 
+/* HERO */
+
 .hero{
   background:
-    radial-gradient(circle at 50% 30%,rgba(255,255,255,.06),transparent 35%),
-    #0b0b0d;
+    radial-gradient(circle at 85% 15%,#fff2b8 0,transparent 25%),
+    radial-gradient(circle at 10% 80%,#cdebf4 0,transparent 35%),
+    linear-gradient(180deg,#fffaf0,#f8f3e8);
 }
 
-.hero-tag{
-  border:1px solid rgba(255,255,255,.16);
+.hero-pill{
+  padding:8px 13px;
+  border:1px solid rgba(22,50,74,.12);
   border-radius:999px;
-  padding:8px 12px;
   font-size:11px;
-  letter-spacing:1.2px;
+  font-weight:800;
+  letter-spacing:1.3px;
   margin-bottom:24px;
+  background:rgba(255,255,255,.45);
 }
 
-.hero-sub{
-  margin-top:18px;
-  max-width:320px;
+.hero p{
+  margin-top:20px;
+  max-width:315px;
 }
 
-.arrow{
+.down{
   position:absolute;
-  bottom:24px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:22px;
-  opacity:.45;
-  animation:bounce 1.6s infinite;
+  bottom:25px;
+  font-size:24px;
+  animation:bounce 1.5s infinite;
 }
 
 @keyframes bounce{
-  50%{transform:translate(-50%,8px)}
+  50%{transform:translateY(8px)}
 }
 
-.statusline{
-  font-size:18px;
-  padding:18px 0;
-  border-bottom:1px solid var(--line);
+/* BIG STATUS */
+
+.blue-section{
+  background:#dceff5;
+}
+
+.yellow-section{
+  background:#fff1bd;
+}
+
+.coral-section{
+  background:#f6c2ad;
+}
+
+.white-section{
+  background:#fffaf0;
+}
+
+.big-word{
+  font-family:"Manrope";
+  font-size:clamp(62px,18vw,110px);
+  font-weight:800;
+  letter-spacing:-6px;
+  line-height:.82;
+}
+
+.stats{
+  width:100%;
+  margin-top:34px;
+}
+
+.stat{
   display:flex;
+  align-items:flex-end;
   justify-content:space-between;
+  border-bottom:1px solid rgba(22,50,74,.13);
+  padding:18px 0;
   gap:20px;
 }
 
-.statusline strong{
-  font-weight:800;
+.stat span{
+  color:#6a8190;
+  font-size:14px;
 }
 
-.photo-full{
+.stat strong{
+  font-family:"Manrope";
+  font-size:23px;
+  text-align:right;
+}
+
+/* PHOTO */
+
+.full-photo{
   min-height:100svh;
   position:relative;
   display:flex;
   align-items:flex-end;
   overflow:hidden;
+  background:#dceff5;
 }
 
-.photo-full img{
+.full-photo img{
   position:absolute;
   inset:0;
   width:100%;
@@ -174,135 +205,178 @@ p{
   object-fit:cover;
 }
 
-.photo-full::after{
+.full-photo:after{
   content:"";
   position:absolute;
   inset:0;
   background:linear-gradient(
     to bottom,
-    rgba(0,0,0,.08),
-    rgba(0,0,0,.12) 45%,
-    rgba(0,0,0,.82) 100%
+    rgba(0,0,0,.02),
+    rgba(0,0,0,.05) 45%,
+    rgba(12,34,46,.68)
   );
 }
 
-.photo-copy{
+.photo-text{
   position:relative;
   z-index:2;
-  padding:60px 22px 42px;
-  width:100%;
+  padding:60px 22px 45px;
+  color:white;
 }
 
-.photo-copy h2{
-  max-width:350px;
+.photo-text .eyebrow,
+.photo-text p{
+  color:rgba(255,255,255,.82);
 }
 
-.darkblock{
-  background:#0f0f11;
-}
+/* CHECKLIST */
 
-.data{
-  margin-top:34px;
-}
-
-.data-row{
+.check{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   padding:18px 0;
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid rgba(22,50,74,.12);
 }
 
-.data-row .label{
-  font-size:13px;
-  color:#85858c;
+.check-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:18px;
+  font-weight:700;
 }
 
-.data-row .value{
-  font-size:30px;
-  font-weight:900;
-  margin-top:4px;
-  letter-spacing:-1.5px;
+.icon{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.5);
+  font-size:21px;
 }
 
-.threat{
-  font-size:clamp(65px,19vw,110px);
-  line-height:.82;
-  font-weight:900;
-  letter-spacing:-6px;
-  margin-top:18px;
+/* PRIORITIES */
+
+.priority{
+  display:flex;
+  gap:18px;
+  padding:19px 0;
+  border-bottom:1px solid rgba(22,50,74,.12);
 }
 
-.scan{
-  margin-top:34px;
-  width:100%;
+.number{
+  width:28px;
+  font-family:"Manrope";
+  font-weight:800;
+  color:#7c9aa9;
 }
 
-.bar{
-  width:100%;
-  height:4px;
-  background:#242428;
-  border-radius:99px;
+.priority-title{
+  font-size:20px;
+  font-weight:800;
+}
+
+/* MEMORY */
+
+.memory-line{
+  padding:18px 0;
+  font-family:monospace;
+  font-size:15px;
+}
+
+.loading{
+  height:5px;
+  background:rgba(22,50,74,.12);
+  border-radius:999px;
   overflow:hidden;
-  margin-top:11px;
+  margin:22px 0;
 }
 
-.bar span{
-  height:100%;
+.loading span{
   display:block;
   width:0;
-  background:#f2f2f2;
-  transition:1.4s ease;
+  height:100%;
+  background:#16324a;
+  transition:2s ease;
 }
 
-.visible .bar span{
-  width:var(--w);
+.show .loading span{
+  width:100%;
 }
+
+/* COLOGNE */
+
+.bottle{
+  width:104px;
+  height:150px;
+  margin:35px auto 25px;
+  border-radius:18px 18px 28px 28px;
+  background:linear-gradient(145deg,#7ab4c6,#174c67);
+  position:relative;
+  box-shadow:0 22px 45px rgba(22,50,74,.2);
+}
+
+.bottle:before{
+  content:"";
+  width:45px;
+  height:21px;
+  position:absolute;
+  left:30px;
+  top:-21px;
+  background:#dbe6e8;
+  border-radius:6px 6px 0 0;
+}
+
+.bottle:after{
+  content:"THE ONE";
+  position:absolute;
+  top:65px;
+  left:0;
+  right:0;
+  text-align:center;
+  color:white;
+  font-size:10px;
+  letter-spacing:2px;
+  font-weight:800;
+}
+
+/* RADAR */
 
 .radar{
-  height:330px;
-  width:330px;
-  max-width:90vw;
-  max-height:90vw;
+  width:320px;
+  height:320px;
+  max-width:88vw;
+  max-height:88vw;
   border-radius:50%;
-  border:1px solid rgba(255,255,255,.14);
-  margin:32px auto;
+  border:1px solid rgba(22,50,74,.18);
+  margin:28px auto;
   position:relative;
   background:
-    radial-gradient(circle,transparent 20%,rgba(255,255,255,.04) 21%,transparent 22%),
-    radial-gradient(circle,transparent 45%,rgba(255,255,255,.04) 46%,transparent 47%),
-    radial-gradient(circle,transparent 70%,rgba(255,255,255,.04) 71%,transparent 72%);
+    radial-gradient(circle,transparent 25%,rgba(22,50,74,.05) 26%,transparent 27%),
+    radial-gradient(circle,transparent 50%,rgba(22,50,74,.05) 51%,transparent 52%),
+    radial-gradient(circle,transparent 73%,rgba(22,50,74,.05) 74%,transparent 75%);
 }
 
-.radar::before,
-.radar::after{
+.radar:before,
+.radar:after{
   content:"";
   position:absolute;
-  background:rgba(255,255,255,.1);
+  background:rgba(22,50,74,.08);
 }
 
-.radar::before{
+.radar:before{
   width:1px;
   height:100%;
   left:50%;
 }
 
-.radar::after{
+.radar:after{
   height:1px;
   width:100%;
   top:50%;
 }
-
-.dot{
-  position:absolute;
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:#fff;
-  box-shadow:0 0 18px rgba(255,255,255,.8);
-}
-
-.dot.one{left:25%;top:30%}
-.dot.two{right:18%;top:43%}
-.dot.three{left:42%;bottom:15%}
-.dot.four{right:35%;top:18%}
 
 .radar-center{
   position:absolute;
@@ -310,154 +384,95 @@ p{
   top:50%;
   transform:translate(-50%,-50%);
   font-size:11px;
-  letter-spacing:1.5px;
-  font-weight:900;
-}
-
-.quote{
-  margin-top:24px;
-  font-size:22px;
-  line-height:1.25;
-  font-weight:800;
-  letter-spacing:-.6px;
-}
-
-.list{
-  margin-top:28px;
-}
-
-.rank{
-  display:flex;
-  align-items:flex-start;
-  gap:15px;
-  padding:19px 0;
-  border-bottom:1px solid var(--line);
-}
-
-.rank-num{
-  width:32px;
-  color:#77777e;
   font-weight:800;
 }
 
-.rank-text{
-  font-size:20px;
-  font-weight:800;
+.dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:#ef8f74;
+  position:absolute;
+  box-shadow:0 0 0 8px rgba(239,143,116,.14);
 }
 
-.busted{
-  font-size:clamp(62px,18vw,110px);
-  font-weight:900;
-  letter-spacing:-5px;
-  line-height:.85;
+.one{left:20%;top:27%}
+.two{right:21%;top:35%}
+.three{left:32%;bottom:19%}
+.four{right:23%;bottom:25%}
+
+/* KAMI CONTRAST */
+
+.kami-section{
+  background:#d8e8ee;
 }
 
-.terminal{
-  margin-top:34px;
+.kami-photo{
   width:100%;
-  font-family:monospace;
-  font-size:14px;
-  line-height:2;
-  color:#b4b4b9;
+  height:430px;
+  object-fit:cover;
+  border-radius:28px;
+  margin-top:26px;
 }
 
-.terminal strong{
-  color:#fff;
+/* ALERT */
+
+.alert{
+  font-family:"Manrope";
+  font-size:clamp(55px,16vw,95px);
+  font-weight:800;
+  line-height:.84;
+  letter-spacing:-5px;
 }
 
-.memory{
-  background:#050506;
-}
+/* TRUTH */
 
 .truth{
-  background:#f2f2f2;
-  color:#101012;
-}
-
-.truth .eyebrow,
-.truth p{
-  color:#646469;
-}
-
-.truth .rule{
-  background:rgba(0,0,0,.14);
-}
-
-.truth img{
-  width:100%;
-  border-radius:20px;
-  margin:30px 0 26px;
-  object-fit:cover;
-  max-height:430px;
+  background:#fffaf0;
 }
 
 .truth-stat{
-  padding:20px 0;
-  border-bottom:1px solid rgba(0,0,0,.14);
+  padding:21px 0;
+  border-bottom:1px solid rgba(22,50,74,.12);
 }
 
 .truth-stat span{
-  display:block;
-  font-size:12px;
-  color:#75757a;
-  margin-bottom:5px;
+  font-size:13px;
+  color:#718793;
 }
 
 .truth-stat strong{
-  font-size:32px;
-  letter-spacing:-1.6px;
+  display:block;
+  font-family:"Manrope";
+  font-size:31px;
+  margin-top:3px;
 }
 
-.final-photo{
-  min-height:100svh;
-  position:relative;
-  overflow:hidden;
+/* FINAL */
+
+.final{
+  background:#f6cdbb;
 }
 
-.final-photo img{
-  position:absolute;
-  inset:0;
+.final img{
   width:100%;
-  height:100%;
+  max-height:430px;
   object-fit:cover;
+  border-radius:30px;
+  margin:28px 0;
 }
 
-.final-photo::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.06),rgba(0,0,0,.82));
-}
-
-.final-message{
-  position:absolute;
-  left:22px;
-  right:22px;
-  bottom:45px;
-  z-index:2;
-}
-
-.final-message h2{
-  font-size:45px;
-}
-
-.secret{
-  margin-top:20px;
-  font-size:11px;
-  opacity:.55;
+.note{
+  font-size:12px;
+  opacity:.65;
+  margin-top:18px;
 }
 
 @media(min-width:700px){
   body{
     max-width:430px;
     margin:auto;
-    background:#1a1a1d;
-  }
-
-  .section,
-  .photo-full,
-  .final-photo{
-    max-width:430px;
+    box-shadow:0 0 80px rgba(0,0,0,.12);
   }
 }
 </style>
@@ -465,531 +480,702 @@ p{
 
 <body>
 
-<!-- INTRO -->
-<section class="section center hero">
-  <div class="hero-tag fade">TARANTO 2026 • LIVE ATHLETE REPORT</div>
+<!-- 1 INTRO -->
+<section class="hero center">
+  <div class="hero-pill fade">TARANTO 2026 • MEDITERRANEAN GAMES</div>
 
-  <div class="eyebrow fade">20 AUGUST 2026 • ITALY</div>
+  <div class="eyebrow fade">PANAGIOTIS • MEN'S ÉPÉE • GREECE</div>
 
   <h1 class="fade">
-    Panagiotis<br>
-    has arrived.
+    Life is<br>
+    very good.
   </h1>
 
-  <p class="hero-sub fade">
-    Men’s Épée • Greece<br>
-    Current condition: suspiciously happy.
+  <p class="fade">
+    Current location: Italy.<br>
+    Current mood: unnecessarily happy.
   </p>
 
-  <div class="arrow">↓</div>
+  <div class="down">↓</div>
 </section>
 
 
-<!-- KAMI HAS NOT -->
-<section class="section center">
-  <div class="eyebrow fade">IMPORTANT UPDATE</div>
+<!-- 2 CURRENT STATUS -->
+<section class="blue-section">
+  <div class="eyebrow fade">CURRENT STATUS</div>
 
-  <div class="big fade">
-    Kami<br>
-    has not.
+  <div class="big-word fade">
+    THRIVING.
   </div>
 
-  <p class="fade" style="margin-top:24px;">
-    Current location:<br>
-    Kaunas, Lithuania.
-  </p>
+  <div class="stats fade">
+    <div class="stat">
+      <span>Mediterranean sun</span>
+      <strong>Perfect</strong>
+    </div>
 
-  <div class="rule fade"></div>
+    <div class="stat">
+      <span>Italian food</span>
+      <strong>Excellent</strong>
+    </div>
 
-  <p class="fade">
-    Italy status:<br>
-    unavailable.
-  </p>
+    <div class="stat">
+      <span>Sea</span>
+      <strong>Right here</strong>
+    </div>
+
+    <div class="stat">
+      <span>Mood</span>
+      <strong>100%</strong>
+    </div>
+
+    <div class="stat">
+      <span>Problems</span>
+      <strong>Not detected</strong>
+    </div>
+  </div>
 </section>
 
 
-<!-- LOCATION -->
-<section class="section darkblock">
-  <div class="eyebrow fade">LIVE COMPARISON</div>
+<!-- 3 CHECKLIST -->
+<section class="yellow-section">
+  <div class="eyebrow fade">ITALY CHECKLIST</div>
 
   <h2 class="fade">
-    Current situation
+    Everything is going suspiciously well.
   </h2>
 
-  <div class="data fade">
+  <div style="margin-top:32px" class="fade">
 
-    <div class="statusline">
-      <span>Panagiotis</span>
-      <strong>Taranto 🇮🇹</strong>
+    <div class="check">
+      <div class="check-left">
+        <div class="icon">☀️</div>
+        Mediterranean sun
+      </div>
+      <strong>✓</strong>
     </div>
 
-    <div class="statusline">
-      <span>Kami</span>
-      <strong>Kaunas 🇱🇹</strong>
+    <div class="check">
+      <div class="check-left">
+        <div class="icon">🍝</div>
+        Pasta
+      </div>
+      <strong>✓</strong>
     </div>
 
-    <div class="statusline">
-      <span>Justice</span>
-      <strong>Not found</strong>
+    <div class="check">
+      <div class="check-left">
+        <div class="icon">☕</div>
+        Espresso
+      </div>
+      <strong>✓</strong>
+    </div>
+
+    <div class="check">
+      <div class="check-left">
+        <div class="icon">🌊</div>
+        Mediterranean Sea
+      </div>
+      <strong>✓</strong>
+    </div>
+
+    <div class="check">
+      <div class="check-left">
+        <div class="icon">🤺</div>
+        Mediterranean Games
+      </div>
+      <strong>✓</strong>
     </div>
 
   </div>
 </section>
 
 
-<!-- TARANTO PHOTO -->
-<section class="photo-full">
-  <img src="taranto.jpg" alt=""
-       onerror="this.src='606da44c-6342-45f9-a773-69e7d79dc42a.jpeg'">
+<!-- 4 LIVE PHOTO -->
+<section class="full-photo">
+  <img
+    src="taranto.jpg"
+    onerror="this.src='606da44c-6342-45f9-a773-69e7d79dc42a.jpeg'"
+    alt=""
+  >
 
-  <div class="photo-copy">
-    <div class="eyebrow fade">LIVE EVIDENCE</div>
+  <div class="photo-text">
+    <div class="eyebrow fade">LIVE FROM ITALY</div>
 
     <h2 class="fade">
-      He appears to be surviving Italy.
+      He looks far too comfortable.
     </h2>
 
-    <p class="fade" style="margin-top:16px;color:#ccc;">
-      Possibly even thriving.
+    <p class="fade" style="margin-top:15px">
+      No signs of suffering have been reported.
     </p>
   </div>
 </section>
 
 
-<!-- HAPPINESS -->
-<section class="section">
-  <div class="eyebrow fade">PSYCHOLOGICAL SCAN</div>
+<!-- 5 HAPPY -->
+<section class="white-section">
+  <div class="eyebrow fade">DAY ONE REPORT</div>
 
   <h2 class="fade">
-    Is Panagiotis missing Kami?
+    Panagiotis appears to be having an excellent time.
   </h2>
 
-  <div class="data">
+  <div class="stats fade">
 
-    <div class="data-row fade">
-      <div class="label">Missing Kami</div>
-      <div class="value">0.4%</div>
+    <div class="stat">
+      <span>Italy enjoyment</span>
+      <strong>100%</strong>
     </div>
 
-    <div class="data-row fade">
-      <div class="label">Enjoying Italy</div>
-      <div class="value">100%</div>
+    <div class="stat">
+      <span>Energy</span>
+      <strong>High</strong>
     </div>
 
-    <div class="data-row fade">
-      <div class="label">Regret</div>
-      <div class="value">0%</div>
+    <div class="stat">
+      <span>Need to leave Italy</span>
+      <strong>0%</strong>
     </div>
 
-    <div class="data-row fade">
-      <div class="label">System confidence</div>
-      <div class="value">Disturbingly high</div>
+    <div class="stat">
+      <span>General satisfaction</span>
+      <strong>Concerning</strong>
     </div>
 
   </div>
 </section>
 
 
-<!-- GIRLS -->
-<section class="section center">
-  <div class="eyebrow fade">NEW ENVIRONMENTAL VARIABLE</div>
+<!-- 6 PRIORITIES FIRST -->
+<section class="blue-section">
+  <div class="eyebrow fade">CURRENT PRIORITIES</div>
 
-  <div class="threat fade">
-    ITALIAN<br>
-    GIRLS.
+  <h2 class="fade">
+    According to highly reliable sources:
+  </h2>
+
+  <div style="margin-top:30px">
+
+    <div class="priority fade">
+      <div class="number">1</div>
+      <div class="priority-title">Mediterranean Games</div>
+    </div>
+
+    <div class="priority fade">
+      <div class="number">2</div>
+      <div class="priority-title">Italy</div>
+    </div>
+
+    <div class="priority fade">
+      <div class="number">3</div>
+      <div class="priority-title">Pasta</div>
+    </div>
+
+    <div class="priority fade">
+      <div class="number">4</div>
+      <div class="priority-title">Sea</div>
+    </div>
+
+    <div class="priority fade">
+      <div class="number">5</div>
+      <div class="priority-title">Espresso</div>
+    </div>
+
+    <div class="priority fade">
+      <div class="number">6</div>
+      <div class="priority-title">Looking unnecessarily good</div>
+    </div>
+
+    <div class="priority fade">
+      <div class="number">7</div>
+      <div class="priority-title">Enjoying Italy even more</div>
+    </div>
+
+    <div class="priority fade">
+      <div class="number">8</div>
+      <div class="priority-title">Girlfriend</div>
+    </div>
+
   </div>
 
-  <p class="fade" style="margin-top:28px;max-width:330px;">
-    System has detected a potentially dangerous amount of Italy around Panagiotis.
+  <p class="fade" style="margin-top:25px">
+    This ranking has not yet been approved by Kami.
   </p>
 </section>
 
 
-<!-- RADAR -->
-<section class="section center darkblock">
-  <div class="eyebrow fade">SURROUNDINGS SCAN</div>
+<!-- 7 FORGOT HER -->
+<section class="yellow-section center">
+
+  <div class="eyebrow fade">MEMORY STATUS</div>
 
   <h2 class="fade">
-    Nearby activity
+    Wait...
+  </h2>
+
+  <p class="fade" style="margin-top:18px">
+    Searching for girlfriend information.
+  </p>
+
+  <div style="width:100%;margin-top:25px" class="fade">
+
+    <div class="loading">
+      <span></span>
+    </div>
+
+    <div class="memory-line">
+      Searching recent thoughts...
+    </div>
+
+    <div class="memory-line">
+      Searching Italy folder...
+    </div>
+
+    <div class="memory-line">
+      Searching relationship folder...
+    </div>
+
+  </div>
+
+  <div class="big-word fade" style="margin-top:35px">
+    0
+  </div>
+
+  <h3 class="fade" style="margin-top:18px">
+    Girlfriends remembered.
+  </h3>
+
+  <p class="fade" style="margin-top:12px">
+    Interesting.
+  </p>
+
+</section>
+
+
+<!-- 8 EVEN WORSE -->
+<section class="white-section center">
+
+  <div class="eyebrow fade">SECOND MEMORY ATTEMPT</div>
+
+  <h2 class="fade">
+    Searching harder.
+  </h2>
+
+  <div style="width:100%;margin-top:28px" class="fade">
+
+    <div class="loading">
+      <span></span>
+    </div>
+
+    <div class="stat">
+      <span>Kami</span>
+      <strong>Not found</strong>
+    </div>
+
+    <div class="stat">
+      <span>Lithuania</span>
+      <strong>Vaguely familiar</strong>
+    </div>
+
+    <div class="stat">
+      <span>Italy</span>
+      <strong>❤️</strong>
+    </div>
+
+  </div>
+
+  <p class="fade" style="margin-top:27px">
+    He may have adapted to Italy faster than expected.
+  </p>
+
+</section>
+
+
+<!-- 9 COLOGNE -->
+<section class="coral-section center">
+
+  <div class="eyebrow fade">ONE MORE DETAIL</div>
+
+  <h2 class="fade">
+    This probably doesn't help.
+  </h2>
+
+  <div class="bottle fade"></div>
+
+  <div class="big-word fade" style="font-size:55px;letter-spacing:-3px">
+    FAVORITE<br>
+    COLOGNE
+  </div>
+
+  <p class="fade" style="margin-top:24px;color:#6d4b42">
+    Yes.
+    <br>
+    That one.
+  </p>
+
+  <h3 class="fade" style="margin-top:18px">
+    The one girls like.
+  </h3>
+
+</section>
+
+
+<!-- 10 GIRLS -->
+<section class="yellow-section center">
+
+  <div class="eyebrow fade">LOCAL ENVIRONMENT CHECK</div>
+
+  <h2 class="fade">
+    Italy has introduced some unnecessary variables.
   </h2>
 
   <div class="radar fade">
+
     <div class="dot one"></div>
     <div class="dot two"></div>
     <div class="dot three"></div>
     <div class="dot four"></div>
-    <div class="radar-center">PANAGIOTIS</div>
-  </div>
 
-  <div style="width:100%">
-
-    <div class="statusline fade">
-      <span>Brunette</span>
-      <strong>Detected</strong>
-    </div>
-
-    <div class="statusline fade">
-      <span>Blonde</span>
-      <strong>Detected</strong>
-    </div>
-
-    <div class="statusline fade">
-      <span>Italian accent</span>
-      <strong>Detected</strong>
-    </div>
-
-    <div class="statusline fade">
-      <span>Kami</span>
-      <strong>1,000+ km away</strong>
+    <div class="radar-center">
+      PANAGIOTIS
     </div>
 
   </div>
+
+  <div style="width:100%" class="fade">
+
+    <div class="stat">
+      <span>Beautiful Italian girls</span>
+      <strong>Unfortunately yes</strong>
+    </div>
+
+    <div class="stat">
+      <span>Favorite cologne</span>
+      <strong>ON</strong>
+    </div>
+
+    <div class="stat">
+      <span>Panagiotis mood</span>
+      <strong>Relaxed</strong>
+    </div>
+
+    <div class="stat">
+      <span>Girlfriend nearby</span>
+      <strong>No</strong>
+    </div>
+
+  </div>
+
 </section>
 
 
-<!-- COLOGNE -->
-<section class="section">
-  <div class="eyebrow fade">SITUATION ESCALATION</div>
+<!-- 11 MORE GIRLS -->
+<section class="blue-section">
+
+  <div class="eyebrow fade">SOCIAL CONDITIONS</div>
 
   <h2 class="fade">
-    Additional threat detected.
+    Possible phrases heard nearby:
   </h2>
 
-  <div class="rule fade"></div>
+  <div class="stats fade">
 
-  <div class="big fade">
-    Favorite<br>
-    cologne.
+    <div class="stat">
+      <span>01</span>
+      <strong>“Nice perfume.”</strong>
+    </div>
+
+    <div class="stat">
+      <span>02</span>
+      <strong>“Where are you from?”</strong>
+    </div>
+
+    <div class="stat">
+      <span>03</span>
+      <strong>“Are you here for the Games?”</strong>
+    </div>
+
+    <div class="stat">
+      <span>04</span>
+      <strong>Potential trouble.</strong>
+    </div>
+
   </div>
 
-  <p class="quote fade">
-    Yes.<br>
-    That one.
+  <p class="fade" style="margin-top:27px">
+    Source reliability: absolutely terrible.
   </p>
 
-  <p class="fade" style="margin-top:18px;">
-    The one girls like.
-  </p>
 </section>
 
 
-<!-- RISK -->
-<section class="section center darkblock">
-  <div class="eyebrow fade">RELATIONSHIP RISK ENGINE</div>
+<!-- 12 TRANSITION TO HER -->
+<section class="center" style="background:#cfe4eb">
 
-  <div class="big fade">
-    99.9%
+  <div class="eyebrow fade">MEANWHILE...</div>
+
+  <div class="big-word fade">
+    KAUNAS.
   </div>
 
-  <h2 class="fade" style="margin-top:18px;">
-    Unnecessary risk.
-  </h2>
-
-  <div class="scan fade">
-    <div class="small">Cologne effectiveness</div>
-    <div class="bar"><span style="--w:94%"></span></div>
-  </div>
-
-  <div class="scan fade">
-    <div class="small">Italian girl proximity</div>
-    <div class="bar"><span style="--w:89%"></span></div>
-  </div>
-
-  <div class="scan fade">
-    <div class="small">Kami patience remaining</div>
-    <div class="bar"><span style="--w:11%"></span></div>
-  </div>
-
-  <p class="fade" style="margin-top:28px;">
-    Recommended response:<br>
-    absolutely do not show Kami this page.
+  <p class="fade" style="margin-top:25px;max-width:320px">
+    Several hundred kilometres away from all of this nonsense...
   </p>
+
 </section>
 
 
-<!-- COMPLIMENTS -->
-<section class="section">
-  <div class="eyebrow fade">LIVE SOCIAL ANALYSIS</div>
+<!-- 13 KAMI -->
+<section class="kami-section">
+
+  <div class="eyebrow fade">KAMI STATUS REPORT</div>
 
   <h2 class="fade">
-    Possible interactions detected
+    A slightly less Italian situation.
   </h2>
 
-  <div class="data">
+  <img
+    class="kami-photo fade"
+    src="b676e03b-698d-415c-ad30-4bacca8e7aba.jpeg"
+    alt=""
+  >
 
-    <div class="data-row fade">
-      <div class="label">Phrase #1</div>
-      <div class="value">“Nice perfume.”</div>
+  <div class="stats fade">
+
+    <div class="stat">
+      <span>Italy</span>
+      <strong>No</strong>
     </div>
 
-    <div class="data-row fade">
-      <div class="label">Phrase #2</div>
-      <div class="value">“Where are you from?”</div>
+    <div class="stat">
+      <span>Mediterranean Sea</span>
+      <strong>No</strong>
     </div>
 
-    <div class="data-row fade">
-      <div class="label">Phrase #3</div>
-      <div class="value">“Are you here for the Games?”</div>
+    <div class="stat">
+      <span>Panagiotis</span>
+      <strong>Also no</strong>
+    </div>
+
+    <div class="stat">
+      <span>Reason to be annoyed</span>
+      <strong>Valid</strong>
     </div>
 
   </div>
 
-  <p class="small fade" style="margin-top:26px;">
-    Source reliability: extremely questionable.
+</section>
+
+
+<!-- 14 SHE FOUND IT -->
+<section class="coral-section center">
+
+  <div class="eyebrow fade">BREAKING DEVELOPMENT</div>
+
+  <div class="alert fade">
+    KAMI<br>
+    FOUND<br>
+    THIS.
+  </div>
+
+  <p class="fade" style="margin-top:25px;color:#6f4e45">
+    Damage control protocol starting.
   </p>
+
+  <div style="width:100%;margin-top:30px" class="fade">
+
+    <div class="stat">
+      <span>Delete priorities</span>
+      <strong>Failed</strong>
+    </div>
+
+    <div class="stat">
+      <span>Delete forgotten girlfriend evidence</span>
+      <strong>Failed</strong>
+    </div>
+
+    <div class="stat">
+      <span>Delete cologne section</span>
+      <strong>Very failed</strong>
+    </div>
+
+    <div class="stat">
+      <span>Survival probability</span>
+      <strong>Low</strong>
+    </div>
+
+  </div>
+
 </section>
 
 
-<!-- PRIORITIES -->
-<section class="section darkblock">
-  <div class="eyebrow fade">CURRENT PRIORITY RANKING</div>
+<!-- 15 TRUTH -->
+<section class="truth">
 
-  <h2 class="fade">
-    Unfortunately...
-  </h2>
-
-  <div class="list">
-
-    <div class="rank fade">
-      <div class="rank-num">1</div>
-      <div class="rank-text">Fencing</div>
-    </div>
-
-    <div class="rank fade">
-      <div class="rank-num">2</div>
-      <div class="rank-text">Italy</div>
-    </div>
-
-    <div class="rank fade">
-      <div class="rank-num">3</div>
-      <div class="rank-text">Pasta</div>
-    </div>
-
-    <div class="rank fade">
-      <div class="rank-num">4</div>
-      <div class="rank-text">Looking unnecessarily good</div>
-    </div>
-
-    <div class="rank fade">
-      <div class="rank-num">5</div>
-      <div class="rank-text">Dangerous cologne</div>
-    </div>
-
-    <div class="rank fade">
-      <div class="rank-num">6</div>
-      <div class="rank-text">Remember Lithuania exists</div>
-    </div>
-
-    <div class="rank fade">
-      <div class="rank-num">7</div>
-      <div class="rank-text">Kami</div>
-    </div>
-
-  </div>
-
-  <p class="small fade" style="margin-top:24px;">
-    Ranking generated by Panagiotis.<br>
-    Reliability: 0%.
-  </p>
-</section>
-
-
-<!-- KAMI -->
-<section class="photo-full">
-  <img src="b676e03b-698d-415c-ad30-4bacca8e7aba.jpeg" alt="">
-
-  <div class="photo-copy">
-    <div class="eyebrow fade">MEANWHILE IN KAUNAS</div>
-
-    <h2 class="fade">
-      Kami remains tragically not in Italy.
-    </h2>
-
-    <p class="fade" style="margin-top:16px;color:#ddd;">
-      Boyfriend: Italy<br>
-      Kami: Lithuania<br>
-      Reason to be annoyed: valid
-    </p>
-  </div>
-</section>
-
-
-<!-- FORGOTTEN -->
-<section class="section center memory">
-  <div class="eyebrow fade">MEMORY SEARCH</div>
-
-  <div class="busted fade">
-    KAMI?
-  </div>
-
-  <div class="terminal fade">
-    Searching memory...<br>
-    ███████████████ 100%<br><br>
-    Result:<br>
-    <strong>NO MATCHES FOUND.</strong>
-  </div>
-
-  <p class="fade" style="margin-top:26px;">
-    This is getting bad.
-  </p>
-</section>
-
-
-<!-- MORE -->
-<section class="section center memory">
-  <div class="eyebrow fade">SEARCHING HARDER</div>
-
-  <div class="terminal fade">
-    Checking recent thoughts...<br>
-    Checking Italy folder...<br>
-    Checking girlfriend folder...<br><br>
-    <strong>ERROR.</strong>
-  </div>
-
-  <div class="rule fade"></div>
-
-  <h2 class="fade">
-    Panagiotis appears to have forgotten Kami completely.
-  </h2>
-</section>
-
-
-<!-- CAUGHT -->
-<section class="section center">
-  <div class="eyebrow fade">SECURITY ALERT</div>
-
-  <div class="busted fade">
-    OH.
-  </div>
-
-  <h2 class="fade" style="margin-top:18px;">
-    Kami opened the website.
-  </h2>
-
-  <div class="terminal fade">
-    Deleting Italian girls... <strong>FAILED</strong><br>
-    Deleting perfume evidence... <strong>FAILED</strong><br>
-    Deleting priority ranking... <strong>FAILED</strong><br>
-    Activating damage control...
-  </div>
-</section>
-
-
-<!-- TRUTH -->
-<section class="section truth">
   <div class="eyebrow fade">ACTUAL REPORT</div>
 
   <h1 class="fade">
     Okay.<br>
-    Enough.
+    Fine.
   </h1>
 
-  <div class="rule fade"></div>
-
-  <h2 class="fade">
-    None of that was true.
-  </h2>
-
-  <p class="fade" style="margin-top:22px;">
-    No girls.<br>
-    No compliments.<br>
-    No forgetting you.
+  <p class="fade" style="margin-top:26px">
+    The system has been lying.
   </p>
 
-  <p class="fade" style="margin-top:16px;font-weight:800;color:#111;">
-    The cologne part is real though.
-  </p>
+  <div class="stats fade">
+
+    <div class="stat">
+      <span>Italian girls</span>
+      <strong>Irrelevant</strong>
+    </div>
+
+    <div class="stat">
+      <span>Compliments</span>
+      <strong>Invented</strong>
+    </div>
+
+    <div class="stat">
+      <span>Forgot Kami</span>
+      <strong>Impossible</strong>
+    </div>
+
+    <div class="stat">
+      <span>Cologne</span>
+      <strong>Still real</strong>
+    </div>
+
+  </div>
+
 </section>
 
 
-<!-- REAL STATUS -->
-<section class="section truth">
+<!-- 16 REAL STATUS -->
+<section class="white-section">
 
   <div class="eyebrow fade">THE REAL STATUS</div>
 
-  <div class="truth-stat fade">
-    <span>Missing Kami</span>
-    <strong>100%</strong>
+  <h2 class="fade">
+    What is actually happening.
+  </h2>
+
+  <div style="margin-top:30px">
+
+    <div class="truth-stat fade">
+      <span>Missing Kami</span>
+      <strong>100%</strong>
+    </div>
+
+    <div class="truth-stat fade">
+      <span>Thinking about Kami</span>
+      <strong>All the time.</strong>
+    </div>
+
+    <div class="truth-stat fade">
+      <span>Person I wish was here</span>
+      <strong>Kami.</strong>
+    </div>
+
+    <div class="truth-stat fade">
+      <span>Forgot girlfriend</span>
+      <strong>Not even close.</strong>
+    </div>
+
   </div>
 
-  <div class="truth-stat fade">
-    <span>Thinking about Kami</span>
-    <strong>Constantly</strong>
-  </div>
-
-  <div class="truth-stat fade">
-    <span>Would rather have her here</span>
-    <strong>Obviously</strong>
-  </div>
-
-  <img class="fade" src="0f5b2655-b06b-40cb-8d43-ef693339adc9.jpeg" alt="">
-
-  <p class="fade">
-    I made this because even on my first day in Italy,
-    the person I wanted to share it with was you.
-  </p>
 </section>
 
 
-<!-- FINAL -->
-<section class="final-photo">
+<!-- 17 COUPLE PHOTO -->
+<section class="full-photo">
 
-  <img src="IMG_2328.jpeg" alt="">
+  <img
+    src="F5851BBC-1097-4DA2-A729-063B29EC89F4 (1).jpeg"
+    alt=""
+  >
 
-  <div class="final-message">
+  <div class="photo-text">
 
-    <div class="eyebrow fade">FINAL STATUS</div>
+    <div class="eyebrow fade">REALITY</div>
 
     <h2 class="fade">
-      Italy gets me<br>
-      until August 25.
+      Italy is amazing.
     </h2>
 
-    <h2 class="fade" style="margin-top:18px;">
-      I get you<br>
-      August 26. ❤️
-    </h2>
-
-    <p class="secret fade">
-      P.S. Please ignore everything you read about Italian girls.
+    <p class="fade" style="margin-top:16px;font-size:18px">
+      But you're still the person I want here with me.
     </p>
 
   </div>
+
+</section>
+
+
+<!-- 18 FINAL -->
+<section class="final center">
+
+  <div class="eyebrow fade">FINAL STATUS</div>
+
+  <h2 class="fade">
+    Italy gets me<br>
+    until August 25.
+  </h2>
+
+  <img
+    class="fade"
+    src="IMG_2328.jpeg"
+    alt=""
+  >
+
+  <h2 class="fade">
+    I get you<br>
+    August 26. ❤️
+  </h2>
+
+  <p class="fade" style="margin-top:24px;max-width:330px;color:#725b53">
+    I may be having an amazing time here.
+    But I'm thinking about you more than anything else.
+  </p>
+
+  <p class="note fade">
+    P.S. Please disregard the entire Italian girls department.
+    <br>
+    The cologne stays.
+  </p>
 
 </section>
 
 
 <script>
-
-const items = document.querySelectorAll('.fade');
+const fades = document.querySelectorAll(".fade");
 
 const observer = new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting){
-      entry.target.classList.add('visible');
+      entry.target.classList.add("show");
     }
   });
 },{
-  threshold:.18
+  threshold:.16
 });
 
-items.forEach(el=>observer.observe(el));
+fades.forEach(el=>observer.observe(el));
 
-/* slight haptic feel on big sections */
-const sections = document.querySelectorAll('.section,.photo-full,.final-photo');
+/* tiny phone vibration on major sections */
+const sections = document.querySelectorAll("section");
 
 const sectionObserver = new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting && navigator.vibrate){
-      navigator.vibrate(12);
+      navigator.vibrate(10);
     }
   });
 },{
-  threshold:.65
+  threshold:.72
 });
 
-sections.forEach(el=>sectionObserver.observe(el));
-
+sections.forEach(s=>sectionObserver.observe(s));
 </script>
 
 </body>
