@@ -1,12 +1,1091 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Taranto 2026 — Athlete Status</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --white:#fff;
+    --soft:#f6f7fb;
+    --text:#111318;
+    --muted:#818895;
+    --blue:#0a84ff;
+    --green:#30d158;
+    --red:#ff453a;
+    --orange:#ff9f0a;
+    --glass:rgba(255,255,255,.84);
+}
+
+body{
+    margin:0;
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:#08090b;
+    color:white;
+    overflow:hidden;
+    min-height:100svh;
+}
+
+button{
+    font:inherit;
+}
+
+.app{
+    height:100svh;
+    width:100%;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 80% 10%,rgba(18,120,255,.17),transparent 28%),
+        radial-gradient(circle at 10% 85%,rgba(255,40,70,.12),transparent 30%),
+        #08090b;
+}
+
+.topbar{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:62px;
+    padding:13px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    z-index:50;
+    font-size:12px;
+    letter-spacing:.7px;
+    color:rgba(255,255,255,.7);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:800;
+    color:white;
+}
+
+.brand-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#36d56a;
+    box-shadow:0 0 14px #36d56a;
+}
+
+.live{
+    padding:6px 9px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:99px;
+}
+
+.screen{
+    position:absolute;
+    inset:0;
+    padding:74px 20px 32px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    opacity:0;
+    transform:translateX(18px) scale(.985);
+    pointer-events:none;
+    transition:.48s cubic-bezier(.2,.8,.2,1);
+}
+
+.screen.active{
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+}
+
+.eyebrow{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    color:#9298a5;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+h1{
+    font-size:38px;
+    line-height:1.02;
+    letter-spacing:-1.6px;
+    margin-bottom:14px;
+}
+
+h2{
+    font-size:28px;
+    line-height:1.05;
+    letter-spacing:-1px;
+}
+
+.sub{
+    font-size:15px;
+    color:#9ea4af;
+    line-height:1.55;
+}
+
+.card{
+    margin-top:24px;
+    padding:20px;
+    border-radius:26px;
+    background:rgba(255,255,255,.075);
+    border:1px solid rgba(255,255,255,.1);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    box-shadow:0 20px 70px rgba(0,0,0,.24);
+}
+
+.big-number{
+    font-size:58px;
+    font-weight:900;
+    letter-spacing:-3px;
+    margin:8px 0;
+}
+
+.green{color:#43df70;}
+.red{color:#ff5951;}
+.orange{color:#ffad32;}
+.blue{color:#4aa5ff;}
+
+.loader{
+    height:6px;
+    background:rgba(255,255,255,.09);
+    border-radius:99px;
+    margin-top:22px;
+    overflow:hidden;
+}
+
+.loader span{
+    display:block;
+    width:0%;
+    height:100%;
+    background:white;
+    border-radius:99px;
+    animation:load 2.6s ease forwards;
+}
+
+@keyframes load{
+    to{width:100%}
+}
+
+.status-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:15px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    gap:12px;
+}
+
+.status-row:last-child{
+    border-bottom:0;
+}
+
+.status-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.icon{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    background:rgba(255,255,255,.08);
+    display:grid;
+    place-items:center;
+    font-size:20px;
+}
+
+.label{
+    font-size:14px;
+    font-weight:700;
+}
+
+.small{
+    color:#8e95a1;
+    font-size:12px;
+    margin-top:3px;
+}
+
+.result{
+    font-size:14px;
+    font-weight:800;
+}
+
+.next{
+    width:100%;
+    margin-top:28px;
+    padding:17px;
+    border:0;
+    border-radius:18px;
+    background:white;
+    color:#090a0d;
+    font-weight:900;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.next.dark{
+    background:rgba(255,255,255,.1);
+    color:white;
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.map{
+    position:relative;
+    height:290px;
+    margin-top:20px;
+    border-radius:28px;
+    background:
+        radial-gradient(circle at 50% 45%,rgba(0,122,255,.16),transparent 45%),
+        rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.09);
+    overflow:hidden;
+}
+
+.map-grid{
+    position:absolute;
+    inset:0;
+    opacity:.18;
+    background-image:
+        linear-gradient(rgba(255,255,255,.15) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.15) 1px,transparent 1px);
+    background-size:34px 34px;
+}
+
+.city{
+    position:absolute;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-size:12px;
+    font-weight:800;
+}
+
+.city .pin{
+    width:15px;
+    height:15px;
+    background:white;
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+    margin-bottom:8px;
+    box-shadow:0 0 25px rgba(255,255,255,.7);
+}
+
+.city span{
+    transform:none;
+}
+
+.kaunas{
+    left:61%;
+    top:20%;
+}
+
+.taranto{
+    left:46%;
+    top:72%;
+}
+
+.route{
+    position:absolute;
+    left:49%;
+    top:31%;
+    width:92px;
+    height:136px;
+    border-left:2px dashed rgba(255,255,255,.5);
+    transform:rotate(8deg);
+}
+
+.flag{
+    font-size:42px;
+    margin-bottom:16px;
+}
+
+.priority{
+    padding:14px 16px;
+    border-radius:17px;
+    background:rgba(255,255,255,.06);
+    margin-top:9px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    font-weight:750;
+}
+
+.priority .rank{
+    font-size:20px;
+    width:30px;
+}
+
+.warning{
+    color:#ff554e;
+    font-weight:900;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:7px 10px;
+    border-radius:99px;
+    background:rgba(255,69,58,.13);
+    color:#ff6b63;
+    border:1px solid rgba(255,69,58,.2);
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.6px;
+    margin-bottom:15px;
+}
+
+.cologne{
+    height:130px;
+    width:85px;
+    margin:15px auto 25px;
+    border-radius:15px 15px 24px 24px;
+    background:linear-gradient(150deg,#24272e,#08090c);
+    border:1px solid #4d525c;
+    box-shadow:0 20px 60px rgba(0,0,0,.8);
+    position:relative;
+}
+
+.cologne:before{
+    content:"";
+    width:38px;
+    height:18px;
+    background:#777d86;
+    position:absolute;
+    top:-18px;
+    left:23px;
+    border-radius:5px 5px 0 0;
+}
+
+.cologne:after{
+    content:"FAVORITE";
+    position:absolute;
+    top:55px;
+    width:100%;
+    text-align:center;
+    font-size:9px;
+    letter-spacing:2px;
+    color:#eee;
+}
+
+.risk{
+    text-align:center;
+    font-size:44px;
+    font-weight:1000;
+    color:#ff453a;
+    letter-spacing:-2px;
+    animation:pulse 1.05s infinite;
+}
+
+@keyframes pulse{
+    50%{opacity:.48;transform:scale(.97);}
+}
+
+.notification{
+    position:absolute;
+    top:58px;
+    left:14px;
+    right:14px;
+    padding:14px 16px;
+    border-radius:19px;
+    background:rgba(35,35,39,.93);
+    backdrop-filter:blur(24px);
+    border:1px solid rgba(255,255,255,.1);
+    transform:translateY(-140%);
+    transition:.5s cubic-bezier(.2,.9,.2,1.2);
+    z-index:100;
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.notification.show{
+    transform:translateY(0);
+}
+
+.notif-icon{
+    width:38px;height:38px;
+    background:#ff453a;
+    border-radius:10px;
+    display:grid;
+    place-items:center;
+}
+
+.photo{
+    width:100%;
+    height:330px;
+    object-fit:cover;
+    border-radius:27px;
+    margin-top:20px;
+    border:1px solid rgba(255,255,255,.12);
+}
+
+.photo.short{
+    height:280px;
+}
+
+.photo-stack{
+    position:relative;
+    height:340px;
+    margin-top:24px;
+}
+
+.photo-stack img{
+    position:absolute;
+    width:72%;
+    height:290px;
+    object-fit:cover;
+    border-radius:24px;
+    box-shadow:0 30px 80px rgba(0,0,0,.55);
+}
+
+.photo-stack img:nth-child(1){
+    left:0;
+    top:25px;
+    transform:rotate(-6deg);
+}
+
+.photo-stack img:nth-child(2){
+    right:0;
+    top:0;
+    transform:rotate(6deg);
+}
+
+.achievement{
+    margin-top:14px;
+    padding:16px;
+    border-radius:19px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:linear-gradient(135deg,rgba(255,184,0,.12),rgba(255,255,255,.05));
+    border:1px solid rgba(255,194,43,.18);
+}
+
+.trophy{
+    font-size:29px;
+}
+
+.locked{
+    opacity:.7;
+    filter:saturate(.4);
+}
+
+.countdown{
+    display:flex;
+    gap:8px;
+    margin-top:20px;
+}
+
+.timebox{
+    flex:1;
+    padding:15px 6px;
+    background:rgba(255,255,255,.07);
+    border-radius:18px;
+    text-align:center;
+}
+
+.timebox strong{
+    display:block;
+    font-size:27px;
+}
+
+.timebox span{
+    font-size:9px;
+    color:#8d949f;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.final{
+    text-align:center;
+    align-items:center;
+}
+
+.final h1{
+    font-size:34px;
+}
+
+.heart{
+    font-size:52px;
+    margin-bottom:15px;
+    animation:heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat{
+    50%{transform:scale(1.15)}
+}
+
+.progress-dots{
+    position:absolute;
+    bottom:13px;
+    left:0;
+    right:0;
+    display:flex;
+    justify-content:center;
+    gap:5px;
+    z-index:40;
+}
+
+.progress-dots i{
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:rgba(255,255,255,.2);
+    transition:.3s;
+}
+
+.progress-dots i.active{
+    width:18px;
+    border-radius:10px;
+    background:white;
+}
+
+.glitch{
+    animation:glitch .1s 5;
+}
+
+@keyframes glitch{
+    0%{transform:translate(0)}
+    25%{transform:translate(3px,-2px)}
+    50%{transform:translate(-2px,2px)}
+    75%{transform:translate(2px,1px)}
+}
+
+@media(min-width:700px){
+    .app{
+        max-width:430px;
+        margin:auto;
+        box-shadow:0 0 100px rgba(0,0,0,.8);
+    }
+}
+</style>
 </head>
+
 <body>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo magni nostrum reprehenderit, ipsa sequi necessitatibus vel optio eos doloremque similique perferendis molestiae velit nobis perspiciatis sint odit culpa natus temporibus?
-    lorem ipsum dolor sit amet consectetur adipisicing elit. Illo magni nostrum reprehenderit, ipsa sequi necessitatibus vel optio eos doloremque similique perferendis molestiae velit nobis perspiciatis sint odit culpa natus temporibus?
+
+<div class="app">
+
+    <div class="topbar">
+        <div class="brand">
+            <div class="brand-dot"></div>
+            TARANTO 2026
+        </div>
+        <div class="live">ATHLETE LIVE</div>
+    </div>
+
+    <div class="notification" id="notification">
+        <div class="notif-icon">⚠️</div>
+        <div>
+            <div style="font-size:12px;font-weight:900">SYSTEM ALERT</div>
+            <div style="font-size:12px;color:#aaa;margin-top:2px">
+                Kami has opened the tracker.
+            </div>
+        </div>
+    </div>
+
+    <!-- 1 -->
+    <section class="screen active">
+        <div class="eyebrow">Mediterranean Games • Italy</div>
+        <h1>Athlete Status<br>Monitor</h1>
+        <p class="sub">
+            Live psychological and lifestyle monitoring for athletes currently surviving Italy.
+        </p>
+
+        <div class="card">
+            <div class="status-row">
+                <div class="status-left">
+                    <div class="icon">🇬🇷</div>
+                    <div>
+                        <div class="label">Andriana</div>
+                        <div class="small">Women's Épée • Greece</div>
+                    </div>
+                </div>
+                <div class="result green">ONLINE</div>
+            </div>
+
+            <div class="status-row">
+                <div class="status-left">
+                    <div class="icon">📍</div>
+                    <div>
+                        <div class="label">Current location</div>
+                        <div class="small">Scanning GPS...</div>
+                    </div>
+                </div>
+                <div class="result">ITALY 🇮🇹</div>
+            </div>
+        </div>
+
+        <button class="next" onclick="next()">START LIVE SCAN</button>
+    </section>
+
+    <!-- 2 -->
+    <section class="screen">
+        <div class="eyebrow">GPS CONNECTION ESTABLISHED</div>
+        <h1>We found her.</h1>
+
+        <div class="map">
+            <div class="map-grid"></div>
+            <div class="route"></div>
+
+            <div class="city kaunas">
+                <div class="pin"></div>
+                <span>🇱🇹 KAUNAS</span>
+            </div>
+
+            <div class="city taranto">
+                <div class="pin"></div>
+                <span>🇮🇹 TARANTO</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="small">Current situation</div>
+            <div class="big-number">Far.</div>
+            <p class="sub">Scientifically considered extremely unfortunate for Kami.</p>
+        </div>
+
+        <button class="next" onclick="next()">ANALYZE SITUATION</button>
+    </section>
+
+    <!-- 3 -->
+    <section class="screen">
+        <div class="eyebrow">EMOTIONAL ANALYSIS</div>
+        <h1>Checking if Andriana misses Kami...</h1>
+
+        <div class="card">
+            <div class="small">Scanning thoughts</div>
+            <div class="loader"><span></span></div>
+
+            <div style="margin-top:28px">
+                <div class="small">Missing girlfriend</div>
+                <div class="big-number red">0.4%</div>
+            </div>
+
+            <div class="status-row">
+                <div class="label">General happiness</div>
+                <div class="result green">101%</div>
+            </div>
+
+            <div class="status-row">
+                <div class="label">Regret about being in Italy</div>
+                <div class="result">0%</div>
+            </div>
+        </div>
+
+        <button class="next" onclick="next()">THIS SEEMS SUSPICIOUS</button>
+    </section>
+
+    <!-- 4 -->
+    <section class="screen">
+        <div class="eyebrow">ITALIAN LIFE INDEX</div>
+        <h1>Current priorities</h1>
+        <p class="sub">Updated automatically using highly questionable technology.</p>
+
+        <div style="margin-top:18px">
+            <div class="priority"><span class="rank">1</span> 🤺 Mediterranean Games</div>
+            <div class="priority"><span class="rank">2</span> 🍝 Italian pasta</div>
+            <div class="priority"><span class="rank">3</span> 🍕 Actual Italian pizza</div>
+            <div class="priority"><span class="rank">4</span> 🍨 Gelato</div>
+            <div class="priority"><span class="rank">5</span> ☕ Espresso</div>
+            <div class="priority"><span class="rank">6</span> 🇱🇹 Remember Lithuania exists</div>
+            <div class="priority"><span class="rank">7</span> ❤️ Kami</div>
+        </div>
+
+        <button class="next" onclick="next()">RUDE. CONTINUE.</button>
+    </section>
+
+    <!-- 5 -->
+    <section class="screen">
+        <div class="badge">⚠️ NEW VARIABLE DETECTED</div>
+        <h1>Fragrance scan.</h1>
+
+        <div class="cologne"></div>
+
+        <div class="card">
+            <div class="status-row">
+                <div>
+                    <div class="label">Favorite cologne</div>
+                    <div class="small">The one that girls like</div>
+                </div>
+                <div class="result green">DETECTED</div>
+            </div>
+
+            <div class="status-row">
+                <div>
+                    <div class="label">Applied in Italy</div>
+                    <div class="small">Potentially irresponsible behavior</div>
+                </div>
+                <div class="result red">YES</div>
+            </div>
+        </div>
+
+        <button class="next" onclick="next()">CALCULATE RISK</button>
+    </section>
+
+    <!-- 6 -->
+    <section class="screen">
+        <div class="eyebrow">SECURITY ANALYSIS</div>
+        <h1>Italian girl interaction risk</h1>
+
+        <div class="card" style="text-align:center">
+            <div class="small">Risk level</div>
+            <div class="risk">EXTREME</div>
+
+            <div style="margin:25px 0 10px;font-size:50px">🚨</div>
+
+            <p class="sub">
+                Favorite cologne + Italy + good mood is statistically a terrible combination for Kami.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="status-row">
+                <div class="label">Italian girls nearby</div>
+                <div class="result red">TOO MANY</div>
+            </div>
+            <div class="status-row">
+                <div class="label">Kami nearby</div>
+                <div class="result">0</div>
+            </div>
+            <div class="status-row">
+                <div class="label">System recommendation</div>
+                <div class="result orange">PANIC</div>
+            </div>
+        </div>
+
+        <button class="next" onclick="next()">I'M PANICKING</button>
+    </section>
+
+    <!-- 7 -->
+    <section class="screen">
+        <div class="eyebrow">DAILY CHECKLIST</div>
+        <h1>First day in Italy</h1>
+
+        <div class="card">
+            <div class="status-row">
+                <div class="status-left"><div class="icon">☀️</div><div class="label">Enjoy Italy</div></div>
+                <div class="result green">✓</div>
+            </div>
+            <div class="status-row">
+                <div class="status-left"><div class="icon">🍕</div><div class="label">Eat something Italian</div></div>
+                <div class="result green">✓</div>
+            </div>
+            <div class="status-row">
+                <div class="status-left"><div class="icon">🌊</div><div class="label">Mediterranean vibes</div></div>
+                <div class="result green">✓</div>
+            </div>
+            <div class="status-row">
+                <div class="status-left"><div class="icon">📱</div><div class="label">Reply immediately to Kami</div></div>
+                <div class="result red">PENDING</div>
+            </div>
+            <div class="status-row">
+                <div class="status-left"><div class="icon">🧠</div><div class="label">Remember girlfriend</div></div>
+                <div class="result orange">LOW BATTERY</div>
+            </div>
+        </div>
+
+        <button class="next" onclick="next()">UNBELIEVABLE</button>
+    </section>
+
+    <!-- 8 -->
+    <section class="screen">
+        <div class="eyebrow">PHOTO EVIDENCE</div>
+        <h1>Meanwhile in Italy...</h1>
+        <p class="sub">Live photographic evidence from Taranto.</p>
+
+        <img
+            src="taranto.jpg"
+            class="photo"
+            onerror="this.style.display='none';document.getElementById('photoPlaceholder').style.display='flex'"
+        >
+
+        <div id="photoPlaceholder" style="
+            height:330px;
+            border:1px dashed rgba(255,255,255,.2);
+            border-radius:27px;
+            margin-top:20px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            color:#7e8590;
+            padding:30px;
+        ">
+            📸<br><br>
+            Your live Taranto photo<br>goes here
+        </div>
+
+        <button class="next" onclick="next()">SHE LOOKS TOO HAPPY</button>
+    </section>
+
+    <!-- 9 -->
+    <section class="screen">
+        <div class="eyebrow">KAMI STATUS REPORT</div>
+        <h1>Meanwhile in Lithuania...</h1>
+
+        <img
+            src="b676e03b-698d-415c-ad30-4bacca8e7aba.jpeg"
+            class="photo short"
+        >
+
+        <div class="card">
+            <div class="status-row">
+                <div class="label">Location</div>
+                <div class="result">Kaunas 🇱🇹</div>
+            </div>
+            <div class="status-row">
+                <div class="label">Italy</div>
+                <div class="result red">NO</div>
+            </div>
+            <div class="status-row">
+                <div class="label">Boyfriend</div>
+                <div class="result red">NO</div>
+            </div>
+            <div class="status-row">
+                <div class="label">Reason to be annoyed</div>
+                <div class="result green">VALID</div>
+            </div>
+        </div>
+
+        <button class="next" onclick="showAlert();next()">CONTINUE INVESTIGATION</button>
+    </section>
+
+    <!-- 10 -->
+    <section class="screen">
+        <div class="badge">🚨 EMERGENCY PROTOCOL</div>
+        <h1>Kami found the website.</h1>
+
+        <div class="card">
+            <div class="small">Automatic damage assessment</div>
+            <div class="big-number red">98%</div>
+            <p class="sub">Probability Andriana is getting yelled at after this website.</p>
+        </div>
+
+        <div class="card">
+            <div class="status-row">
+                <div class="label">Chance Kami says “not funny”</div>
+                <div class="result">94%</div>
+            </div>
+            <div class="status-row">
+                <div class="label">Chance she secretly laughs</div>
+                <div class="result green">100%</div>
+            </div>
+        </div>
+
+        <button class="next" onclick="next()">CAN THIS GET WORSE?</button>
+    </section>
+
+    <!-- 11 -->
+    <section class="screen">
+        <div class="eyebrow">ACHIEVEMENTS</div>
+        <h1>Italy unlocked.</h1>
+
+        <div class="achievement">
+            <div class="trophy">🏆</div>
+            <div>
+                <div class="label">Escaped Lithuania</div>
+                <div class="small">Rare achievement • +500 XP</div>
+            </div>
+        </div>
+
+        <div class="achievement">
+            <div class="trophy">🏆</div>
+            <div>
+                <div class="label">Made Kami jealous</div>
+                <div class="small">Legendary achievement</div>
+            </div>
+        </div>
+
+        <div class="achievement">
+            <div class="trophy">🏆</div>
+            <div>
+                <div class="label">Wore the dangerous cologne in Italy</div>
+                <div class="small">Questionable decision • +100 XP</div>
+            </div>
+        </div>
+
+        <div class="achievement locked">
+            <div class="trophy">🔒</div>
+            <div>
+                <div class="label">Hug Kami again</div>
+                <div class="small">Unlocks August 26</div>
+            </div>
+        </div>
+
+        <button class="next" onclick="next()">AUGUST 26?</button>
+    </section>
+
+    <!-- 12 -->
+    <section class="screen">
+        <div class="eyebrow">SYSTEM ERROR</div>
+        <h1>Wait...</h1>
+
+        <div class="card">
+            <div class="small">Searching memory...</div>
+            <div class="loader"><span></span></div>
+
+            <div style="margin-top:25px" class="status-row">
+                <div class="label">Kami found</div>
+                <div class="result green">YES</div>
+            </div>
+
+            <div class="status-row">
+                <div class="label">Actually forgotten</div>
+                <div class="result red">IMPOSSIBLE</div>
+            </div>
+        </div>
+
+        <div class="photo-stack">
+            <img src="F5851BBC-1097-4DA2-A729-063B29EC89F4 (1).jpeg">
+            <img src="0f5b2655-b06b-40cb-8d43-ef693339adc9.jpeg">
+        </div>
+
+        <button class="next" onclick="next()">FINE. TELL ME THE TRUTH.</button>
+    </section>
+
+    <!-- 13 -->
+    <section class="screen final">
+        <div class="heart">❤️</div>
+
+        <div class="eyebrow">FINAL SYSTEM REPORT</div>
+
+        <h1>
+            Okay, Kami.<br>
+            Italy is amazing.
+        </h1>
+
+        <p class="sub" style="max-width:330px;margin:0 auto">
+            The pizza is real.<br>
+            The sunshine is real.<br>
+            The dangerous cologne is unfortunately real too.
+        </p>
+
+        <img src="IMG_2328.jpeg" class="photo short" style="max-width:360px">
+
+        <h2 style="margin-top:22px">
+            But I didn't forget you.<br>
+            Not even a little.
+        </h2>
+
+        <p class="sub" style="margin-top:13px">
+            Italy gets me for five days.<br>
+            You get me on August 26. ❤️
+        </p>
+
+        <button class="next" onclick="kiss()" style="max-width:350px">
+            ACCEPT APOLOGY 😌
+        </button>
+    </section>
+
+    <!-- 14 -->
+    <section class="screen final">
+        <div style="font-size:76px">💋</div>
+        <h1 style="margin-top:20px">Good choice.</h1>
+        <p class="sub">
+            Emergency kisses have been scheduled for August 26.
+        </p>
+
+        <div class="card" style="width:100%;max-width:350px;text-align:left">
+            <div class="status-row">
+                <div class="label">Italy jealousy</div>
+                <div class="result green">RESOLVED</div>
+            </div>
+            <div class="status-row">
+                <div class="label">Kami</div>
+                <div class="result green">STILL #1</div>
+            </div>
+            <div class="status-row">
+                <div class="label">Cologne</div>
+                <div class="result red">STILL DANGEROUS</div>
+            </div>
+        </div>
+
+        <p style="margin-top:22px;font-weight:800">
+            See you very soon, beautiful. ❤️
+        </p>
+    </section>
+
+    <div class="progress-dots" id="dots"></div>
+
+</div>
+
+<script>
+
+const screens = [...document.querySelectorAll(".screen")];
+let current = 0;
+
+const dots = document.getElementById("dots");
+
+screens.forEach((_,i)=>{
+    const d=document.createElement("i");
+    if(i===0)d.classList.add("active");
+    dots.appendChild(d);
+});
+
+function vibration(){
+    if(navigator.vibrate){
+        navigator.vibrate(35);
+    }
+}
+
+function updateDots(){
+    [...dots.children].forEach((d,i)=>{
+        d.classList.toggle("active",i===current);
+    });
+}
+
+function next(){
+    vibration();
+
+    if(current >= screens.length-1) return;
+
+    screens[current].classList.remove("active");
+    current++;
+    screens[current].classList.add("active");
+    updateDots();
+
+    window.scrollTo(0,0);
+}
+
+function showAlert(){
+    setTimeout(()=>{
+        const n=document.getElementById("notification");
+        n.classList.add("show");
+        vibration();
+
+        setTimeout(()=>{
+            n.classList.remove("show");
+        },3200);
+    },450);
+}
+
+function kiss(){
+    if(navigator.vibrate){
+        navigator.vibrate([60,40,60]);
+    }
+    next();
+}
+
+/* tap anywhere on empty space does NOT advance accidentally */
+document.addEventListener("touchmove", e => {}, {passive:true});
+
+</script>
+
 </body>
 </html>
