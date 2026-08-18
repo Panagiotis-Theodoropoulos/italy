@@ -3,36 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
-<title>The Italian Report — August 2026</title>
+<title>Italy Experience — Panagiotis</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
-  --navy:#142532;
-  --navy2:#1a3140;
-  --petrol:#234a55;
-  --petrol2:#2f5e66;
-
-  --wine:#653c49;
-  --wine2:#7c4a58;
-
-  --sand:#d8c6a5;
-  --cream:#eee3cf;
-
-  --text:#f5f1e8;
-  --soft:#c3cbc9;
-  --muted:#8fa1a3;
-
-  --red:#d15c55;
-  --green:#7fa393;
-
-  --line:rgba(255,255,255,.13);
+  --bg:#17252e;
+  --bg2:#203842;
+  --panel:#294953;
+  --panel2:#345f67;
+  --cream:#f4ead8;
+  --sand:#d9c29d;
+  --red:#c85c51;
+  --soft:#b6c2c2;
+  --text:#f7f3eb;
+  --muted:#9fb0b2;
+  --line:rgba(255,255,255,.12);
+  --green:#86a995;
 }
 
 *{
@@ -41,1452 +31,1165 @@
   padding:0;
 }
 
-html{
-  scroll-behavior:smooth;
+html,body{
+  min-height:100%;
 }
 
 body{
-  margin:0 auto;
-  max-width:480px;
-
-  background:#0e1b24;
-  color:var(--text);
-
+  background:#101b21;
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-
+  color:var(--text);
   overflow-x:hidden;
 }
 
-body::-webkit-scrollbar{
-  display:none;
+.app{
+  width:100%;
+  max-width:480px;
+  min-height:100svh;
+  margin:auto;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(88,141,151,.22),transparent 28%),
+    linear-gradient(180deg,var(--bg2),var(--bg));
+  position:relative;
+  overflow:hidden;
 }
 
-/* =========================
-   TOP BAR
-========================= */
-
-.top{
-  position:fixed;
+.topbar{
+  position:sticky;
   top:0;
-  left:50%;
-
-  transform:translateX(-50%);
-
-  width:min(480px,100%);
-  height:54px;
-
+  z-index:30;
+  height:58px;
   display:flex;
+  align-items:center;
   justify-content:space-between;
-  align-items:center;
-
   padding:0 18px;
-
-  z-index:100;
-
-  background:rgba(20,37,50,.93);
+  background:rgba(23,37,46,.88);
   backdrop-filter:blur(18px);
-
-  border-bottom:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.07);
 }
 
-.logo{
-  font-family:"Newsreader",serif;
-  font-size:18px;
-  font-weight:700;
-}
-
-.logo span{
-  color:#d6a992;
-}
-
-.live{
-  font-size:9px;
-  letter-spacing:1.7px;
+.brand{
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:1.5px;
   text-transform:uppercase;
-  color:#aebcbe;
-
-  display:flex;
-  align-items:center;
-  gap:7px;
 }
 
-.live-dot{
-  width:7px;
-  height:7px;
-
-  background:#d15c55;
-  border-radius:50%;
-
-  animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-  50%{opacity:.35;}
+.step{
+  font-size:11px;
+  color:var(--muted);
 }
 
 .progress{
   position:fixed;
-  z-index:110;
-
-  top:53px;
+  top:58px;
   left:50%;
-
   transform:translateX(-50%);
-
   width:min(480px,100%);
-  height:2px;
-
+  height:3px;
   background:rgba(255,255,255,.05);
+  z-index:40;
 }
 
 .progress span{
   display:block;
   height:100%;
-  width:0;
-
-  background:#d6a992;
+  width:0%;
+  background:var(--sand);
+  transition:.4s ease;
 }
 
-/* =========================
-   GENERAL
-========================= */
-
-section{
-  position:relative;
-
-  min-height:100svh;
-
-  padding:90px 23px 58px;
-
-  display:flex;
+.screen{
+  display:none;
+  min-height:calc(100svh - 58px);
+  padding:84px 22px 44px;
   flex-direction:column;
   justify-content:center;
-
-  overflow:hidden;
+  animation:screenIn .48s ease;
 }
 
-.bg-main{
-  background:var(--navy);
-}
-
-.bg-alt{
-  background:var(--navy2);
-}
-
-.bg-petrol{
-  background:var(--petrol);
-}
-
-.bg-wine{
-  background:var(--wine);
-}
-
-.bg-deep{
-  background:#10242c;
-}
-
-.kicker{
-  font-size:9px;
-  text-transform:uppercase;
-  letter-spacing:2.1px;
-  font-weight:800;
-
-  color:#9aaeb0;
-
-  margin-bottom:17px;
-}
-
-h1,h2{
-  font-family:"Newsreader",serif;
-}
-
-h1{
-  font-size:clamp(50px,13vw,71px);
-  line-height:.94;
-  font-weight:600;
-  letter-spacing:-2px;
-}
-
-h2{
-  font-size:clamp(35px,9vw,48px);
-  line-height:1;
-  font-weight:600;
-  letter-spacing:-1.3px;
-}
-
-p{
-  font-family:"Newsreader",serif;
-  font-size:19px;
-  line-height:1.55;
-
-  color:#d9dedb;
-}
-
-p+p{
-  margin-top:17px;
-}
-
-.small{
-  font-family:Inter,sans-serif;
-  font-size:12px;
-  line-height:1.55;
-  color:#94a4a6;
-}
-
-.fade{
-  opacity:0;
-  transform:translateY(23px);
-
-  transition:
-    opacity .75s ease,
-    transform .75s cubic-bezier(.22,.61,.36,1);
-}
-
-.fade.visible{
-  opacity:1;
-  transform:none;
-}
-
-.delay1{transition-delay:.12s}
-.delay2{transition-delay:.24s}
-
-.rule{
-  height:1px;
-  width:100%;
-  margin:27px 0;
-
-  background:var(--line);
-}
-
-/* =========================
-   FRONT PAGE
-========================= */
-
-.front{
-  padding-top:110px;
-
-  background:
-    radial-gradient(circle at 95% 5%,rgba(63,105,112,.35),transparent 28%),
-    linear-gradient(180deg,#152936,#10242e);
-}
-
-.category{
-  display:inline-flex;
-
-  align-self:flex-start;
-
-  padding:7px 9px;
-
-  border:1px solid rgba(255,255,255,.16);
-
-  border-radius:3px;
-
-  font-size:9px;
-  font-weight:800;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-
-  color:#cfdbd9;
-
-  margin-bottom:24px;
-}
-
-.headline{
-  max-width:420px;
-}
-
-.deck{
-  margin-top:22px;
-
-  font-family:Inter,sans-serif;
-  font-size:16px;
-  line-height:1.6;
-
-  color:#aebcbd;
-}
-
-.byline{
-  margin-top:34px;
-  padding-top:18px;
-
-  border-top:1px solid var(--line);
-
+.screen.active{
   display:flex;
-  justify-content:space-between;
-  gap:20px;
-
-  color:#819699;
-
-  font-size:10px;
-  line-height:1.45;
-  letter-spacing:.5px;
-  text-transform:uppercase;
 }
 
-.scroll{
-  position:absolute;
-
-  bottom:23px;
-
-  color:#859a9d;
-
-  font-size:9px;
-  letter-spacing:1.6px;
-  text-transform:uppercase;
-
-  animation:move 1.7s infinite;
-}
-
-@keyframes move{
-  50%{transform:translateY(6px)}
-}
-
-/* =========================
-   ARTICLE
-========================= */
-
-.article-number{
-  font-family:"Newsreader",serif;
-  font-size:82px;
-  line-height:.7;
-
-  color:rgba(255,255,255,.055);
-
-  position:absolute;
-  right:20px;
-  top:85px;
-}
-
-.dropcap:first-letter{
-  float:left;
-
-  font-family:"Newsreader",serif;
-
-  font-size:69px;
-  line-height:.7;
-
-  padding-right:9px;
-  padding-top:11px;
-
-  color:#d7b69e;
-}
-
-.pullquote{
-  margin:34px 0;
-
-  padding:23px 0;
-
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-
-  font-family:"Newsreader",serif;
-  font-size:27px;
-  line-height:1.15;
-
-  color:#f3ede4;
-}
-
-/* =========================
-   LIVE REPORT
-========================= */
-
-.report{
-  margin-top:31px;
-
-  border-top:1px solid var(--line);
-}
-
-.report-row{
-  padding:19px 0;
-
-  border-bottom:1px solid var(--line);
-}
-
-.report-time{
-  font-size:9px;
-  font-weight:800;
-
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-
-  color:#819698;
-
-  margin-bottom:6px;
-}
-
-.report-title{
-  font-size:17px;
-  font-weight:700;
-
-  color:#f0eee7;
-
-  line-height:1.4;
-}
-
-.report-copy{
-  margin-top:7px;
-
-  font-size:13px;
-  line-height:1.55;
-
-  color:#a9b7b7;
-}
-
-/* =========================
-   SOCIAL
-========================= */
-
-.metric-list{
-  margin-top:31px;
-
-  border-top:1px solid var(--line);
-}
-
-.metric{
-  padding:21px 0;
-
-  border-bottom:1px solid var(--line);
-}
-
-.metric label{
-  display:block;
-
-  font-size:9px;
-  font-weight:800;
-
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-
-  color:#879a9c;
-
-  margin-bottom:5px;
-}
-
-.metric strong{
-  display:block;
-
-  font-family:"Newsreader",serif;
-
-  font-size:28px;
-  font-weight:500;
-
-  color:#f4efe6;
-}
-
-/* =========================
-   SPECIAL ALERT
-========================= */
-
-.special{
-  min-height:75svh;
-  text-align:center;
-  align-items:center;
-
-  background:var(--wine);
-}
-
-.special-tag{
-  color:#dab9bd;
-}
-
-.special h2{
-  max-width:380px;
-  font-size:48px;
-}
-
-.special-copy{
-  max-width:320px;
-  margin-top:22px;
-
-  font-family:Inter,sans-serif;
-  font-size:14px;
-  color:#d4bdc0;
-}
-
-/* =========================
-   PRIORITIES
-========================= */
-
-.ranking{
-  margin-top:31px;
-}
-
-.rank{
-  display:grid;
-  grid-template-columns:35px 1fr;
-
-  padding:17px 0;
-
-  border-bottom:1px solid var(--line);
-}
-
-.rank-no{
-  font-size:10px;
-  color:#718e92;
-  padding-top:5px;
-}
-
-.rank-text{
-  font-family:"Newsreader",serif;
-
-  font-size:24px;
-
-  color:#ede9e1;
-}
-
-/* =========================
-   RELATIONSHIP
-========================= */
-
-.breaking{
-  background:#733f4b;
-}
-
-.breaking-label{
-  display:inline-block;
-
-  color:#fff;
-
-  font-size:9px;
-  font-weight:900;
-  letter-spacing:1.8px;
-  text-transform:uppercase;
-
-  margin-bottom:18px;
-
-  padding-bottom:6px;
-
-  border-bottom:2px solid #d4a59a;
-}
-
-/* =========================
-   CORRECTION
-========================= */
-
-.correction{
-  background:#183138;
-}
-
-.correction-box{
-  margin-top:30px;
-
-  border:1px solid rgba(255,255,255,.14);
-
-  padding:23px;
-
-  background:rgba(255,255,255,.035);
-}
-
-.correction-row{
-  padding:17px 0;
-
-  border-bottom:1px solid var(--line);
-}
-
-.correction-row:last-child{
-  border-bottom:0;
-}
-
-.correction-row span{
-  display:block;
-
-  color:#81999b;
-
-  font-size:9px;
-  text-transform:uppercase;
-  letter-spacing:1.4px;
-  font-weight:800;
-}
-
-.correction-row strong{
-  display:block;
-
-  font-family:"Newsreader",serif;
-
-  margin-top:5px;
-
-  font-size:26px;
-  font-weight:500;
-}
-
-/* =========================
-   PHOTOS - ONLY AT END
-========================= */
-
-.photo-end{
-  padding:0;
-
-  min-height:100svh;
-
-  position:relative;
-
-  display:flex;
-  justify-content:flex-end;
-}
-
-.photo-end img{
-  position:absolute;
-
-  inset:0;
-
-  width:100%;
-  height:100%;
-
-  object-fit:cover;
-}
-
-.photo-end::after{
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(10,20,25,.05),
-      rgba(10,20,25,.12) 48%,
-      rgba(10,20,25,.91) 100%
-    );
-}
-
-.photo-copy{
-  position:relative;
-
-  z-index:4;
-
-  padding:62px 23px 43px;
-
-  width:100%;
-}
-
-.photo-copy h2{
-  font-size:46px;
-}
-
-.photo-copy p{
-  color:#d1d6d3;
-}
-
-/* =========================
-   SECOND PHOTO
-========================= */
-
-.final-photo{
-  background:#111f27;
-  min-height:auto;
-
-  padding:80px 18px 55px;
-}
-
-.final-photo img{
-  height:520px;
-
-  object-fit:cover;
-
-  border-radius:4px;
-}
-
-.final-caption{
-  padding:28px 5px 0;
-}
-
-.final-caption h2{
-  font-size:43px;
-}
-
-.endnote{
-  margin-top:23px;
-
-  padding-top:18px;
-
-  border-top:1px solid var(--line);
-
-  font-family:Inter,sans-serif;
-  color:#8fa0a1;
-  font-size:11px;
-  line-height:1.6;
-}
-
-/* =========================
-   DESKTOP PREVIEW
-========================= */
-
-@media(min-width:700px){
-  body{
-    box-shadow:0 0 100px rgba(0,0,0,.4);
+@keyframes screenIn{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:none;
   }
 }
 
+.kicker{
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-weight:800;
+  color:#8fa9ad;
+  margin-bottom:15px;
+}
+
+h1{
+  font-size:52px;
+  line-height:.94;
+  letter-spacing:-2.5px;
+  margin-bottom:18px;
+}
+
+h2{
+  font-size:38px;
+  line-height:1;
+  letter-spacing:-1.7px;
+  margin-bottom:18px;
+}
+
+p{
+  font-size:16px;
+  line-height:1.62;
+  color:var(--soft);
+}
+
+.lead{
+  font-size:18px;
+  line-height:1.55;
+  color:#d8dfdd;
+}
+
+.card{
+  margin-top:28px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:20px;
+  background:rgba(255,255,255,.055);
+  backdrop-filter:blur(10px);
+}
+
+.row{
+  padding:16px 0;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-start;
+}
+
+.row:last-child{
+  border-bottom:0;
+}
+
+.row span{
+  font-size:13px;
+  color:var(--muted);
+}
+
+.row strong{
+  font-size:16px;
+  text-align:right;
+}
+
+.btn{
+  width:100%;
+  border:none;
+  border-radius:16px;
+  padding:17px 18px;
+  margin-top:26px;
+  background:var(--cream);
+  color:#17252e;
+  font-weight:900;
+  font-size:15px;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.btn:active{
+  transform:scale(.985);
+}
+
+.btn.secondary{
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  border:1px solid var(--line);
+}
+
+.btn.red{
+  background:var(--red);
+  color:#fff;
+}
+
+.big-result{
+  font-size:58px;
+  font-weight:900;
+  line-height:.9;
+  letter-spacing:-3px;
+  margin-top:24px;
+}
+
+.fake-loader{
+  height:5px;
+  background:rgba(255,255,255,.08);
+  border-radius:999px;
+  margin-top:20px;
+  overflow:hidden;
+}
+
+.fake-loader span{
+  display:block;
+  height:100%;
+  width:0%;
+  background:var(--sand);
+}
+
+.animate-load span{
+  animation:load 1.8s ease forwards;
+}
+
+@keyframes load{
+  to{width:100%}
+}
+
+.reveal{
+  display:none;
+  margin-top:20px;
+  animation:reveal .35s ease;
+}
+
+.reveal.show{
+  display:block;
+}
+
+@keyframes reveal{
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.pill{
+  display:inline-block;
+  margin-top:16px;
+  padding:8px 11px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid var(--line);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.5px;
+}
+
+.priority-list{
+  margin-top:24px;
+}
+
+.priority{
+  display:flex;
+  gap:14px;
+  padding:15px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.priority-num{
+  width:26px;
+  color:#769197;
+  font-size:12px;
+  padding-top:3px;
+}
+
+.priority-text{
+  font-size:18px;
+  font-weight:700;
+}
+
+.choice-grid{
+  display:grid;
+  gap:12px;
+  margin-top:28px;
+}
+
+.choice{
+  border:none;
+  border-radius:18px;
+  padding:18px;
+  background:rgba(255,255,255,.07);
+  border:1px solid var(--line);
+  color:#fff;
+  text-align:left;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.choice small{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:5px;
+  font-weight:500;
+}
+
+.system-msg{
+  margin-top:18px;
+  padding:15px 16px;
+  border-left:3px solid var(--sand);
+  background:rgba(255,255,255,.04);
+  font-size:14px;
+  line-height:1.55;
+  color:#d8dedd;
+}
+
+.red-text{
+  color:#e48a81;
+}
+
+.green-text{
+  color:#9fc5b1;
+}
+
+.photo{
+  width:100%;
+  height:420px;
+  object-fit:cover;
+  border-radius:20px;
+  margin-top:24px;
+}
+
+.hidden{
+  display:none !important;
+}
+
+.terminal{
+  margin-top:24px;
+  font-family:monospace;
+  line-height:1.9;
+  font-size:14px;
+  color:#b9c6c5;
+}
+
+.terminal strong{
+  color:#fff;
+}
+
+.final{
+  background:
+    radial-gradient(circle at 15% 10%,rgba(110,160,168,.2),transparent 25%),
+    linear-gradient(180deg,#243d47,#17252e);
+}
+
+.final h1{
+  font-size:46px;
+}
+
+.final-note{
+  margin-top:20px;
+  font-size:18px;
+  line-height:1.6;
+  color:#e6e8e4;
+}
+
+@media(min-width:700px){
+  .app{
+    box-shadow:0 0 90px rgba(0,0,0,.45);
+  }
+}
 </style>
 </head>
 
-
 <body>
 
+<div class="app">
 
-<div class="top">
-  <div class="logo">
-    THE <span>ITALIAN</span> REPORT
+  <div class="topbar">
+    <div class="brand">Italy Experience</div>
+    <div class="step" id="stepText">01 / 12</div>
   </div>
 
-  <div class="live">
-    <div class="live-dot"></div>
-    Live edition
+  <div class="progress">
+    <span id="progressBar"></span>
   </div>
+
+  <!-- 1 -->
+  <section class="screen active">
+    <div class="kicker">Personal trip report</div>
+
+    <h1>
+      Panagiotis<br>
+      in Italy.
+    </h1>
+
+    <p class="lead">
+      A quick interactive report from a trip that appears to be going significantly better than expected.
+    </p>
+
+    <div class="card">
+      <div class="row">
+        <span>Location</span>
+        <strong>Taranto, Italy</strong>
+      </div>
+
+      <div class="row">
+        <span>Current mood</span>
+        <strong>Very good</strong>
+      </div>
+
+      <div class="row">
+        <span>Italy enjoyment</span>
+        <strong>High</strong>
+      </div>
+    </div>
+
+    <button class="btn" onclick="goNext()">
+      CHECK CURRENT STATUS
+    </button>
+  </section>
+
+  <!-- 2 -->
+  <section class="screen">
+    <div class="kicker">Status analysis</div>
+
+    <h2>
+      How is Italy treating him?
+    </h2>
+
+    <button class="btn secondary" onclick="runStatus(this)">
+      RUN STATUS CHECK
+    </button>
+
+    <div class="reveal" id="statusReveal">
+      <div class="card">
+        <div class="row">
+          <span>Weather</span>
+          <strong>Excellent</strong>
+        </div>
+
+        <div class="row">
+          <span>Food</span>
+          <strong>Excellent</strong>
+        </div>
+
+        <div class="row">
+          <span>Sea</span>
+          <strong>Excellent</strong>
+        </div>
+
+        <div class="row">
+          <span>Mood</span>
+          <strong>Suspiciously excellent</strong>
+        </div>
+      </div>
+
+      <div class="system-msg">
+        Conclusion: no evidence of suffering has been detected.
+      </div>
+
+      <button class="btn" onclick="goNext()">
+        SEE TODAY'S PLAN
+      </button>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="screen">
+    <div class="kicker">Today in Italy</div>
+
+    <h2>
+      A very difficult schedule.
+    </h2>
+
+    <div class="card">
+      <div class="row">
+        <span>Morning</span>
+        <strong>Espresso</strong>
+      </div>
+
+      <div class="row">
+        <span>Midday</span>
+        <strong>Walk around Taranto</strong>
+      </div>
+
+      <div class="row">
+        <span>Afternoon</span>
+        <strong>Good food + sea</strong>
+      </div>
+
+      <div class="row">
+        <span>Evening</span>
+        <strong>Go out</strong>
+      </div>
+
+      <div class="row">
+        <span>Later</span>
+        <strong>Meet people</strong>
+      </div>
+
+      <div class="row">
+        <span>Even later</span>
+        <strong>Stay out longer than planned</strong>
+      </div>
+    </div>
+
+    <button class="btn" onclick="goNext()">
+      CHECK SOCIAL ACTIVITY
+    </button>
+  </section>
+
+  <!-- 4 -->
+  <section class="screen">
+    <div class="kicker">Social activity</div>
+
+    <h2>
+      Something appears to be happening.
+    </h2>
+
+    <p>
+      Italy has unexpectedly increased Panagiotis' willingness to talk to people.
+    </p>
+
+    <button class="btn secondary" onclick="socialScan()">
+      INVESTIGATE
+    </button>
+
+    <div class="reveal" id="socialReveal">
+
+      <div class="card">
+        <div class="row">
+          <span>New people met</span>
+          <strong>Several</strong>
+        </div>
+
+        <div class="row">
+          <span>Long conversations</span>
+          <strong>Yes</strong>
+        </div>
+
+        <div class="row">
+          <span>People smiling</span>
+          <strong>Yes</strong>
+        </div>
+
+        <div class="row">
+          <span>Panagiotis smiling back</span>
+          <strong>Yes</strong>
+        </div>
+
+        <div class="row">
+          <span>“Where are you from?”</span>
+          <strong>Detected</strong>
+        </div>
+      </div>
+
+      <div class="system-msg">
+        Social activity is officially higher than necessary.
+      </div>
+
+      <button class="btn" onclick="goNext()">
+        CONTINUE INVESTIGATION
+      </button>
+
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="screen">
+    <div class="kicker">Additional variable</div>
+
+    <h2>
+      One item may be affecting the results.
+    </h2>
+
+    <p>
+      The system found something in the packing data that may have increased social confidence.
+    </p>
+
+    <button class="btn secondary" onclick="revealCologne()">
+      REVEAL ITEM
+    </button>
+
+    <div class="reveal" id="cologneReveal">
+
+      <div class="big-result">
+        THE<br>
+        COLOGNE.
+      </div>
+
+      <p style="margin-top:20px">
+        Yes.
+      </p>
+
+      <p style="margin-top:8px;font-size:22px;color:#fff;font-weight:800">
+        That one.
+      </p>
+
+      <div class="system-msg">
+        Risk assessment updated.
+      </div>
+
+      <button class="btn" onclick="goNext()">
+        CHECK PRIORITIES
+      </button>
+
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="screen">
+    <div class="kicker">Current priorities</div>
+
+    <h2>
+      Reveal ranking.
+    </h2>
+
+    <p>
+      Tap below to uncover the current list one item at a time.
+    </p>
+
+    <button class="btn secondary" id="priorityButton" onclick="revealPriority()">
+      REVEAL #1
+    </button>
+
+    <div class="priority-list" id="priorityList"></div>
+
+    <div class="reveal" id="priorityEnd">
+      <div class="system-msg">
+        No relationship-related priority has been detected.
+      </div>
+
+      <button class="btn red" onclick="goNext()">
+        THAT SEEMS WRONG
+      </button>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="screen">
+    <div class="kicker">Data inconsistency</div>
+
+    <h2>
+      Relationship data has been found.
+    </h2>
+
+    <div class="fake-loader" id="relationshipLoader">
+      <span></span>
+    </div>
+
+    <button class="btn secondary" onclick="openRelationship()">
+      OPEN RELATIONSHIP FILE
+    </button>
+
+    <div class="reveal" id="relationshipReveal">
+
+      <div class="card">
+        <div class="row">
+          <span>Status</span>
+          <strong>TAKEN</strong>
+        </div>
+
+        <div class="row">
+          <span>Girlfriend</span>
+          <strong>Confirmed</strong>
+        </div>
+
+        <div class="row">
+          <span>Name</span>
+          <strong>Kami</strong>
+        </div>
+
+        <div class="row">
+          <span>Location</span>
+          <strong>Kaunas, Lithuania</strong>
+        </div>
+      </div>
+
+      <button class="btn" onclick="goNext()">
+        CHECK COMPATIBILITY WITH ITALY
+      </button>
+
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="screen">
+    <div class="kicker">Kami profile</div>
+
+    <h2>
+      One important fact remains.
+    </h2>
+
+    <p>
+      Does Kami like Italy?
+    </p>
+
+    <div class="choice-grid">
+      <button class="choice" onclick="italyAnswer()">
+        A little
+      </button>
+
+      <button class="choice" onclick="italyAnswer()">
+        A lot
+      </button>
+
+      <button class="choice" onclick="italyAnswer()">
+        Obsessively
+      </button>
+    </div>
+
+    <div class="reveal" id="italyAnswerReveal">
+
+      <div class="big-result">
+        VERY<br>
+        MUCH.
+      </div>
+
+      <div class="system-msg red-text">
+        This situation is now significantly worse.
+      </div>
+
+      <button class="btn" onclick="goNext()">
+        COMPARE LOCATIONS
+      </button>
+
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="screen">
+    <div class="kicker">Location comparison</div>
+
+    <h2>
+      Current distribution of happiness.
+    </h2>
+
+    <div class="card">
+      <div class="row">
+        <span>Italy</span>
+        <strong>Panagiotis ✅</strong>
+      </div>
+
+      <div class="row">
+        <span>Sea</span>
+        <strong>Panagiotis ✅</strong>
+      </div>
+
+      <div class="row">
+        <span>Italian food</span>
+        <strong>Panagiotis ✅</strong>
+      </div>
+
+      <div class="row">
+        <span>Social life</span>
+        <strong>Panagiotis ✅</strong>
+      </div>
+
+      <div class="row">
+        <span>The cologne</span>
+        <strong>Panagiotis ✅</strong>
+      </div>
+
+      <div class="row">
+        <span>Kami</span>
+        <strong>Kaunas</strong>
+      </div>
+    </div>
+
+    <div class="system-msg">
+      Fairness score: 2%.
+    </div>
+
+    <button class="btn" onclick="goNext()">
+      CHECK SOCIAL RISK
+    </button>
+  </section>
+
+  <!-- 10 -->
+  <section class="screen">
+    <div class="kicker">Social risk test</div>
+
+    <h2>
+      Should Kami be concerned?
+    </h2>
+
+    <div class="choice-grid">
+
+      <button class="choice" onclick="riskChoice(0)">
+        No, everything is fine
+        <small>Very optimistic answer</small>
+      </button>
+
+      <button class="choice" onclick="riskChoice(1)">
+        Maybe a little
+        <small>Reasonable concern</small>
+      </button>
+
+      <button class="choice" onclick="riskChoice(2)">
+        Yes. The cologne is involved.
+        <small>Evidence-based panic</small>
+      </button>
+
+    </div>
+
+    <div class="reveal" id="riskReveal">
+
+      <div class="card">
+        <div class="row">
+          <span>Smiles</span>
+          <strong>Detected</strong>
+        </div>
+
+        <div class="row">
+          <span>“Where are you from?”</span>
+          <strong>Detected</strong>
+        </div>
+
+        <div class="row">
+          <span>“Are you here for long?”</span>
+          <strong>Possibly detected</strong>
+        </div>
+
+        <div class="row">
+          <span>Actual flirting</span>
+          <strong>Cannot confirm</strong>
+        </div>
+      </div>
+
+      <button class="btn secondary" onclick="askAgain()" id="askAgainBtn">
+        ASK AGAIN
+      </button>
+
+      <div class="reveal" id="askAgainReveal">
+        <div class="system-msg">
+          Still cannot confirm.
+        </div>
+
+        <button class="btn secondary" onclick="askHarder()">
+          ASK REALLY HARD
+        </button>
+      </div>
+
+      <div class="reveal" id="harderReveal">
+        <div class="system-msg red-text">
+          This website is actively trying to get Panagiotis killed.
+        </div>
+
+        <button class="btn red" onclick="goNext()">
+          INITIATE DAMAGE CONTROL
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="screen">
+    <div class="kicker">Emergency protocol</div>
+
+    <h2>
+      Kami is still here.
+    </h2>
+
+    <p>
+      Damage control is now mandatory.
+    </p>
+
+    <button class="btn red" onclick="damageControl()">
+      START DAMAGE CONTROL
+    </button>
+
+    <div class="reveal" id="damageReveal">
+
+      <div class="terminal">
+        Deleting flirting... <strong>DONE</strong><br>
+        Deleting Italian girls... <strong>DONE</strong><br>
+        Deleting suspicious social life... <strong>DONE</strong><br>
+        Deleting priority list... <strong>FAILED</strong><br>
+        Deleting cologne evidence... <strong>IMPOSSIBLE</strong>
+      </div>
+
+      <button class="btn" onclick="goNext()">
+        RUN FINAL FACT CHECK
+      </button>
+
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="screen final">
+    <div class="kicker">Final fact check</div>
+
+    <h2>
+      Okay.
+      The truth.
+    </h2>
+
+    <div class="card">
+      <div class="row">
+        <span>Flirting</span>
+        <strong class="green-text">Invented</strong>
+      </div>
+
+      <div class="row">
+        <span>Girls</span>
+        <strong class="green-text">Irrelevant</strong>
+      </div>
+
+      <div class="row">
+        <span>Forgot Kami</span>
+        <strong class="green-text">Impossible</strong>
+      </div>
+
+      <div class="row">
+        <span>Missing Kami</span>
+        <strong>100%</strong>
+      </div>
+
+      <div class="row">
+        <span>Thinking about Kami</span>
+        <strong>Constantly</strong>
+      </div>
+    </div>
+
+    <button class="btn" onclick="showFinalChoice()">
+      ONE LAST QUESTION
+    </button>
+
+    <div class="reveal" id="finalChoice">
+
+      <h2 style="margin-top:26px">
+        Who does Panagiotis actually want?
+      </h2>
+
+      <div class="choice-grid">
+
+        <button class="choice" onclick="wrongAnswer()">
+          Italy 🇮🇹
+        </button>
+
+        <button class="choice" onclick="correctAnswer()">
+          Kami ❤️
+        </button>
+
+      </div>
+
+      <div class="reveal" id="wrongReveal">
+        <div class="system-msg red-text">
+          Wrong answer. Try again.
+        </div>
+      </div>
+
+      <div class="reveal" id="correctReveal">
+
+        <img
+          class="photo"
+          src="F5851BBC-1097-4DA2-A729-063B29EC89F4 (1).jpeg"
+          alt=""
+        >
+
+        <img
+          class="photo"
+          src="IMG_2328.jpeg"
+          alt=""
+        >
+
+        <div class="final-note">
+          Italy is amazing.<br><br>
+
+          But you're still the person I wish was here with me.<br><br>
+
+          I'm having an amazing time, but I haven't forgotten you for even a second.<br><br>
+
+          <strong>See you August 26. ❤️</strong>
+        </div>
+
+        <div class="system-msg" style="margin-top:24px">
+          P.S. The cologne part remains true.
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
 </div>
-
-<div class="progress">
-  <span id="progressBar"></span>
-</div>
-
-
-<!-- ==================================================
-     FRONT
-================================================== -->
-
-<section class="front">
-
-  <div class="category fade">
-    Italy / Special Report
-  </div>
-
-  <h1 class="headline fade delay1">
-    Panagiotis appears
-    to be enjoying Italy
-    significantly more
-    than expected.
-  </h1>
-
-  <div class="deck fade delay2">
-    Early reports from southern Italy describe good weather,
-    excellent food, long evenings and a rapidly improving
-    social calendar.
-  </div>
-
-  <div class="byline fade">
-    <div>
-      Taranto, Italy<br>
-      August 2026
-    </div>
-
-    <div style="text-align:right">
-      Filed<br>
-      this afternoon
-    </div>
-  </div>
-
-  <div class="scroll">
-    Full report ↓
-  </div>
-
-</section>
-
-
-<!-- ==================================================
-     STORY 1
-================================================== -->
-
-<section class="bg-main">
-
-  <div class="article-number">01</div>
-
-  <div class="kicker fade">
-    The Italy Effect
-  </div>
-
-  <h2 class="fade">
-    The first conclusion is relatively simple:
-    Italy is treating him very well.
-  </h2>
-
-  <div class="rule fade"></div>
-
-  <p class="dropcap fade">
-    What was supposed to be a relatively straightforward few days
-    in southern Italy has developed into something significantly
-    more enjoyable.
-  </p>
-
-  <p class="fade">
-    The weather is warm, the evenings are long and the general pace
-    of life appears to have convinced Panagiotis that looking at the
-    time is currently unnecessary.
-  </p>
-
-  <p class="fade">
-    Coffee is taken seriously. Meals take longer than expected.
-    Going for a short walk can apparently become an entire afternoon.
-  </p>
-
-  <div class="pullquote fade">
-    “There have been no credible reports of him wanting to leave Italy.”
-  </div>
-
-</section>
-
-
-<!-- ==================================================
-     STORY 2
-================================================== -->
-
-<section class="bg-alt">
-
-  <div class="article-number">02</div>
-
-  <div class="kicker fade">
-    Daily Report
-  </div>
-
-  <h2 class="fade">
-    A demanding schedule has emerged.
-  </h2>
-
-  <div class="report">
-
-    <div class="report-row fade">
-      <div class="report-time">Morning</div>
-      <div class="report-title">Coffee, obviously.</div>
-      <div class="report-copy">
-        Local conditions continue to support repeated espresso consumption.
-      </div>
-    </div>
-
-    <div class="report-row fade">
-      <div class="report-time">Midday</div>
-      <div class="report-title">Italian food becomes a priority.</div>
-      <div class="report-copy">
-        Efforts to maintain reasonable standards have reportedly failed.
-      </div>
-    </div>
-
-    <div class="report-row fade">
-      <div class="report-time">Afternoon</div>
-      <div class="report-title">More Italy.</div>
-      <div class="report-copy">
-        Walking, sea, warm weather and little interest in being indoors.
-      </div>
-    </div>
-
-    <div class="report-row fade">
-      <div class="report-time">Evening</div>
-      <div class="report-title">Plans continue.</div>
-      <div class="report-copy">
-        Dinner, conversations and staying outside substantially longer than necessary.
-      </div>
-    </div>
-
-    <div class="report-row fade">
-      <div class="report-time">Late</div>
-      <div class="report-title">Return time remains uncertain.</div>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ==================================================
-     SOCIAL
-================================================== -->
-
-<section class="bg-petrol">
-
-  <div class="article-number">03</div>
-
-  <div class="kicker fade">
-    Social Affairs
-  </div>
-
-  <h2 class="fade">
-    The social side of Italy is proving surprisingly successful.
-  </h2>
-
-  <div class="rule fade"></div>
-
-  <p class="fade">
-    Sources familiar with the situation report that meeting people
-    has required remarkably little effort.
-  </p>
-
-  <p class="fade">
-    Conversations begin easily. People ask questions. Groups form.
-    Plans continue. The phrase “Where are you from?” has reportedly
-    been heard more than once.
-  </p>
-
-  <p class="fade">
-    Panagiotis, meanwhile, has shown little resistance to the local
-    culture of talking, smiling and staying outside.
-  </p>
-
-  <div class="metric-list">
-
-    <div class="metric fade">
-      <label>New people met</label>
-      <strong>More than expected.</strong>
-    </div>
-
-    <div class="metric fade">
-      <label>Conversations</label>
-      <strong>Frequent.</strong>
-    </div>
-
-    <div class="metric fade">
-      <label>Smiles received</label>
-      <strong>Statistically interesting.</strong>
-    </div>
-
-    <div class="metric fade">
-      <label>Smiles returned</label>
-      <strong>It would be rude not to.</strong>
-    </div>
-
-    <div class="metric fade">
-      <label>Plans for later</label>
-      <strong>Active.</strong>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ==================================================
-     COLOGNE
-================================================== -->
-
-<section class="special">
-
-  <div class="kicker special-tag fade">
-    Developing Story
-  </div>
-
-  <h2 class="fade">
-    Investigators have discovered one potentially important detail.
-  </h2>
-
-  <p class="special-copy fade">
-    Among the items brought to Italy was the cologne.
-  </p>
-
-</section>
-
-
-<section class="bg-wine">
-
-  <div class="kicker fade">
-    Further information
-  </div>
-
-  <h1 class="fade">
-    Yes.
-    <br><br>
-    That one.
-  </h1>
-
-  <div class="rule fade"></div>
-
-  <p class="fade">
-    No further comment has been provided.
-  </p>
-
-</section>
-
-
-<!-- ==================================================
-     PRIORITIES
-================================================== -->
-
-<section class="bg-deep">
-
-  <div class="article-number">04</div>
-
-  <div class="kicker fade">
-    Internal Ranking
-  </div>
-
-  <h2 class="fade">
-    Current priorities have also been obtained.
-  </h2>
-
-  <div class="ranking">
-
-    <div class="rank fade">
-      <div class="rank-no">01</div>
-      <div class="rank-text">Italy</div>
-    </div>
-
-    <div class="rank fade">
-      <div class="rank-no">02</div>
-      <div class="rank-text">Food</div>
-    </div>
-
-    <div class="rank fade">
-      <div class="rank-no">03</div>
-      <div class="rank-text">Sea</div>
-    </div>
-
-    <div class="rank fade">
-      <div class="rank-no">04</div>
-      <div class="rank-text">Going out</div>
-    </div>
-
-    <div class="rank fade">
-      <div class="rank-no">05</div>
-      <div class="rank-text">Socialising</div>
-    </div>
-
-    <div class="rank fade">
-      <div class="rank-no">06</div>
-      <div class="rank-text">Coffee</div>
-    </div>
-
-    <div class="rank fade">
-      <div class="rank-no">07</div>
-      <div class="rank-text">Enjoying Italy even more</div>
-    </div>
-
-    <div class="rank fade">
-      <div class="rank-no">08</div>
-      <div class="rank-text">Sleeping eventually</div>
-    </div>
-
-  </div>
-
-  <p class="small fade" style="margin-top:24px">
-    Editors initially believed this list to be complete.
-  </p>
-
-</section>
-
-
-<!-- ==================================================
-     RELATIONSHIP REVEAL
-================================================== -->
-
-<section class="breaking">
-
-  <div class="breaking-label fade">
-    New information
-  </div>
-
-  <h1 class="fade">
-    It was not complete.
-  </h1>
-
-  <div class="rule fade"></div>
-
-  <p class="fade">
-    The editorial team has since learned that Panagiotis
-    is currently in a relationship.
-  </p>
-
-  <p class="fade">
-    This fact was inexplicably absent from all previous sections
-    of the report.
-  </p>
-
-</section>
-
-
-<section class="bg-alt">
-
-  <div class="kicker fade">
-    Relationship Desk
-  </div>
-
-  <h2 class="fade">
-    The girlfriend is called Kami.
-  </h2>
-
-  <p class="fade" style="margin-top:25px">
-    She currently lives in Kaunas, Lithuania.
-  </p>
-
-  <p class="fade">
-    More importantly, she is known to have an unusually strong
-    affection for Italy.
-  </p>
-
-  <div class="pullquote fade">
-    She is not currently in Italy.
-  </div>
-
-  <p class="fade">
-    Panagiotis is.
-  </p>
-
-</section>
-
-
-<!-- ==================================================
-     THE PROBLEM
-================================================== -->
-
-<section class="bg-petrol">
-
-  <div class="kicker fade">
-    Comparative Analysis
-  </div>
-
-  <h2 class="fade">
-    The situation becomes considerably less favourable from here.
-  </h2>
-
-  <div class="metric-list">
-
-    <div class="metric fade">
-      <label>Italy</label>
-      <strong>Panagiotis.</strong>
-    </div>
-
-    <div class="metric fade">
-      <label>Mediterranean weather</label>
-      <strong>Panagiotis.</strong>
-    </div>
-
-    <div class="metric fade">
-      <label>Italian food</label>
-      <strong>Panagiotis.</strong>
-    </div>
-
-    <div class="metric fade">
-      <label>New social life</label>
-      <strong>Panagiotis.</strong>
-    </div>
-
-    <div class="metric fade">
-      <label>That cologne</label>
-      <strong>Also Panagiotis.</strong>
-    </div>
-
-    <div class="metric fade">
-      <label>Kami</label>
-      <strong>Kaunas.</strong>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ==================================================
-     FLIRT SUGGESTION
-================================================== -->
-
-<section class="bg-wine">
-
-  <div class="kicker fade">
-    Social Affairs — Follow-up
-  </div>
-
-  <h2 class="fade">
-    Editors attempted to determine whether the social situation
-    required further investigation.
-  </h2>
-
-  <div class="report">
-
-    <div class="report-row fade">
-      <div class="report-title">“Where are you from?”</div>
-      <div class="report-copy">
-        Confirmed as a plausible Italian conversation starter.
-      </div>
-    </div>
-
-    <div class="report-row fade">
-      <div class="report-title">“Are you here for long?”</div>
-      <div class="report-copy">
-        Also entirely possible.
-      </div>
-    </div>
-
-    <div class="report-row fade">
-      <div class="report-title">Smiling.</div>
-      <div class="report-copy">
-        Occurs regularly in social environments.
-      </div>
-    </div>
-
-    <div class="report-row fade">
-      <div class="report-title">Anything more interesting?</div>
-      <div class="report-copy">
-        The editorial board declines to speculate.
-      </div>
-    </div>
-
-  </div>
-
-  <p class="small fade" style="margin-top:24px">
-    This section was written primarily to annoy one reader in Lithuania.
-  </p>
-
-</section>
-
-
-<!-- ==================================================
-     SHE'S READING
-================================================== -->
-
-<section class="breaking">
-
-  <div class="breaking-label fade">
-    Urgent update
-  </div>
-
-  <h1 class="fade">
-    Kami has apparently continued reading.
-  </h1>
-
-  <p class="fade" style="margin-top:28px">
-    The editorial team now considers immediate corrections necessary.
-  </p>
-
-</section>
-
-
-<!-- ==================================================
-     CORRECTION
-================================================== -->
-
-<section class="correction">
-
-  <div class="kicker fade">
-    Editor's Correction
-  </div>
-
-  <h2 class="fade">
-    Several claims in this report require clarification.
-  </h2>
-
-  <div class="correction-box">
-
-    <div class="correction-row fade">
-      <span>Flirting</span>
-      <strong>Invented for dramatic effect.</strong>
-    </div>
-
-    <div class="correction-row fade">
-      <span>Italian girls</span>
-      <strong>Entirely irrelevant.</strong>
-    </div>
-
-    <div class="correction-row fade">
-      <span>Social investigation</span>
-      <strong>Deliberately suspicious.</strong>
-    </div>
-
-    <div class="correction-row fade">
-      <span>Priority ranking</span>
-      <strong>Fraudulent.</strong>
-    </div>
-
-    <div class="correction-row fade">
-      <span>Forgot girlfriend</span>
-      <strong>Completely false.</strong>
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="bg-main">
-
-  <div class="kicker fade">
-    What remains true
-  </div>
-
-  <h2 class="fade">
-    Panagiotis is having an amazing time in Italy.
-  </h2>
-
-  <div class="rule fade"></div>
-
-  <p class="fade">
-    The food really is excellent.
-    The weather really is beautiful.
-    Italy really is as enjoyable as this report suggested.
-  </p>
-
-  <p class="fade">
-    But there is one detail the earlier reporting deliberately left out.
-  </p>
-
-  <div class="pullquote fade">
-    He has been thinking about Kami the whole time.
-  </div>
-
-  <p class="fade">
-    In fact, being somewhere she loves has mostly resulted in
-    one recurring thought:
-  </p>
-
-  <p class="fade">
-    “She would absolutely love this.”
-  </p>
-
-</section>
-
-
-<!-- ==================================================
-     FIRST PHOTO — VERY LATE
-================================================== -->
-
-<section class="photo-end">
-
-  <img
-    src="F5851BBC-1097-4DA2-A729-063B29EC89F4 (1).jpeg"
-    alt=""
-  >
-
-  <div class="photo-copy">
-
-    <div class="kicker fade">
-      Actual priority
-    </div>
-
-    <h2 class="fade">
-      There she is.
-    </h2>
-
-    <p class="fade" style="margin-top:18px">
-      The person deliberately omitted from almost the entire report.
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- ==================================================
-     FINAL PHOTO
-================================================== -->
-
-<section class="final-photo">
-
-  <img
-    src="IMG_2328.jpeg"
-    alt=""
-  >
-
-  <div class="final-caption">
-
-    <div class="kicker fade">
-      Final edition
-    </div>
-
-    <h2 class="fade">
-      Italy is amazing.
-    </h2>
-
-    <p class="fade" style="margin-top:20px">
-      I'm genuinely having a great time here.
-      But none of that means I forgot you.
-    </p>
-
-    <p class="fade">
-      Quite the opposite.
-    </p>
-
-    <p class="fade">
-      Every time I see something here that I know you would love,
-      I think about you.
-    </p>
-
-    <p class="fade">
-      And after all the nonsense above, the actual priority list
-      has only one name at the top.
-    </p>
-
-    <h2 class="fade" style="margin-top:31px">
-      Kami. ❤️
-    </h2>
-
-    <div class="endnote fade">
-      Italy gets me until August 25.<br>
-      I get to see you August 26.<br><br>
-
-      Correction notice: all allegations regarding flirting have been withdrawn.<br>
-      The cologne remains under investigation.
-    </div>
-
-  </div>
-
-</section>
-
 
 <script>
 
-/* reveal */
+const screens = [...document.querySelectorAll(".screen")];
+let current = 0;
 
-const fadeElements =
-document.querySelectorAll(".fade");
+const stepText = document.getElementById("stepText");
+const progressBar = document.getElementById("progressBar");
 
-const revealObserver =
-new IntersectionObserver(entries=>{
+function vibrate(pattern=10){
+  if(navigator.vibrate){
+    navigator.vibrate(pattern);
+  }
+}
 
-  entries.forEach(entry=>{
-
-    if(entry.isIntersecting){
-      entry.target.classList.add("visible");
-    }
-
-  });
-
-},{
-  threshold:.16
-});
-
-fadeElements.forEach(el=>
-  revealObserver.observe(el)
-);
-
-
-/* progress */
-
-const progressBar =
-document.getElementById("progressBar");
-
-window.addEventListener("scroll",()=>{
-
-  const total =
-    document.documentElement.scrollHeight -
-    window.innerHeight;
+function updateUI(){
+  stepText.textContent =
+    String(current + 1).padStart(2,"0") +
+    " / " +
+    String(screens.length).padStart(2,"0");
 
   progressBar.style.width =
-    ((window.scrollY / total) * 100) + "%";
+    ((current + 1) / screens.length * 100) + "%";
+}
 
-});
+function goNext(){
+  vibrate(8);
 
+  if(current >= screens.length - 1) return;
 
-/* light haptic */
+  screens[current].classList.remove("active");
+  current++;
+  screens[current].classList.add("active");
 
-const sections =
-document.querySelectorAll("section");
-
-const sectionObserver =
-new IntersectionObserver(entries=>{
-
-  entries.forEach(entry=>{
-
-    if(
-      entry.isIntersecting &&
-      navigator.vibrate
-    ){
-      navigator.vibrate(6);
-    }
-
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
   });
 
-},{
-  threshold:.72
-});
+  updateUI();
+}
 
-sections.forEach(section=>
-  sectionObserver.observe(section)
-);
+function show(id){
+  document.getElementById(id).classList.add("show");
+  vibrate(12);
+}
+
+function runStatus(button){
+  button.disabled = true;
+  button.textContent = "CHECKING...";
+
+  setTimeout(()=>{
+    show("statusReveal");
+    button.style.display = "none";
+  },900);
+}
+
+function socialScan(){
+  const reveal = document.getElementById("socialReveal");
+
+  reveal.classList.add("show");
+  vibrate([20,30,20]);
+}
+
+function revealCologne(){
+  show("cologneReveal");
+}
+
+const priorities = [
+  "Italy",
+  "Italian food",
+  "Sea",
+  "Going out",
+  "Socialising",
+  "Coffee",
+  "Enjoying Italy even more",
+  "Sleep eventually"
+];
+
+let priorityIndex = 0;
+
+function revealPriority(){
+
+  if(priorityIndex >= priorities.length) return;
+
+  const list = document.getElementById("priorityList");
+
+  const item = document.createElement("div");
+  item.className = "priority";
+
+  item.innerHTML = `
+    <div class="priority-num">
+      ${String(priorityIndex + 1).padStart(2,"0")}
+    </div>
+    <div class="priority-text">
+      ${priorities[priorityIndex]}
+    </div>
+  `;
+
+  list.appendChild(item);
+
+  priorityIndex++;
+
+  vibrate(8);
+
+  const button = document.getElementById("priorityButton");
+
+  if(priorityIndex < priorities.length){
+    button.textContent =
+      "REVEAL #" + (priorityIndex + 1);
+  }else{
+    button.style.display = "none";
+
+    setTimeout(()=>{
+      show("priorityEnd");
+    },400);
+  }
+}
+
+function openRelationship(){
+
+  const loader =
+    document.getElementById("relationshipLoader");
+
+  loader.classList.add("animate-load");
+
+  setTimeout(()=>{
+    show("relationshipReveal");
+  },1800);
+}
+
+function italyAnswer(){
+  show("italyAnswerReveal");
+}
+
+function riskChoice(){
+  show("riskReveal");
+}
+
+function askAgain(){
+  show("askAgainReveal");
+
+  document.getElementById("askAgainBtn")
+    .style.display = "none";
+}
+
+function askHarder(){
+  show("harderReveal");
+  vibrate([20,30,20,30,40]);
+}
+
+function damageControl(){
+  show("damageReveal");
+  vibrate([30,30,30]);
+}
+
+function showFinalChoice(){
+  show("finalChoice");
+}
+
+function wrongAnswer(){
+  show("wrongReveal");
+  vibrate([30,30,30]);
+}
+
+function correctAnswer(){
+  document.getElementById("wrongReveal")
+    .classList.remove("show");
+
+  show("correctReveal");
+
+  vibrate([60,40,60]);
+}
+
+updateUI();
 
 </script>
 
