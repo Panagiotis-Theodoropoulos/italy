@@ -2,195 +2,194 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Panagiotis — Taranto 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>Italy — Panagiotis</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
-  --ivory:#fff8e9;
-  --paper:#fffdf7;
-  --sky:#cdebf5;
-  --sea:#65b6d4;
-  --deep:#17394d;
+    --paper:#fbf8f1;
+    --paper2:#fffdf8;
 
-  --sun:#ffd66b;
-  --peach:#f4b092;
-  --rose:#f3c3bb;
+    --ink:#1f2f36;
+    --muted:#718087;
 
-  --ink:#17394d;
-  --muted:#698494;
+    --blue:#a9d7e8;
+    --blue2:#dff2f7;
+    --sea:#6fb5cf;
 
-  --white:#ffffff;
+    --sand:#f2dfb7;
+    --sun:#f6cc72;
+    --peach:#efb39b;
+
+    --red:#bd4a3f;
+
+    --line:rgba(31,47,54,.12);
 }
 
 *{
-  box-sizing:border-box;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 html{
-  scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-  margin:0;
-  background:var(--ivory);
-  color:var(--ink);
-  font-family:"DM Sans",sans-serif;
-  overflow-x:hidden;
+    font-family:"DM Sans",sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    overflow-x:hidden;
 }
 
 body::-webkit-scrollbar{
-  display:none;
+    display:none;
 }
 
-/* =========================
-   CINEMA UI
-========================= */
-
-.progress{
-  position:fixed;
-  left:0;
-  top:0;
-  width:100%;
-  height:3px;
-  z-index:999;
-  background:rgba(255,255,255,.25);
+img{
+    display:block;
 }
 
-.progress span{
-  display:block;
-  height:100%;
-  width:0%;
-  background:#fff;
+section{
+    position:relative;
+    min-height:100svh;
+    padding:80px 22px 55px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    overflow:hidden;
 }
 
-.film-label{
-  position:fixed;
-  top:18px;
-  left:18px;
-  z-index:100;
-  font-size:10px;
-  letter-spacing:2px;
-  font-weight:700;
-  color:rgba(23,57,77,.55);
-  mix-blend-mode:multiply;
+.center{
+    align-items:center;
+    text-align:center;
 }
 
-.chapter-counter{
-  position:fixed;
-  right:18px;
-  top:18px;
-  font-size:10px;
-  z-index:100;
-  letter-spacing:1.7px;
-  font-weight:700;
-  opacity:.55;
+.serif{
+    font-family:"Italiana",serif;
 }
 
-.scene{
-  min-height:100svh;
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:86px 23px 55px;
-  overflow:hidden;
+.kicker{
+    font-size:10px;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    font-weight:700;
+    opacity:.58;
+    margin-bottom:16px;
 }
 
-.scene.center{
-  align-items:center;
-  text-align:center;
+h1{
+    font-family:"Italiana",serif;
+    font-size:clamp(60px,16vw,96px);
+    line-height:.88;
+    font-weight:400;
+    letter-spacing:-3px;
+}
+
+h2{
+    font-family:"Italiana",serif;
+    font-size:clamp(44px,12vw,70px);
+    line-height:.92;
+    font-weight:400;
+    letter-spacing:-2px;
+}
+
+h3{
+    font-size:24px;
+    line-height:1.05;
+}
+
+p{
+    font-size:16px;
+    line-height:1.55;
+    color:var(--muted);
+}
+
+.small{
+    font-size:12px;
+    color:#809098;
 }
 
 .fade{
-  opacity:0;
-  transform:translateY(35px);
-  transition:
-    opacity .85s cubic-bezier(.22,.61,.36,1),
-    transform .85s cubic-bezier(.22,.61,.36,1);
+    opacity:0;
+    transform:translateY(32px);
+    transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.22,.61,.36,1);
 }
 
-.fade.visible{
-  opacity:1;
-  transform:none;
+.fade.show{
+    opacity:1;
+    transform:none;
 }
 
 .delay1{transition-delay:.12s}
 .delay2{transition-delay:.25s}
 .delay3{transition-delay:.4s}
 
-.kicker{
-  font-size:10px;
-  letter-spacing:2.4px;
-  font-weight:700;
-  text-transform:uppercase;
-  margin-bottom:17px;
-  opacity:.62;
-}
-
-h1,h2,h3{
-  margin:0;
-}
-
-h1{
-  font-family:"Playfair Display",serif;
-  font-size:clamp(55px,15vw,92px);
-  line-height:.88;
-  letter-spacing:-4px;
-}
-
-h2{
-  font-family:"Playfair Display",serif;
-  font-size:clamp(40px,11vw,67px);
-  line-height:.92;
-  letter-spacing:-3px;
-}
-
-h3{
-  font-size:25px;
-  line-height:1.08;
-}
-
-p{
-  margin:0;
-  font-size:16px;
-  line-height:1.55;
-  color:var(--muted);
-}
-
-.subtitle{
-  margin-top:22px;
-  max-width:330px;
-}
-
 /* =========================
-   ACT CARDS
+   TOP CINEMA UI
 ========================= */
 
-.act{
-  min-height:35svh;
-  padding:70px 24px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+.progress{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:3px;
+    z-index:1000;
+    background:rgba(255,255,255,.3);
 }
 
-.act-number{
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  opacity:.5;
-  margin-bottom:12px;
+.progress span{
+    display:block;
+    width:0;
+    height:100%;
+    background:#ffffff;
 }
 
-.act h2{
-  font-size:45px;
+.toplabel{
+    position:fixed;
+    top:18px;
+    left:18px;
+    z-index:999;
+
+    font-size:9px;
+    letter-spacing:2px;
+    font-weight:700;
+
+    color:rgba(31,47,54,.52);
+}
+
+.sound{
+    position:fixed;
+    top:13px;
+    right:15px;
+    z-index:999;
+
+    width:36px;
+    height:36px;
+
+    border:1px solid rgba(31,47,54,.12);
+    border-radius:50%;
+    background:rgba(255,255,255,.5);
+    backdrop-filter:blur(12px);
+
+    display:grid;
+    place-items:center;
+
+    font-size:15px;
+    cursor:pointer;
 }
 
 /* =========================
@@ -198,540 +197,507 @@ p{
 ========================= */
 
 .hero{
-  background:
-    radial-gradient(circle at 82% 16%,rgba(255,214,107,.85),transparent 23%),
-    radial-gradient(circle at 12% 88%,rgba(101,182,212,.35),transparent 30%),
-    linear-gradient(180deg,#fffdf5,#fff4d7);
+    background:
+        radial-gradient(circle at 82% 12%,rgba(246,204,114,.9),transparent 24%),
+        radial-gradient(circle at 12% 85%,rgba(169,215,232,.7),transparent 32%),
+        linear-gradient(180deg,#fffdf7,#faf2df);
 }
 
-.sun{
-  width:210px;
-  height:210px;
-  border-radius:50%;
-  background:rgba(255,209,85,.7);
-  filter:blur(.4px);
-  position:absolute;
-  right:-55px;
-  top:80px;
+.hero::after{
+    content:"ITALIA";
+    position:absolute;
+
+    right:-26px;
+    bottom:68px;
+
+    font-family:"Italiana";
+    font-size:110px;
+    color:rgba(31,47,54,.035);
+
+    transform:rotate(-90deg);
 }
 
-.hero-name{
-  position:relative;
-  z-index:2;
+.hero p{
+    margin-top:24px;
+    max-width:320px;
 }
 
 .hero-meta{
-  margin-top:28px;
-  padding-top:20px;
-  border-top:1px solid rgba(23,57,77,.15);
-  width:100%;
-  max-width:345px;
-  display:flex;
-  justify-content:space-between;
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:1px;
+    width:100%;
+    max-width:350px;
+    margin-top:35px;
+
+    padding-top:18px;
+    border-top:1px solid var(--line);
+
+    display:flex;
+    justify-content:space-between;
+
+    font-size:10px;
+    letter-spacing:1.4px;
+    text-transform:uppercase;
 }
 
-.scroll-hint{
-  position:absolute;
-  bottom:24px;
-  font-size:11px;
-  letter-spacing:1.5px;
-  opacity:.55;
-  animation:float 1.8s infinite ease-in-out;
+.scroll{
+    position:absolute;
+    bottom:23px;
+    font-size:10px;
+    letter-spacing:1.6px;
+    opacity:.55;
+
+    animation:scrollHint 1.6s ease-in-out infinite;
 }
 
-@keyframes float{
-  50%{
-    transform:translateY(7px);
-  }
-}
-
-/* =========================
-   LIVE PHOTO CINEMA
-========================= */
-
-.cinema-photo{
-  min-height:100svh;
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  align-items:flex-end;
-}
-
-.cinema-photo img{
-  position:absolute;
-  inset:-7%;
-  width:114%;
-  height:114%;
-  object-fit:cover;
-  transform:scale(1.03);
-}
-
-.cinema-photo::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:1;
-  background:
-    linear-gradient(to bottom,
-    rgba(10,25,32,.04),
-    rgba(10,25,32,.04) 38%,
-    rgba(13,37,50,.75) 100%);
-}
-
-.cinema-copy{
-  position:relative;
-  z-index:3;
-  color:white;
-  padding:65px 23px 45px;
-}
-
-.cinema-copy p,
-.cinema-copy .kicker{
-  color:rgba(255,255,255,.78);
+@keyframes scrollHint{
+    50%{
+        transform:translateY(7px);
+    }
 }
 
 /* =========================
-   BIG STATS
+   BIG ITALY MOMENTS
 ========================= */
 
-.stats{
-  margin-top:38px;
-  width:100%;
+.blue{
+    background:
+        linear-gradient(180deg,#dff2f7,#cce8f1);
 }
 
-.stat{
-  padding:20px 0;
-  border-bottom:1px solid rgba(23,57,77,.13);
+.sand{
+    background:
+        linear-gradient(180deg,#fff4d7,#f4e1b9);
 }
 
-.stat-label{
-  font-size:12px;
-  color:#78909c;
-  margin-bottom:4px;
+.peach{
+    background:
+        linear-gradient(180deg,#f8d6c6,#f1bca6);
 }
 
-.stat-value{
-  font-family:"Playfair Display";
-  font-weight:700;
-  font-size:31px;
-  letter-spacing:-1.3px;
+.paper{
+    background:var(--paper2);
+}
+
+.bigword{
+    font-family:"Italiana";
+    font-size:clamp(69px,20vw,120px);
+    line-height:.82;
+    letter-spacing:-5px;
+}
+
+.stacked{
+    margin-top:35px;
+    width:100%;
+}
+
+.line{
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+
+    gap:20px;
+}
+
+.line span{
+    font-size:13px;
+    color:#758990;
+}
+
+.line strong{
+    font-family:"Italiana";
+    font-size:29px;
+    font-weight:400;
+    text-align:right;
 }
 
 /* =========================
-   ITALY MONTAGE
+   FULL PHOTO
 ========================= */
 
-.montage{
-  background:
-    linear-gradient(180deg,#cdebf5,#eff9fb);
+.photo-scene{
+    padding:0;
+    min-height:100svh;
+    display:flex;
+    align-items:flex-end;
 }
 
-.montage-word{
-  font-family:"Playfair Display";
-  font-style:italic;
-  font-size:72px;
-  line-height:.88;
+.photo-scene img{
+    position:absolute;
+    inset:-5%;
+
+    width:110%;
+    height:110%;
+
+    object-fit:cover;
 }
 
-.montage-grid{
-  width:100%;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:35px;
+.photo-scene::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(10,25,31,.02),
+            rgba(10,25,31,.05) 46%,
+            rgba(17,39,48,.74) 100%
+        );
 }
 
-.tile{
-  min-height:135px;
-  border-radius:27px;
-  padding:18px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  text-align:left;
-  background:rgba(255,255,255,.48);
-  backdrop-filter:blur(13px);
-  border:1px solid rgba(255,255,255,.6);
+.photo-text{
+    position:relative;
+    z-index:3;
+
+    width:100%;
+    padding:60px 22px 44px;
+
+    color:white;
 }
 
-.tile.big{
-  grid-column:1 / -1;
-  min-height:170px;
+.photo-text .kicker,
+.photo-text p{
+    color:rgba(255,255,255,.78);
 }
 
-.tile-emoji{
-  font-size:29px;
-  margin-bottom:auto;
+/* =========================
+   DAILY ITALY
+========================= */
+
+.schedule{
+    margin-top:32px;
 }
 
-.tile strong{
-  font-size:17px;
+.schedule-item{
+    display:grid;
+    grid-template-columns:58px 1fr;
+
+    gap:13px;
+
+    padding:18px 0;
+
+    border-bottom:1px solid var(--line);
+}
+
+.time{
+    font-size:11px;
+    font-weight:700;
+    opacity:.5;
+    padding-top:3px;
+}
+
+.activity{
+    font-size:20px;
+    font-weight:600;
+}
+
+/* =========================
+   SOCIAL LIFE
+========================= */
+
+.social-scene{
+    background:
+        radial-gradient(circle at 90% 5%,rgba(255,255,255,.6),transparent 24%),
+        linear-gradient(180deg,#dceff4,#f5e2c4);
+}
+
+.social-list{
+    width:100%;
+    margin-top:34px;
+}
+
+.social{
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+}
+
+.social .big{
+    font-family:"Italiana";
+    font-size:38px;
+    margin-top:4px;
+}
+
+/* floating dots */
+
+.people{
+    height:250px;
+    width:100%;
+    position:relative;
+    margin:30px 0 10px;
+}
+
+.person{
+    position:absolute;
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+    background:rgba(255,255,255,.65);
+    backdrop-filter:blur(12px);
+
+    display:grid;
+    place-items:center;
+
+    font-size:24px;
+
+    box-shadow:0 10px 30px rgba(31,47,54,.08);
+
+    animation:floatPerson 2.5s ease-in-out infinite alternate;
+}
+
+.p1{left:5%;top:45%}
+.p2{left:32%;top:8%;animation-delay:.3s}
+.p3{right:5%;top:35%;animation-delay:.7s}
+.p4{left:49%;bottom:0;animation-delay:1s}
+
+@keyframes floatPerson{
+    to{
+        transform:translateY(-12px) rotate(4deg);
+    }
+}
+
+/* =========================
+   COLOGNE — NO IMAGE
+========================= */
+
+.cologne{
+    background:
+        linear-gradient(180deg,#f3d6b5,#efb39b);
+}
+
+.pause{
+    margin-top:26px;
+    font-family:"Italiana";
+    font-size:50px;
+    line-height:.95;
+}
+
+.word-reveal{
+    min-height:70svh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.word-reveal span{
+    font-family:"Italiana";
+    font-size:clamp(60px,17vw,105px);
+    line-height:.85;
 }
 
 /* =========================
    PRIORITIES
 ========================= */
 
-.priorities{
-  background:
-    radial-gradient(circle at 100% 0%,rgba(255,214,107,.55),transparent 28%),
-    #fff8e9;
+.priority-list{
+    margin-top:30px;
 }
 
-.priority-row{
-  display:flex;
-  align-items:flex-start;
-  gap:18px;
-  padding:19px 0;
-  border-bottom:1px solid rgba(23,57,77,.13);
+.priority{
+    display:flex;
+    align-items:flex-start;
+    gap:17px;
+
+    padding:19px 0;
+
+    border-bottom:1px solid var(--line);
 }
 
-.priority-num{
-  font-family:"Playfair Display";
-  font-size:22px;
-  opacity:.38;
-  width:28px;
+.number{
+    width:28px;
+
+    font-family:"Italiana";
+    font-size:23px;
+
+    opacity:.4;
 }
 
-.priority-text{
-  font-size:20px;
-  font-weight:700;
-}
-
-/* =========================
-   MEMORY
-========================= */
-
-.memory{
-  background:linear-gradient(180deg,#fff5c9,#ffe9b1);
-}
-
-.memory-box{
-  width:100%;
-  max-width:360px;
-  border:1px solid rgba(23,57,77,.14);
-  border-radius:30px;
-  padding:24px;
-  margin-top:34px;
-  background:rgba(255,255,255,.4);
-}
-
-.memory-item{
-  display:flex;
-  justify-content:space-between;
-  padding:16px 0;
-  border-bottom:1px solid rgba(23,57,77,.1);
-  font-size:14px;
-}
-
-.memory-item:last-child{
-  border:0;
-}
-
-.searchbar{
-  height:7px;
-  background:rgba(23,57,77,.1);
-  border-radius:999px;
-  overflow:hidden;
-  margin:24px 0;
-}
-
-.searchbar span{
-  display:block;
-  width:0%;
-  height:100%;
-  background:var(--deep);
-  transition:width 1.9s ease;
-}
-
-.visible .searchbar span{
-  width:100%;
-}
-
-.no-result{
-  margin-top:28px;
-  font-family:"Playfair Display";
-  font-size:53px;
-  line-height:.9;
+.priority div:last-child{
+    font-size:20px;
+    font-weight:600;
 }
 
 /* =========================
-   COLOGNE
+   RELATIONSHIP REVEAL
 ========================= */
 
-.cologne-scene{
-  background:
-    radial-gradient(circle at 20% 15%,rgba(255,255,255,.55),transparent 23%),
-    linear-gradient(150deg,#f4b092,#ffd9a6);
+.relationship{
+    background:
+        radial-gradient(circle at 0% 100%,rgba(169,215,232,.55),transparent 30%),
+        var(--paper);
 }
 
-.perfume{
-  width:115px;
-  height:165px;
-  margin:38px auto;
-  border-radius:18px 18px 30px 30px;
-  background:
-    linear-gradient(145deg,#3b8298,#17394d);
-  box-shadow:0 30px 55px rgba(91,80,61,.2);
-  position:relative;
+.minor{
+    font-family:"Italiana";
+    font-size:48px;
+    line-height:.95;
 }
 
-.perfume::before{
-  content:"";
-  position:absolute;
-  width:48px;
-  height:24px;
-  left:33px;
-  top:-24px;
-  border-radius:7px 7px 0 0;
-  background:#edf4f4;
+.reveal-line{
+    min-height:72svh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:60px 24px;
 }
 
-.perfume::after{
-  content:"THE ONE";
-  color:white;
-  position:absolute;
-  width:100%;
-  text-align:center;
-  top:72px;
-  font-size:10px;
-  letter-spacing:2.5px;
-}
-
-.big-joke{
-  font-family:"Playfair Display";
-  font-style:italic;
-  font-size:51px;
-  line-height:.96;
+.reveal-line h2{
+    max-width:370px;
 }
 
 /* =========================
-   GIRLS / RADAR
+   KAMI
 ========================= */
 
-.girls{
-  background:linear-gradient(180deg,#ffd9a6,#ffd1bf);
+.kaunas{
+    background:linear-gradient(180deg,#dceff4,#eaf4f6);
 }
 
-.radar{
-  width:330px;
-  height:330px;
-  max-width:90vw;
-  max-height:90vw;
-  border-radius:50%;
-  border:1px solid rgba(23,57,77,.19);
-  margin:38px auto;
-  position:relative;
+.kami-image{
+    width:100%;
+    height:430px;
+
+    margin-top:30px;
+
+    object-fit:cover;
+    border-radius:30px;
 }
 
-.radar-ring{
-  position:absolute;
-  border:1px solid rgba(23,57,77,.1);
-  border-radius:50%;
-  inset:17%;
+.kami-grid{
+    margin-top:25px;
 }
 
-.radar-ring.two{
-  inset:34%;
+.kami-line{
+    padding:19px 0;
+    border-bottom:1px solid var(--line);
 }
 
-.radar::before,
-.radar::after{
-  content:"";
-  position:absolute;
-  background:rgba(23,57,77,.08);
+.kami-line span{
+    display:block;
+    font-size:12px;
+    color:#758990;
 }
 
-.radar::before{
-  width:1px;
-  height:100%;
-  left:50%;
-}
-
-.radar::after{
-  height:1px;
-  width:100%;
-  top:50%;
-}
-
-.person{
-  position:absolute;
-  font-size:25px;
-  animation:pop 1.7s infinite alternate ease-in-out;
-}
-
-.p1{left:18%;top:26%}
-.p2{right:16%;top:21%;animation-delay:.2s}
-.p3{right:19%;bottom:22%;animation-delay:.45s}
-.p4{left:26%;bottom:13%;animation-delay:.7s}
-
-@keyframes pop{
-  to{
-    transform:scale(1.13);
-  }
-}
-
-.you{
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  width:72px;
-  height:72px;
-  border-radius:50%;
-  background:white;
-  display:grid;
-  place-items:center;
-  font-weight:800;
-  font-size:11px;
-  box-shadow:0 8px 30px rgba(0,0,0,.09);
-}
-
-.message-bubble{
-  background:white;
-  border-radius:24px;
-  padding:18px;
-  margin-top:12px;
-  max-width:310px;
-  box-shadow:0 10px 30px rgba(81,65,50,.08);
-}
-
-.message-bubble:nth-child(even){
-  margin-left:auto;
+.kami-line strong{
+    display:block;
+    font-family:"Italiana";
+    font-size:31px;
+    margin-top:4px;
 }
 
 /* =========================
-   KAMI REVEAL
+   CORRECTION
 ========================= */
 
-.meanwhile{
-  background:#d7eef5;
+.correction{
+    background:#fffdf8;
 }
 
-.meanwhile-title{
-  font-family:"Playfair Display";
-  font-style:italic;
-  font-size:73px;
-  line-height:.85;
+.correction-row{
+    padding:23px 0;
+    border-bottom:1px solid var(--line);
 }
 
-.kami-photo{
-  width:100%;
-  height:430px;
-  object-fit:cover;
-  border-radius:32px;
-  margin-top:32px;
+.correction-row span{
+    font-size:12px;
+    color:#7d8c92;
 }
 
-/* =========================
-   DAMAGE CONTROL
-========================= */
+.correction-row strong{
+    display:block;
+    margin-top:4px;
 
-.damage{
-  background:linear-gradient(180deg,#f6c7bd,#ffdcd3);
-}
-
-.delete-row{
-  padding:17px 0;
-  border-bottom:1px solid rgba(23,57,77,.12);
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-}
-
-.failed{
-  font-weight:800;
-}
-
-/* =========================
-   TRUTH CHANGE
-========================= */
-
-.truth{
-  background:#fffdf8;
-}
-
-.truth-line{
-  padding:22px 0;
-  border-bottom:1px solid rgba(23,57,77,.12);
-}
-
-.truth-line span{
-  font-size:12px;
-  color:#81929c;
-}
-
-.truth-line strong{
-  display:block;
-  font-family:"Playfair Display";
-  font-size:34px;
-  margin-top:5px;
+    font-family:"Italiana";
+    font-size:34px;
+    font-weight:400;
 }
 
 /* =========================
    FINAL
 ========================= */
 
-.final-photo{
-  min-height:100svh;
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  align-items:flex-end;
+.final{
+    background:#f7d3c2;
 }
 
-.final-photo img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.final img{
+    width:100%;
+    height:430px;
+
+    object-fit:cover;
+    border-radius:32px;
+
+    margin:30px 0;
 }
 
-.final-photo::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to bottom,
-    rgba(0,0,0,.03),
-    rgba(0,0,0,.12) 55%,
-    rgba(15,34,43,.78)
-  );
+.end{
+    min-height:100svh;
+    position:relative;
+
+    display:flex;
+    align-items:flex-end;
+
+    padding:0;
 }
 
-.final-copy{
-  position:relative;
-  z-index:3;
-  color:white;
-  padding:65px 23px 48px;
+.end img{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
 }
 
-.final-copy p{
-  color:rgba(255,255,255,.78);
+.end::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.02),
+            rgba(0,0,0,.08) 52%,
+            rgba(20,42,49,.78)
+        );
 }
 
-.final-copy h2{
-  font-size:50px;
+.end-copy{
+    position:relative;
+    z-index:3;
+
+    padding:65px 22px 46px;
+
+    color:white;
+}
+
+.end-copy p,
+.end-copy .kicker{
+    color:rgba(255,255,255,.78);
 }
 
 .ps{
-  font-size:11px;
-  margin-top:22px;
-  opacity:.65;
+    margin-top:20px;
+    font-size:11px;
+    opacity:.7;
 }
 
-/* max-width desktop preview */
+/* =========================
+   MOBILE ONLY PREVIEW
+========================= */
 
 @media(min-width:700px){
-  body{
-    max-width:430px;
-    margin:auto;
-    box-shadow:0 0 80px rgba(0,0,0,.12);
-  }
+    body{
+        max-width:430px;
+        margin:auto;
+        box-shadow:0 0 100px rgba(0,0,0,.15);
+    }
 }
 
 </style>
@@ -739,701 +705,904 @@ p{
 
 <body>
 
-<div class="progress"><span id="progressBar"></span></div>
-<div class="film-label">TARANTO 2026</div>
-<div class="chapter-counter" id="chapter">01 / 09</div>
+<div class="progress">
+    <span id="progress"></span>
+</div>
+
+<div class="toplabel">
+    ITALIA • SUMMER 2026
+</div>
+
+<div class="sound" id="sound">
+    ♪
+</div>
+
+<audio id="ambience" loop>
+    <!-- OPTIONAL:
+         put an mp3 called italy.mp3 in the folder -->
+    <source src="italy.mp3" type="audio/mpeg">
+</audio>
 
 
-<!-- =====================================
+<!-- ============================================
      OPENING
-===================================== -->
+============================================ -->
 
-<section class="scene center hero chapter" data-number="01 / 09">
+<section class="hero center">
 
-  <div class="sun"></div>
+    <div class="kicker fade">
+        Somewhere in Southern Italy
+    </div>
 
-  <div class="kicker fade">Mediterranean Games • Italy</div>
-
-  <div class="hero-name fade delay1">
-    <h1>
-      Panagiotis<br>
-      is doing<br>
-      just fine.
+    <h1 class="fade delay1">
+        Life is<br>
+        beautiful.
     </h1>
-  </div>
 
-  <p class="subtitle fade delay2">
-    Men's Épée • Greece<br>
-    Taranto 2026
-  </p>
+    <p class="fade delay2">
+        Panagiotis appears to be enjoying Italy
+        at an irresponsible level.
+    </p>
 
-  <div class="hero-meta fade delay3">
-    <span>ITALY</span>
-    <span>DAY ONE</span>
-    <span>MOOD 100%</span>
-  </div>
+    <div class="hero-meta fade delay3">
+        <span>Sun</span>
+        <span>Sea</span>
+        <span>Italy</span>
+    </div>
 
-  <div class="scroll-hint">
-    SCROLL TO CHECK STATUS ↓
-  </div>
+    <div class="scroll">
+        KEEP SCROLLING ↓
+    </div>
 
 </section>
 
 
-<!-- =====================================
-     ACT I
-===================================== -->
+<!-- ============================================
+     ITALY
+============================================ -->
 
-<section class="act montage">
-  <div class="act-number fade">ACT I</div>
-  <h2 class="fade delay1">
-    Italy seems to suit him.
-  </h2>
-</section>
-
-
-<section class="scene montage chapter" data-number="02 / 09">
-
-  <div class="kicker fade">CURRENT CONDITION</div>
-
-  <div class="montage-word fade">
-    Thriving.
-  </div>
-
-  <div class="montage-grid">
-
-    <div class="tile fade">
-      <div class="tile-emoji">☀️</div>
-      <strong>Mediterranean sun</strong>
-      <span>Perfect</span>
-    </div>
-
-    <div class="tile fade delay1">
-      <div class="tile-emoji">🌊</div>
-      <strong>Sea</strong>
-      <span>Right there</span>
-    </div>
-
-    <div class="tile fade">
-      <div class="tile-emoji">🍝</div>
-      <strong>Pasta</strong>
-      <span>Excellent</span>
-    </div>
-
-    <div class="tile fade delay1">
-      <div class="tile-emoji">☕</div>
-      <strong>Espresso</strong>
-      <span>Necessary</span>
-    </div>
-
-    <div class="tile big fade">
-      <div class="tile-emoji">🤺</div>
-      <strong>Mediterranean Games</strong>
-      <span>Exactly where he wants to be.</span>
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="cinema-photo chapter" data-number="03 / 09">
-
-  <img
-    class="parallax"
-    src="taranto.jpg"
-    onerror="this.src='606da44c-6342-45f9-a773-69e7d79dc42a.jpeg'"
-    alt=""
-  >
-
-  <div class="cinema-copy">
+<section class="blue center">
 
     <div class="kicker fade">
-      LIVE FROM ITALY
+        CURRENT CONDITION
+    </div>
+
+    <div class="bigword fade">
+        Thriving.
+    </div>
+
+    <p class="fade" style="margin-top:25px;max-width:320px">
+        No complaints.
+        No sadness.
+        No urgent desire to return home.
+    </p>
+
+</section>
+
+
+<section class="sand">
+
+    <div class="kicker fade">
+        SO FAR
     </div>
 
     <h2 class="fade">
-      He looks<br>
-      suspiciously happy.
+        Italy has been extremely cooperative.
     </h2>
 
-    <p class="subtitle fade">
-      Investigators have found absolutely no evidence of suffering.
-    </p>
+    <div class="stacked">
 
-  </div>
+        <div class="line fade">
+            <span>Sun</span>
+            <strong>Perfect.</strong>
+        </div>
+
+        <div class="line fade">
+            <span>Sea</span>
+            <strong>Beautiful.</strong>
+        </div>
+
+        <div class="line fade">
+            <span>Food</span>
+            <strong>Unfairly good.</strong>
+        </div>
+
+        <div class="line fade">
+            <span>Coffee</span>
+            <strong>Obviously.</strong>
+        </div>
+
+        <div class="line fade">
+            <span>Mood</span>
+            <strong>100%.</strong>
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- =====================================
-     ACT II — PRIORITIES
-===================================== -->
+<!-- LIVE PHOTO -->
 
-<section class="act priorities">
-  <div class="act-number fade">ACT II</div>
+<section class="photo-scene">
 
-  <h2 class="fade">
-    Then we checked his priorities.
-  </h2>
-</section>
+    <img
+        class="parallax"
+        src="taranto.jpg"
+        onerror="this.src='606da44c-6342-45f9-a773-69e7d79dc42a.jpeg'"
+        alt=""
+    >
 
+    <div class="photo-text">
 
-<section class="scene priorities chapter" data-number="04 / 09">
+        <div class="kicker fade">
+            LIVE EVIDENCE
+        </div>
 
-  <div class="kicker fade">LIVE PRIORITY INDEX</div>
+        <h2 class="fade">
+            Unfortunately,<br>
+            he looks happy.
+        </h2>
 
-  <h2 class="fade">
-    Things Panagiotis currently considers important.
-  </h2>
+        <p class="fade" style="margin-top:18px">
+            Investigators have found no evidence
+            that Italy is treating him badly.
+        </p>
 
-  <div style="margin-top:35px">
-
-    <div class="priority-row fade">
-      <div class="priority-num">01</div>
-      <div class="priority-text">Mediterranean Games</div>
     </div>
-
-    <div class="priority-row fade">
-      <div class="priority-num">02</div>
-      <div class="priority-text">Italy</div>
-    </div>
-
-    <div class="priority-row fade">
-      <div class="priority-num">03</div>
-      <div class="priority-text">Pasta</div>
-    </div>
-
-    <div class="priority-row fade">
-      <div class="priority-num">04</div>
-      <div class="priority-text">The sea</div>
-    </div>
-
-    <div class="priority-row fade">
-      <div class="priority-num">05</div>
-      <div class="priority-text">Espresso</div>
-    </div>
-
-    <div class="priority-row fade">
-      <div class="priority-num">06</div>
-      <div class="priority-text">Looking unnecessarily good</div>
-    </div>
-
-    <div class="priority-row fade">
-      <div class="priority-num">07</div>
-      <div class="priority-text">Enjoying Italy even more</div>
-    </div>
-
-    <div class="priority-row fade">
-      <div class="priority-num">08</div>
-      <div class="priority-text">Girlfriend</div>
-    </div>
-
-  </div>
-
-  <p class="subtitle fade">
-    This ranking has not yet been approved by Kami.
-  </p>
 
 </section>
 
 
-<!-- =====================================
-     ACT III — MEMORY
-===================================== -->
-
-<section class="act memory">
-  <div class="act-number fade">ACT III</div>
-
-  <h2 class="fade">
-    A small memory issue appeared.
-  </h2>
-</section>
-
-
-<section class="scene center memory chapter" data-number="05 / 09">
-
-  <div class="kicker fade">
-    MEMORY SEARCH
-  </div>
-
-  <h2 class="fade">
-    Searching for girlfriend...
-  </h2>
-
-  <div class="memory-box fade">
-
-    <div class="memory-item">
-      <span>Italy</span>
-      <strong>FOUND</strong>
-    </div>
-
-    <div class="memory-item">
-      <span>Pasta</span>
-      <strong>FOUND</strong>
-    </div>
-
-    <div class="memory-item">
-      <span>Fencing</span>
-      <strong>FOUND</strong>
-    </div>
-
-    <div class="memory-item">
-      <span>Kami</span>
-      <strong>SEARCHING...</strong>
-    </div>
-
-    <div class="searchbar">
-      <span></span>
-    </div>
-
-  </div>
-
-  <div class="no-result fade delay2">
-    No urgent<br>
-    results found.
-  </div>
-
-  <p class="subtitle fade delay3">
-    Panagiotis may have adapted to Italy faster than expected.
-  </p>
-
-</section>
-
-
-<!-- =====================================
-     ACT IV — COLOGNE
-===================================== -->
-
-<section class="act cologne-scene">
-  <div class="act-number fade">ACT IV</div>
-
-  <h2 class="fade">
-    And then things got worse.
-  </h2>
-</section>
-
-
-<section class="scene center cologne-scene chapter" data-number="06 / 09">
-
-  <div class="kicker fade">
-    NEW VARIABLE DETECTED
-  </div>
-
-  <h2 class="fade">
-    Favorite cologne.
-  </h2>
-
-  <div class="perfume fade delay1"></div>
-
-  <div class="big-joke fade delay2">
-    Yes.<br>
-    That one.
-  </div>
-
-  <p class="subtitle fade delay3">
-    The one girls like.
-  </p>
-
-</section>
-
-
-<!-- =====================================
-     ACT V — ITALIAN GIRLS
-===================================== -->
-
-<section class="scene center girls chapter" data-number="07 / 09">
-
-  <div class="kicker fade">
-    LOCAL ENVIRONMENT
-  </div>
-
-  <h2 class="fade">
-    Italy has introduced some unnecessary variables.
-  </h2>
-
-  <div class="radar fade">
-
-    <div class="radar-ring"></div>
-    <div class="radar-ring two"></div>
-
-    <div class="person p1">👩🏻</div>
-    <div class="person p2">👩🏼</div>
-    <div class="person p3">👩🏽</div>
-    <div class="person p4">👩🏻</div>
-
-    <div class="you">
-      PANAGIOTIS
-    </div>
-
-  </div>
-
-  <div class="message-bubble fade">
-    “Nice perfume.”
-  </div>
-
-  <div class="message-bubble fade">
-    “Where are you from?”
-  </div>
-
-  <div class="message-bubble fade">
-    “Are you here for the Games?”
-  </div>
-
-  <p class="subtitle fade">
-    Source reliability: absolutely terrible.
-  </p>
-
-</section>
-
-
-<!-- =====================================
-     MEANWHILE
-===================================== -->
-
-<section class="scene center meanwhile">
-
-  <div class="kicker fade">
-    MEANWHILE...
-  </div>
-
-  <div class="meanwhile-title fade">
-    Kaunas.
-  </div>
-
-  <p class="subtitle fade">
-    Somewhere considerably less Italian.
-  </p>
-
-</section>
-
-
-<section class="scene meanwhile chapter" data-number="08 / 09">
-
-  <div class="kicker fade">
-    KAMI STATUS REPORT
-  </div>
-
-  <h2 class="fade">
-    An objectively less convenient situation.
-  </h2>
-
-  <img
-    class="kami-photo fade"
-    src="b676e03b-698d-415c-ad30-4bacca8e7aba.jpeg"
-    alt=""
-  >
-
-  <div class="stats fade">
-
-    <div class="stat">
-      <div class="stat-label">Italy</div>
-      <div class="stat-value">No.</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-label">Mediterranean Sea</div>
-      <div class="stat-value">No.</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-label">Panagiotis</div>
-      <div class="stat-value">Also no.</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-label">Reason to be annoyed</div>
-      <div class="stat-value">Completely valid.</div>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================
-     DAMAGE CONTROL
-===================================== -->
-
-<section class="scene damage">
-
-  <div class="kicker fade">
-    BREAKING DEVELOPMENT
-  </div>
-
-  <h1 class="fade">
-    Kami<br>
-    found<br>
-    the site.
-  </h1>
-
-  <p class="subtitle fade">
-    Beginning emergency damage control.
-  </p>
-
-  <div style="margin-top:35px">
-
-    <div class="delete-row fade">
-      <span>Delete priority list</span>
-      <span class="failed">FAILED</span>
-    </div>
-
-    <div class="delete-row fade">
-      <span>Delete memory scan</span>
-      <span class="failed">FAILED</span>
-    </div>
-
-    <div class="delete-row fade">
-      <span>Delete Italian girls</span>
-      <span class="failed">FAILED</span>
-    </div>
-
-    <div class="delete-row fade">
-      <span>Delete cologne</span>
-      <span class="failed">IMPOSSIBLE</span>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================
-     FINAL ACT
-===================================== -->
-
-<section class="act truth">
-  <div class="act-number fade">
-    FINAL ACT
-  </div>
-
-  <h2 class="fade">
-    Okay.<br>
-    Enough.
-  </h2>
-</section>
-
-
-<section class="scene truth chapter" data-number="09 / 09">
-
-  <div class="kicker fade">
-    ACTUAL STATUS
-  </div>
-
-  <h2 class="fade">
-    Everything above was bullshit.
-  </h2>
-
-  <div style="margin-top:34px">
-
-    <div class="truth-line fade">
-      <span>Italian girls</span>
-      <strong>Irrelevant.</strong>
-    </div>
-
-    <div class="truth-line fade">
-      <span>Compliments</span>
-      <strong>Invented.</strong>
-    </div>
-
-    <div class="truth-line fade">
-      <span>Forgot Kami</span>
-      <strong>Impossible.</strong>
-    </div>
-
-    <div class="truth-line fade">
-      <span>Missing Kami</span>
-      <strong>100%.</strong>
-    </div>
-
-    <div class="truth-line fade">
-      <span>Thinking about Kami</span>
-      <strong>Constantly.</strong>
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="cinema-photo">
-
-  <img
-    class="parallax"
-    src="F5851BBC-1097-4DA2-A729-063B29EC89F4 (1).jpeg"
-    alt=""
-  >
-
-  <div class="cinema-copy">
+<!-- ============================================
+     ITALIAN DAY
+============================================ -->
+
+<section class="paper">
 
     <div class="kicker fade">
-      THE TRUTH
+        A PERFECTLY NORMAL ITALIAN DAY
     </div>
 
     <h2 class="fade">
-      Italy is beautiful.
+        Very difficult conditions.
     </h2>
 
-    <p class="subtitle fade">
-      But you're still the person I wish was here with me.
-    </p>
+    <div class="schedule">
 
-  </div>
+        <div class="schedule-item fade">
+            <div class="time">08:30</div>
+            <div class="activity">Espresso.</div>
+        </div>
+
+        <div class="schedule-item fade">
+            <div class="time">10:00</div>
+            <div class="activity">Walk around Italy.</div>
+        </div>
+
+        <div class="schedule-item fade">
+            <div class="time">13:00</div>
+            <div class="activity">Eat something unnecessarily good.</div>
+        </div>
+
+        <div class="schedule-item fade">
+            <div class="time">16:00</div>
+            <div class="activity">Mediterranean Sea.</div>
+        </div>
+
+        <div class="schedule-item fade">
+            <div class="time">19:30</div>
+            <div class="activity">Italian sunset.</div>
+        </div>
+
+        <div class="schedule-item fade">
+            <div class="time">21:00</div>
+            <div class="activity">Dinner.</div>
+        </div>
+
+        <div class="schedule-item fade">
+            <div class="time">23:00</div>
+            <div class="activity">Wonder why life cannot always be Italy.</div>
+        </div>
+
+    </div>
 
 </section>
 
 
-<section class="final-photo">
+<!-- ============================================
+     SOCIALISING
+============================================ -->
 
-  <img
-    src="IMG_2328.jpeg"
-    alt=""
-  >
-
-  <div class="final-copy">
+<section class="social-scene">
 
     <div class="kicker fade">
-      END CREDITS
+        UNEXPECTED SIDE EFFECT
     </div>
 
     <h2 class="fade">
-      Italy gets me<br>
-      until August 25.
+        Panagiotis has become social.
     </h2>
 
-    <h2 class="fade delay1" style="margin-top:19px;">
-      I get you<br>
-      August 26. ❤️
+    <p class="fade" style="margin-top:18px">
+        This development was not anticipated.
+    </p>
+
+    <div class="people fade">
+
+        <div class="person p1">🙂</div>
+        <div class="person p2">🤌</div>
+        <div class="person p3">😌</div>
+        <div class="person p4">🇮🇹</div>
+
+    </div>
+
+    <div class="social-list">
+
+        <div class="social fade">
+            <div class="small">New people met</div>
+            <div class="big">Enough.</div>
+        </div>
+
+        <div class="social fade">
+            <div class="small">Random conversations</div>
+            <div class="big">Several.</div>
+        </div>
+
+        <div class="social fade">
+            <div class="small">Italian smiles received</div>
+            <div class="big">Interesting.</div>
+        </div>
+
+        <div class="social fade">
+            <div class="small">“Where are you from?”</div>
+            <div class="big">Detected.</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="blue center">
+
+    <div class="kicker fade">
+        SOCIAL UPDATE
+    </div>
+
+    <h2 class="fade">
+        People smile.
     </h2>
 
-    <p class="subtitle fade delay2">
-      And yes, even while I'm here having the best time,
-      you're still the one I'm thinking about.
+    <div style="height:35px"></div>
+
+    <h2 class="fade">
+        Panagiotis smiles back.
+    </h2>
+
+    <div style="height:35px"></div>
+
+    <p class="fade">
+        Italy appears to be encouraging
+        unnecessary levels of friendliness.
     </p>
 
-    <p class="ps fade delay3">
-      P.S. None of the Italian girl department survived fact-checking.<br>
-      The cologne, unfortunately, did.
+</section>
+
+
+<!-- ============================================
+     COLOGNE
+============================================ -->
+
+<section class="cologne center">
+
+    <div class="kicker fade">
+        ONE ADDITIONAL DETAIL
+    </div>
+
+    <h2 class="fade">
+        He packed<br>
+        the cologne.
+    </h2>
+
+    <p class="fade pause">
+        ...
     </p>
 
-  </div>
+</section>
+
+
+<section class="word-reveal sand">
+    <span class="fade">
+        Yes.
+    </span>
+</section>
+
+
+<section class="word-reveal peach">
+    <span class="fade">
+        That one.
+    </span>
+</section>
+
+
+<section class="word-reveal blue">
+    <div>
+
+        <span class="fade">
+            The one<br>
+            girls like.
+        </span>
+
+        <p class="fade" style="margin-top:28px">
+            This was probably unnecessary.
+        </p>
+
+    </div>
+</section>
+
+
+<!-- ============================================
+     PRIORITIES
+============================================ -->
+
+<section class="paper">
+
+    <div class="kicker fade">
+        CURRENT PRIORITIES
+    </div>
+
+    <h2 class="fade">
+        An entirely reasonable ranking.
+    </h2>
+
+    <div class="priority-list">
+
+        <div class="priority fade">
+            <div class="number">01</div>
+            <div>Italy.</div>
+        </div>
+
+        <div class="priority fade">
+            <div class="number">02</div>
+            <div>Italian food.</div>
+        </div>
+
+        <div class="priority fade">
+            <div class="number">03</div>
+            <div>The sea.</div>
+        </div>
+
+        <div class="priority fade">
+            <div class="number">04</div>
+            <div>Espresso.</div>
+        </div>
+
+        <div class="priority fade">
+            <div class="number">05</div>
+            <div>Socialising.</div>
+        </div>
+
+        <div class="priority fade">
+            <div class="number">06</div>
+            <div>Having an unreasonable amount of fun.</div>
+        </div>
+
+        <div class="priority fade">
+            <div class="number">07</div>
+            <div>Looking suspiciously comfortable.</div>
+        </div>
+
+        <div class="priority fade">
+            <div class="number">08</div>
+            <div>Going outside again.</div>
+        </div>
+
+    </div>
+
+    <p class="fade" style="margin-top:28px">
+        Everything appears completely normal.
+    </p>
+
+</section>
+
+
+<!-- ============================================
+     GIRLFRIEND REVEAL
+============================================ -->
+
+<section class="relationship center">
+
+    <div class="kicker fade">
+        EXCEPT...
+    </div>
+
+    <div class="minor fade">
+        One small<br>
+        administrative detail.
+    </div>
+
+</section>
+
+
+<section class="reveal-line sand">
+    <h2 class="fade">
+        Panagiotis<br>
+        has a girlfriend.
+    </h2>
+</section>
+
+
+<section class="reveal-line blue">
+    <div>
+
+        <div class="kicker fade">
+            IMPORTANT INFORMATION
+        </div>
+
+        <h2 class="fade">
+            Her name<br>
+            is Kami.
+        </h2>
+
+    </div>
+</section>
+
+
+<section class="reveal-line peach">
+    <div>
+
+        <h2 class="fade">
+            She loves Italy.
+        </h2>
+
+        <p class="fade" style="margin-top:25px">
+            Very, very much.
+        </p>
+
+    </div>
+</section>
+
+
+<section class="reveal-line sand">
+    <div>
+
+        <h2 class="fade">
+            She is not<br>
+            in Italy.
+        </h2>
+
+        <p class="fade" style="margin-top:25px">
+            This is where the situation becomes slightly unfortunate.
+        </p>
+
+    </div>
+</section>
+
+
+<!-- ============================================
+     KAUNAS
+============================================ -->
+
+<section class="kaunas">
+
+    <div class="kicker fade">
+        MEANWHILE • KAUNAS
+    </div>
+
+    <h2 class="fade">
+        A noticeably less Italian situation.
+    </h2>
+
+    <img
+        class="kami-image fade"
+        src="b676e03b-698d-415c-ad30-4bacca8e7aba.jpeg"
+        alt=""
+    >
+
+    <div class="kami-grid">
+
+        <div class="kami-line fade">
+            <span>Italy</span>
+            <strong>No.</strong>
+        </div>
+
+        <div class="kami-line fade">
+            <span>Mediterranean Sea</span>
+            <strong>No.</strong>
+        </div>
+
+        <div class="kami-line fade">
+            <span>Italian sunset</span>
+            <strong>No.</strong>
+        </div>
+
+        <div class="kami-line fade">
+            <span>Panagiotis</span>
+            <strong>Also no.</strong>
+        </div>
+
+        <div class="kami-line fade">
+            <span>His social life</span>
+            <strong>Apparently thriving.</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="peach center">
+
+    <div class="kicker fade">
+        CURRENT FORECAST
+    </div>
+
+    <h2 class="fade">
+        Kami may now be slightly annoyed.
+    </h2>
+
+    <p class="fade" style="margin-top:25px">
+        Understandable.
+    </p>
+
+</section>
+
+
+<!-- ============================================
+     THE SITE REALISES SHE IS READING
+============================================ -->
+
+<section class="paper center">
+
+    <div class="kicker fade">
+        NEW INFORMATION
+    </div>
+
+    <h1 class="fade">
+        Oh.
+    </h1>
+
+    <p class="fade" style="margin-top:28px">
+        Kami is still scrolling.
+    </p>
+
+</section>
+
+
+<section class="sand">
+
+    <div class="kicker fade">
+        EMERGENCY CORRECTION
+    </div>
+
+    <h2 class="fade">
+        Some context may be required.
+    </h2>
+
+    <div class="stacked">
+
+        <div class="line fade">
+            <span>Flirting</span>
+            <strong>Invented.</strong>
+        </div>
+
+        <div class="line fade">
+            <span>Italian girls</span>
+            <strong>Irrelevant.</strong>
+        </div>
+
+        <div class="line fade">
+            <span>Suspicious social life</span>
+            <strong>Exaggerated.</strong>
+        </div>
+
+        <div class="line fade">
+            <span>Priority ranking</span>
+            <strong>Fraudulent.</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================
+     ACTUAL TRUTH
+============================================ -->
+
+<section class="correction">
+
+    <div class="kicker fade">
+        THE ACTUAL STORY
+    </div>
+
+    <h2 class="fade">
+        Here is what is actually true.
+    </h2>
+
+    <div style="margin-top:32px">
+
+        <div class="correction-row fade">
+            <span>Italy</span>
+            <strong>Beautiful.</strong>
+        </div>
+
+        <div class="correction-row fade">
+            <span>Having a good time</span>
+            <strong>Absolutely.</strong>
+        </div>
+
+        <div class="correction-row fade">
+            <span>Forgot Kami</span>
+            <strong>Impossible.</strong>
+        </div>
+
+        <div class="correction-row fade">
+            <span>Missing Kami</span>
+            <strong>100%.</strong>
+        </div>
+
+        <div class="correction-row fade">
+            <span>Thinking about Kami</span>
+            <strong>Constantly.</strong>
+        </div>
+
+        <div class="correction-row fade">
+            <span>Person I wish was here</span>
+            <strong>Her.</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COUPLE PHOTO -->
+
+<section class="photo-scene">
+
+    <img
+        class="parallax"
+        src="F5851BBC-1097-4DA2-A729-063B29EC89F4 (1).jpeg"
+        alt=""
+    >
+
+    <div class="photo-text">
+
+        <div class="kicker fade">
+            THE TRUTH
+        </div>
+
+        <h2 class="fade">
+            Italy is incredible.
+        </h2>
+
+        <p class="fade" style="margin-top:20px;font-size:18px">
+            But it would be much better
+            if you were here.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================
+     FINAL
+============================================ -->
+
+<section class="final center">
+
+    <div class="kicker fade">
+        FINAL UPDATE
+    </div>
+
+    <h2 class="fade">
+        Five days<br>
+        of Italy.
+    </h2>
+
+    <img
+        class="fade"
+        src="IMG_2328.jpeg"
+        alt=""
+    >
+
+    <h2 class="fade">
+        Then<br>
+        August 26. ❤️
+    </h2>
+
+    <p class="fade" style="margin-top:22px;max-width:330px">
+        I'm having an amazing time.
+        But you're still the person I'm thinking about.
+    </p>
+
+</section>
+
+
+<section class="end">
+
+    <img
+        src="0f5b2655-b06b-40cb-8d43-ef693339adc9.jpeg"
+        alt=""
+    >
+
+    <div class="end-copy">
+
+        <div class="kicker fade">
+            FINE
+        </div>
+
+        <h2 class="fade">
+            I miss you,<br>
+            Kami.
+        </h2>
+
+        <p class="fade" style="margin-top:18px;font-size:18px">
+            Italy didn't make me forget you.
+            It just gave me a very good opportunity
+            to annoy you.
+        </p>
+
+        <p class="ps fade">
+            P.S. The cologne part remains true.<br>
+            Everything else has been legally withdrawn.
+        </p>
+
+    </div>
 
 </section>
 
 
 <script>
 
-/* =====================
-   REVEALS
-===================== */
+/* =====================================
+   SCROLL REVEALS
+===================================== */
 
-const fades = document.querySelectorAll(".fade");
+const fadeElements = document.querySelectorAll(".fade");
 
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("visible");
-    }
-  });
+const fadeObserver = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+
+    });
+
 },{
-  threshold:.18
+    threshold:.18
 });
 
-fades.forEach(el=>observer.observe(el));
-
-
-/* =====================
-   PROGRESS BAR
-===================== */
-
-const progressBar = document.getElementById("progressBar");
-
-window.addEventListener("scroll",()=>{
-  const scrollTop = window.scrollY;
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  const pct = (scrollTop / max) * 100;
-
-  progressBar.style.width = pct + "%";
+fadeElements.forEach(el=>{
+    fadeObserver.observe(el);
 });
 
 
-/* =====================
-   CHAPTER COUNTER
-===================== */
+/* =====================================
+   PAGE PROGRESS
+===================================== */
 
-const chapters = document.querySelectorAll(".chapter");
-const chapterLabel = document.getElementById("chapter");
-
-const chapterObserver = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      chapterLabel.textContent = entry.target.dataset.number;
-    }
-  });
-},{
-  threshold:.55
-});
-
-chapters.forEach(section=>chapterObserver.observe(section));
-
-
-/* =====================
-   PARALLAX
-===================== */
-
-const parallaxImages = document.querySelectorAll(".parallax");
+const progress = document.getElementById("progress");
 
 window.addEventListener("scroll",()=>{
 
-  parallaxImages.forEach(img=>{
+    const maxScroll =
+        document.documentElement.scrollHeight
+        - window.innerHeight;
 
-    const parent = img.parentElement;
-    const rect = parent.getBoundingClientRect();
+    const percentage =
+        (window.scrollY / maxScroll) * 100;
 
-    if(rect.bottom > 0 && rect.top < window.innerHeight){
-
-      const center =
-        rect.top + rect.height / 2 - window.innerHeight / 2;
-
-      const movement = center * -0.045;
-
-      img.style.transform =
-        `scale(1.08) translateY(${movement}px)`;
-
-    }
-
-  });
+    progress.style.width =
+        percentage + "%";
 
 });
 
 
-/* =====================
+/* =====================================
+   CINEMATIC PARALLAX
+===================================== */
+
+const parallaxImages =
+    document.querySelectorAll(".parallax");
+
+window.addEventListener("scroll",()=>{
+
+    parallaxImages.forEach(img=>{
+
+        const parent =
+            img.parentElement;
+
+        const rect =
+            parent.getBoundingClientRect();
+
+        if(
+            rect.bottom > 0 &&
+            rect.top < window.innerHeight
+        ){
+
+            const relative =
+                rect.top + rect.height / 2
+                - window.innerHeight / 2;
+
+            img.style.transform =
+                `scale(1.08) translateY(${relative * -.04}px)`;
+
+        }
+
+    });
+
+});
+
+
+/* =====================================
+   OPTIONAL BACKGROUND MUSIC
+===================================== */
+
+const soundButton =
+    document.getElementById("sound");
+
+const audio =
+    document.getElementById("ambience");
+
+let playing = false;
+
+soundButton.addEventListener("click",()=>{
+
+    if(!playing){
+
+        audio.play()
+        .then(()=>{
+            playing = true;
+            soundButton.textContent = "♫";
+        })
+        .catch(()=>{});
+
+    }else{
+
+        audio.pause();
+
+        playing = false;
+        soundButton.textContent = "♪";
+
+    }
+
+});
+
+
+/* =====================================
    LIGHT HAPTIC FEEDBACK
-===================== */
+===================================== */
 
-const scenes = document.querySelectorAll(".chapter");
+const sections =
+    document.querySelectorAll("section");
 
-const vibrationObserver =
+const hapticObserver =
 new IntersectionObserver(entries=>{
 
-  entries.forEach(entry=>{
+    entries.forEach(entry=>{
 
-    if(
-      entry.isIntersecting &&
-      navigator.vibrate
-    ){
-      navigator.vibrate(10);
-    }
+        if(
+            entry.isIntersecting &&
+            navigator.vibrate
+        ){
+            navigator.vibrate(8);
+        }
 
-  });
+    });
 
 },{
-  threshold:.7
+    threshold:.78
 });
 
-scenes.forEach(scene=>
-  vibrationObserver.observe(scene)
-);
+sections.forEach(section=>{
+    hapticObserver.observe(section);
+});
 
 </script>
 
