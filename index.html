@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Italy Experience — Panagiotis</title>
+<meta name="theme-color" content="#17323c">
+
+<title>Italy Visitor Experience Monitor</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,18 +13,19 @@
 
 <style>
 :root{
-  --bg:#17252e;
-  --bg2:#203842;
-  --panel:#294953;
-  --panel2:#345f67;
-  --cream:#f4ead8;
-  --sand:#d9c29d;
-  --red:#c85c51;
-  --soft:#b6c2c2;
-  --text:#f7f3eb;
-  --muted:#9fb0b2;
-  --line:rgba(255,255,255,.12);
-  --green:#86a995;
+  --bg:#132b33;
+  --bg2:#1a3943;
+  --panel:#214752;
+  --panel2:#295866;
+  --cream:#f3ead8;
+  --sand:#d8bd93;
+  --accent:#cf6a5b;
+  --accent2:#d99372;
+  --green:#8caf9a;
+  --soft:#b9c7c6;
+  --muted:#80979b;
+  --white:#f7f5ef;
+  --line:rgba(255,255,255,.11);
 }
 
 *{
@@ -36,86 +39,120 @@ html,body{
 }
 
 body{
-  background:#101b21;
+  background:#0e1d22;
+  color:var(--white);
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  color:var(--text);
   overflow-x:hidden;
 }
 
+button{
+  font:inherit;
+}
+
 .app{
+  min-height:100svh;
   width:100%;
   max-width:480px;
-  min-height:100svh;
   margin:auto;
-  background:
-    radial-gradient(circle at 90% 10%,rgba(88,141,151,.22),transparent 28%),
-    linear-gradient(180deg,var(--bg2),var(--bg));
   position:relative;
   overflow:hidden;
+  background:
+    radial-gradient(circle at 100% 0%,rgba(93,146,155,.22),transparent 30%),
+    radial-gradient(circle at 0% 100%,rgba(207,106,91,.12),transparent 28%),
+    linear-gradient(180deg,var(--bg2),var(--bg));
 }
 
 .topbar{
-  position:sticky;
+  position:fixed;
+  z-index:100;
   top:0;
-  z-index:30;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(480px,100%);
   height:58px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 18px;
-  background:rgba(23,37,46,.88);
+  padding:0 17px;
+  background:rgba(19,43,51,.88);
   backdrop-filter:blur(18px);
   border-bottom:1px solid rgba(255,255,255,.07);
 }
 
-.brand{
-  font-size:13px;
-  font-weight:800;
-  letter-spacing:1.5px;
+.logo{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:10px;
+  font-weight:900;
   text-transform:uppercase;
+  letter-spacing:1.4px;
 }
 
-.step{
-  font-size:11px;
+.logo-mark{
+  width:25px;
+  height:25px;
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:10px;
+}
+
+.connection{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:9px;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
   color:var(--muted);
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#87b59b;
+  box-shadow:0 0 12px #87b59b;
 }
 
 .progress{
   position:fixed;
+  z-index:101;
   top:58px;
   left:50%;
   transform:translateX(-50%);
   width:min(480px,100%);
   height:3px;
-  background:rgba(255,255,255,.05);
-  z-index:40;
+  background:rgba(255,255,255,.04);
 }
 
 .progress span{
   display:block;
   height:100%;
-  width:0%;
+  width:7%;
   background:var(--sand);
-  transition:.4s ease;
+  transition:.5s ease;
 }
 
 .screen{
+  min-height:100svh;
   display:none;
-  min-height:calc(100svh - 58px);
-  padding:84px 22px 44px;
+  padding:91px 22px 44px;
   flex-direction:column;
   justify-content:center;
-  animation:screenIn .48s ease;
+  animation:enter .48s cubic-bezier(.2,.8,.2,1);
 }
 
 .screen.active{
   display:flex;
 }
 
-@keyframes screenIn{
+@keyframes enter{
   from{
     opacity:0;
-    transform:translateY(20px);
+    transform:translateY(20px) scale(.99);
   }
   to{
     opacity:1;
@@ -124,56 +161,55 @@ body{
 }
 
 .kicker{
-  font-size:10px;
-  letter-spacing:2px;
-  text-transform:uppercase;
+  font-size:9px;
   font-weight:800;
-  color:#8fa9ad;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  color:#89a1a4;
   margin-bottom:15px;
 }
 
 h1{
-  font-size:52px;
+  font-size:49px;
   line-height:.94;
   letter-spacing:-2.5px;
-  margin-bottom:18px;
+  margin-bottom:19px;
 }
 
 h2{
-  font-size:38px;
+  font-size:35px;
   line-height:1;
-  letter-spacing:-1.7px;
+  letter-spacing:-1.6px;
   margin-bottom:18px;
 }
 
 p{
-  font-size:16px;
-  line-height:1.62;
   color:var(--soft);
+  line-height:1.58;
+  font-size:15px;
 }
 
 .lead{
-  font-size:18px;
-  line-height:1.55;
+  font-size:17px;
   color:#d8dfdd;
 }
 
 .card{
-  margin-top:28px;
+  margin-top:27px;
   border:1px solid var(--line);
   border-radius:22px;
-  padding:20px;
-  background:rgba(255,255,255,.055);
-  backdrop-filter:blur(10px);
+  padding:19px;
+  background:rgba(255,255,255,.05);
+  box-shadow:0 18px 50px rgba(0,0,0,.1);
 }
 
 .row{
-  padding:16px 0;
+  padding:15px 0;
   border-bottom:1px solid var(--line);
   display:flex;
   justify-content:space-between;
-  gap:18px;
   align-items:flex-start;
+  gap:20px;
 }
 
 .row:last-child{
@@ -181,79 +217,56 @@ p{
 }
 
 .row span{
-  font-size:13px;
   color:var(--muted);
+  font-size:12px;
 }
 
 .row strong{
-  font-size:16px;
   text-align:right;
-}
-
-.btn{
-  width:100%;
-  border:none;
-  border-radius:16px;
-  padding:17px 18px;
-  margin-top:26px;
-  background:var(--cream);
-  color:#17252e;
-  font-weight:900;
   font-size:15px;
-  cursor:pointer;
-  transition:.2s ease;
 }
 
-.btn:active{
+.button{
+  width:100%;
+  border:0;
+  border-radius:16px;
+  margin-top:26px;
+  padding:17px;
+  background:var(--cream);
+  color:#152c34;
+  font-weight:900;
+  font-size:14px;
+  cursor:pointer;
+  transition:.15s;
+}
+
+.button:active{
   transform:scale(.985);
 }
 
-.btn.secondary{
-  background:rgba(255,255,255,.08);
+.button.secondary{
   color:#fff;
+  background:rgba(255,255,255,.07);
   border:1px solid var(--line);
 }
 
-.btn.red{
-  background:var(--red);
-  color:#fff;
+.button.danger{
+  background:var(--accent);
+  color:white;
 }
 
-.big-result{
-  font-size:58px;
-  font-weight:900;
-  line-height:.9;
-  letter-spacing:-3px;
-  margin-top:24px;
+.button.green{
+  background:var(--green);
+  color:#132b33;
 }
 
-.fake-loader{
-  height:5px;
-  background:rgba(255,255,255,.08);
-  border-radius:999px;
-  margin-top:20px;
-  overflow:hidden;
-}
-
-.fake-loader span{
-  display:block;
-  height:100%;
-  width:0%;
-  background:var(--sand);
-}
-
-.animate-load span{
-  animation:load 1.8s ease forwards;
-}
-
-@keyframes load{
-  to{width:100%}
+.hidden{
+  display:none;
 }
 
 .reveal{
   display:none;
-  margin-top:20px;
-  animation:reveal .35s ease;
+  animation:reveal .4s ease;
 }
 
 .reveal.show{
@@ -263,7 +276,7 @@ p{
 @keyframes reveal{
   from{
     opacity:0;
-    transform:translateY(12px);
+    transform:translateY(13px);
   }
   to{
     opacity:1;
@@ -271,20 +284,125 @@ p{
   }
 }
 
-.pill{
-  display:inline-block;
-  margin-top:16px;
-  padding:8px 11px;
-  border-radius:999px;
-  background:rgba(255,255,255,.08);
+.scanner{
+  margin-top:30px;
+  height:210px;
+  border-radius:24px;
   border:1px solid var(--line);
-  font-size:11px;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+
+.scan-line{
+  position:absolute;
+  left:0;
+  right:0;
+  height:2px;
+  background:var(--sand);
+  box-shadow:0 0 18px var(--sand);
+  top:0;
+  animation:scanner 2s ease-in-out infinite;
+}
+
+@keyframes scanner{
+  0%,100%{top:10%}
+  50%{top:90%}
+}
+
+.scan-center{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  text-align:center;
+}
+
+.scan-center strong{
+  font-size:21px;
+  letter-spacing:-.5px;
+}
+
+.loader{
+  height:5px;
+  background:rgba(255,255,255,.07);
+  border-radius:99px;
+  overflow:hidden;
+  margin-top:21px;
+}
+
+.loader span{
+  display:block;
+  width:0;
+  height:100%;
+  background:var(--sand);
+}
+
+.loader.run span{
+  animation:load 1.8s ease forwards;
+}
+
+@keyframes load{
+  to{width:100%}
+}
+
+.number{
+  font-size:67px;
+  font-weight:900;
+  letter-spacing:-4px;
+  line-height:.9;
+  margin-top:23px;
+}
+
+.system{
+  margin-top:20px;
+  border-left:3px solid var(--sand);
+  background:rgba(255,255,255,.04);
+  padding:15px 16px;
+  color:#d1dad8;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.warning{
+  border-left-color:var(--accent);
+}
+
+.success{
+  border-left-color:var(--green);
+}
+
+.choice-grid{
+  display:grid;
+  gap:11px;
+  margin-top:27px;
+}
+
+.choice{
+  padding:17px;
+  border-radius:17px;
+  text-align:left;
+  color:white;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  font-size:14px;
   font-weight:800;
-  letter-spacing:.5px;
+  cursor:pointer;
+}
+
+.choice small{
+  display:block;
+  margin-top:5px;
+  font-size:11px;
+  color:var(--muted);
+  font-weight:500;
 }
 
 .priority-list{
-  margin-top:24px;
+  margin-top:23px;
 }
 
 .priority{
@@ -292,109 +410,171 @@ p{
   gap:14px;
   padding:15px 0;
   border-bottom:1px solid var(--line);
+  animation:pop .3s ease;
 }
 
-.priority-num{
-  width:26px;
-  color:#769197;
-  font-size:12px;
+@keyframes pop{
+  from{
+    opacity:0;
+    transform:translateX(-8px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.priority-number{
+  width:25px;
+  color:#738e93;
+  font-size:11px;
   padding-top:3px;
 }
 
 .priority-text{
-  font-size:18px;
+  font-size:17px;
   font-weight:700;
 }
 
-.choice-grid{
-  display:grid;
-  gap:12px;
-  margin-top:28px;
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:10px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  background:rgba(207,106,91,.12);
+  border:1px solid rgba(207,106,91,.25);
+  color:#e6a195;
+  margin-bottom:16px;
 }
 
-.choice{
-  border:none;
+.terminal{
+  margin-top:25px;
   border-radius:18px;
-  padding:18px;
-  background:rgba(255,255,255,.07);
-  border:1px solid var(--line);
-  color:#fff;
-  text-align:left;
-  font-size:15px;
-  font-weight:700;
-  cursor:pointer;
+  background:#10242b;
+  padding:19px;
+  font-family:monospace;
+  font-size:13px;
+  line-height:1.9;
+  color:#a9baba;
+  border:1px solid rgba(255,255,255,.08);
 }
 
-.choice small{
-  display:block;
-  color:var(--muted);
-  font-size:11px;
-  margin-top:5px;
-  font-weight:500;
+.ok{
+  color:#9fc6ae;
 }
 
-.system-msg{
-  margin-top:18px;
-  padding:15px 16px;
-  border-left:3px solid var(--sand);
-  background:rgba(255,255,255,.04);
-  font-size:14px;
-  line-height:1.55;
-  color:#d8dedd;
+.fail{
+  color:#e58c82;
 }
 
-.red-text{
-  color:#e48a81;
+.jealousy{
+  margin-top:28px;
+  text-align:center;
 }
 
-.green-text{
-  color:#9fc5b1;
+.jealousy-circle{
+  width:170px;
+  height:170px;
+  margin:auto;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  border:12px solid rgba(255,255,255,.07);
+  position:relative;
+}
+
+.jealousy-circle::after{
+  content:"";
+  position:absolute;
+  inset:-12px;
+  border-radius:50%;
+  border:12px solid transparent;
+  border-top-color:var(--accent);
+  border-right-color:var(--accent);
+  transform:rotate(25deg);
+}
+
+.jealousy-circle strong{
+  font-size:39px;
+  letter-spacing:-2px;
 }
 
 .photo{
   width:100%;
-  height:420px;
+  height:390px;
   object-fit:cover;
-  border-radius:20px;
+  border-radius:21px;
   margin-top:24px;
-}
-
-.hidden{
-  display:none !important;
-}
-
-.terminal{
-  margin-top:24px;
-  font-family:monospace;
-  line-height:1.9;
-  font-size:14px;
-  color:#b9c6c5;
-}
-
-.terminal strong{
-  color:#fff;
 }
 
 .final{
   background:
-    radial-gradient(circle at 15% 10%,rgba(110,160,168,.2),transparent 25%),
-    linear-gradient(180deg,#243d47,#17252e);
+    radial-gradient(circle at 10% 10%,rgba(117,168,176,.17),transparent 27%),
+    linear-gradient(180deg,#1f414c,#132b33);
 }
 
-.final h1{
-  font-size:46px;
+.final-copy{
+  font-size:17px;
+  line-height:1.65;
+  color:#e5e7e2;
+  margin-top:22px;
 }
 
-.final-note{
-  margin-top:20px;
-  font-size:18px;
-  line-height:1.6;
-  color:#e6e8e4;
+.heart{
+  font-size:42px;
+  margin-bottom:14px;
+}
+
+.shake{
+  animation:shake .35s;
+}
+
+@keyframes shake{
+  20%,60%{transform:translateX(-7px)}
+  40%,80%{transform:translateX(7px)}
+}
+
+.toast{
+  position:fixed;
+  z-index:200;
+  top:72px;
+  left:50%;
+  width:calc(min(480px,100%) - 28px);
+  transform:translate(-50%,-140px);
+  background:rgba(15,31,38,.95);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:17px;
+  padding:14px 16px;
+  transition:.45s cubic-bezier(.2,.9,.2,1.2);
+  box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+.toast.show{
+  transform:translate(-50%,0);
+}
+
+.toast small{
+  color:#809599;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  font-size:8px;
+}
+
+.toast strong{
+  display:block;
+  margin-top:3px;
+  font-size:12px;
 }
 
 @media(min-width:700px){
   .app{
-    box-shadow:0 0 90px rgba(0,0,0,.45);
+    box-shadow:0 0 100px rgba(0,0,0,.4);
   }
 }
 </style>
@@ -404,615 +584,770 @@ p{
 
 <div class="app">
 
-  <div class="topbar">
-    <div class="brand">Italy Experience</div>
-    <div class="step" id="stepText">01 / 12</div>
+<div class="topbar">
+  <div class="logo">
+    <div class="logo-mark">IT</div>
+    Visitor Experience Monitor
   </div>
 
-  <div class="progress">
-    <span id="progressBar"></span>
+  <div class="connection">
+    <span class="dot"></span>
+    Connected
+  </div>
+</div>
+
+<div class="progress">
+  <span id="progress"></span>
+</div>
+
+<div class="toast" id="toast">
+  <small>System notification</small>
+  <strong id="toastText"></strong>
+</div>
+
+<!-- 1 -->
+<section class="screen active">
+  <div class="kicker">Italian visitor experience programme</div>
+
+  <h1>
+    Italy Experience
+    Monitor
+  </h1>
+
+  <p class="lead">
+    Analyse current travel satisfaction, social activity and overall visitor experience in Italy.
+  </p>
+
+  <div class="card">
+    <div class="row">
+      <span>Region</span>
+      <strong>Southern Italy</strong>
+    </div>
+
+    <div class="row">
+      <span>Assessment</span>
+      <strong>Live</strong>
+    </div>
+
+    <div class="row">
+      <span>Visitor data</span>
+      <strong>Available</strong>
+    </div>
   </div>
 
-  <!-- 1 -->
-  <section class="screen active">
-    <div class="kicker">Personal trip report</div>
+  <button class="button" onclick="startSystem()">
+    START EXPERIENCE SCAN
+  </button>
+</section>
 
-    <h1>
-      Panagiotis<br>
-      in Italy.
-    </h1>
+<!-- 2 -->
+<section class="screen">
+  <div class="kicker">Visitor identification</div>
 
-    <p class="lead">
-      A quick interactive report from a trip that appears to be going significantly better than expected.
-    </p>
+  <h2>
+    Locating active visitor...
+  </h2>
 
+  <div class="scanner">
+    <div class="scan-line"></div>
+
+    <div class="scan-center">
+      <div>
+        <span style="font-size:33px">🇮🇹</span>
+        <br><br>
+        <strong id="visitorStatus">
+          SEARCHING
+        </strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal" id="visitorReveal">
     <div class="card">
       <div class="row">
-        <span>Location</span>
+        <span>Visitor</span>
+        <strong>Panagiotis</strong>
+      </div>
+
+      <div class="row">
+        <span>Origin</span>
+        <strong>Greece</strong>
+      </div>
+
+      <div class="row">
+        <span>Destination</span>
         <strong>Taranto, Italy</strong>
       </div>
 
       <div class="row">
-        <span>Current mood</span>
-        <strong>Very good</strong>
-      </div>
-
-      <div class="row">
-        <span>Italy enjoyment</span>
-        <strong>High</strong>
+        <span>Status</span>
+        <strong class="ok">ACTIVE</strong>
       </div>
     </div>
 
-    <button class="btn" onclick="goNext()">
-      CHECK CURRENT STATUS
+    <button class="button" onclick="nextScreen()">
+      ANALYSE CURRENT EXPERIENCE
     </button>
-  </section>
+  </div>
+</section>
 
-  <!-- 2 -->
-  <section class="screen">
-    <div class="kicker">Status analysis</div>
+<!-- 3 -->
+<section class="screen">
+  <div class="kicker">Experience analysis</div>
 
-    <h2>
-      How is Italy treating him?
-    </h2>
+  <h2>
+    How well is Italy going?
+  </h2>
 
-    <button class="btn secondary" onclick="runStatus(this)">
-      RUN STATUS CHECK
-    </button>
+  <p>
+    Current conditions, activity and behavioural data can be analysed automatically.
+  </p>
 
-    <div class="reveal" id="statusReveal">
-      <div class="card">
-        <div class="row">
-          <span>Weather</span>
-          <strong>Excellent</strong>
-        </div>
+  <button class="button secondary" onclick="runExperience()">
+    RUN ANALYSIS
+  </button>
 
-        <div class="row">
-          <span>Food</span>
-          <strong>Excellent</strong>
-        </div>
-
-        <div class="row">
-          <span>Sea</span>
-          <strong>Excellent</strong>
-        </div>
-
-        <div class="row">
-          <span>Mood</span>
-          <strong>Suspiciously excellent</strong>
-        </div>
-      </div>
-
-      <div class="system-msg">
-        Conclusion: no evidence of suffering has been detected.
-      </div>
-
-      <button class="btn" onclick="goNext()">
-        SEE TODAY'S PLAN
-      </button>
-    </div>
-  </section>
-
-  <!-- 3 -->
-  <section class="screen">
-    <div class="kicker">Today in Italy</div>
-
-    <h2>
-      A very difficult schedule.
-    </h2>
-
+  <div class="reveal" id="experienceReveal">
     <div class="card">
-      <div class="row">
-        <span>Morning</span>
-        <strong>Espresso</strong>
-      </div>
-
-      <div class="row">
-        <span>Midday</span>
-        <strong>Walk around Taranto</strong>
-      </div>
-
-      <div class="row">
-        <span>Afternoon</span>
-        <strong>Good food + sea</strong>
-      </div>
-
-      <div class="row">
-        <span>Evening</span>
-        <strong>Go out</strong>
-      </div>
-
-      <div class="row">
-        <span>Later</span>
-        <strong>Meet people</strong>
-      </div>
-
-      <div class="row">
-        <span>Even later</span>
-        <strong>Stay out longer than planned</strong>
-      </div>
-    </div>
-
-    <button class="btn" onclick="goNext()">
-      CHECK SOCIAL ACTIVITY
-    </button>
-  </section>
-
-  <!-- 4 -->
-  <section class="screen">
-    <div class="kicker">Social activity</div>
-
-    <h2>
-      Something appears to be happening.
-    </h2>
-
-    <p>
-      Italy has unexpectedly increased Panagiotis' willingness to talk to people.
-    </p>
-
-    <button class="btn secondary" onclick="socialScan()">
-      INVESTIGATE
-    </button>
-
-    <div class="reveal" id="socialReveal">
-
-      <div class="card">
-        <div class="row">
-          <span>New people met</span>
-          <strong>Several</strong>
-        </div>
-
-        <div class="row">
-          <span>Long conversations</span>
-          <strong>Yes</strong>
-        </div>
-
-        <div class="row">
-          <span>People smiling</span>
-          <strong>Yes</strong>
-        </div>
-
-        <div class="row">
-          <span>Panagiotis smiling back</span>
-          <strong>Yes</strong>
-        </div>
-
-        <div class="row">
-          <span>“Where are you from?”</span>
-          <strong>Detected</strong>
-        </div>
-      </div>
-
-      <div class="system-msg">
-        Social activity is officially higher than necessary.
-      </div>
-
-      <button class="btn" onclick="goNext()">
-        CONTINUE INVESTIGATION
-      </button>
-
-    </div>
-  </section>
-
-  <!-- 5 -->
-  <section class="screen">
-    <div class="kicker">Additional variable</div>
-
-    <h2>
-      One item may be affecting the results.
-    </h2>
-
-    <p>
-      The system found something in the packing data that may have increased social confidence.
-    </p>
-
-    <button class="btn secondary" onclick="revealCologne()">
-      REVEAL ITEM
-    </button>
-
-    <div class="reveal" id="cologneReveal">
-
-      <div class="big-result">
-        THE<br>
-        COLOGNE.
-      </div>
-
-      <p style="margin-top:20px">
-        Yes.
-      </p>
-
-      <p style="margin-top:8px;font-size:22px;color:#fff;font-weight:800">
-        That one.
-      </p>
-
-      <div class="system-msg">
-        Risk assessment updated.
-      </div>
-
-      <button class="btn" onclick="goNext()">
-        CHECK PRIORITIES
-      </button>
-
-    </div>
-  </section>
-
-  <!-- 6 -->
-  <section class="screen">
-    <div class="kicker">Current priorities</div>
-
-    <h2>
-      Reveal ranking.
-    </h2>
-
-    <p>
-      Tap below to uncover the current list one item at a time.
-    </p>
-
-    <button class="btn secondary" id="priorityButton" onclick="revealPriority()">
-      REVEAL #1
-    </button>
-
-    <div class="priority-list" id="priorityList"></div>
-
-    <div class="reveal" id="priorityEnd">
-      <div class="system-msg">
-        No relationship-related priority has been detected.
-      </div>
-
-      <button class="btn red" onclick="goNext()">
-        THAT SEEMS WRONG
-      </button>
-    </div>
-  </section>
-
-  <!-- 7 -->
-  <section class="screen">
-    <div class="kicker">Data inconsistency</div>
-
-    <h2>
-      Relationship data has been found.
-    </h2>
-
-    <div class="fake-loader" id="relationshipLoader">
-      <span></span>
-    </div>
-
-    <button class="btn secondary" onclick="openRelationship()">
-      OPEN RELATIONSHIP FILE
-    </button>
-
-    <div class="reveal" id="relationshipReveal">
-
-      <div class="card">
-        <div class="row">
-          <span>Status</span>
-          <strong>TAKEN</strong>
-        </div>
-
-        <div class="row">
-          <span>Girlfriend</span>
-          <strong>Confirmed</strong>
-        </div>
-
-        <div class="row">
-          <span>Name</span>
-          <strong>Kami</strong>
-        </div>
-
-        <div class="row">
-          <span>Location</span>
-          <strong>Kaunas, Lithuania</strong>
-        </div>
-      </div>
-
-      <button class="btn" onclick="goNext()">
-        CHECK COMPATIBILITY WITH ITALY
-      </button>
-
-    </div>
-  </section>
-
-  <!-- 8 -->
-  <section class="screen">
-    <div class="kicker">Kami profile</div>
-
-    <h2>
-      One important fact remains.
-    </h2>
-
-    <p>
-      Does Kami like Italy?
-    </p>
-
-    <div class="choice-grid">
-      <button class="choice" onclick="italyAnswer()">
-        A little
-      </button>
-
-      <button class="choice" onclick="italyAnswer()">
-        A lot
-      </button>
-
-      <button class="choice" onclick="italyAnswer()">
-        Obsessively
-      </button>
-    </div>
-
-    <div class="reveal" id="italyAnswerReveal">
-
-      <div class="big-result">
-        VERY<br>
-        MUCH.
-      </div>
-
-      <div class="system-msg red-text">
-        This situation is now significantly worse.
-      </div>
-
-      <button class="btn" onclick="goNext()">
-        COMPARE LOCATIONS
-      </button>
-
-    </div>
-  </section>
-
-  <!-- 9 -->
-  <section class="screen">
-    <div class="kicker">Location comparison</div>
-
-    <h2>
-      Current distribution of happiness.
-    </h2>
-
-    <div class="card">
-      <div class="row">
-        <span>Italy</span>
-        <strong>Panagiotis ✅</strong>
-      </div>
-
-      <div class="row">
-        <span>Sea</span>
-        <strong>Panagiotis ✅</strong>
-      </div>
-
       <div class="row">
         <span>Italian food</span>
-        <strong>Panagiotis ✅</strong>
-      </div>
-
-      <div class="row">
-        <span>Social life</span>
-        <strong>Panagiotis ✅</strong>
-      </div>
-
-      <div class="row">
-        <span>The cologne</span>
-        <strong>Panagiotis ✅</strong>
-      </div>
-
-      <div class="row">
-        <span>Kami</span>
-        <strong>Kaunas</strong>
-      </div>
-    </div>
-
-    <div class="system-msg">
-      Fairness score: 2%.
-    </div>
-
-    <button class="btn" onclick="goNext()">
-      CHECK SOCIAL RISK
-    </button>
-  </section>
-
-  <!-- 10 -->
-  <section class="screen">
-    <div class="kicker">Social risk test</div>
-
-    <h2>
-      Should Kami be concerned?
-    </h2>
-
-    <div class="choice-grid">
-
-      <button class="choice" onclick="riskChoice(0)">
-        No, everything is fine
-        <small>Very optimistic answer</small>
-      </button>
-
-      <button class="choice" onclick="riskChoice(1)">
-        Maybe a little
-        <small>Reasonable concern</small>
-      </button>
-
-      <button class="choice" onclick="riskChoice(2)">
-        Yes. The cologne is involved.
-        <small>Evidence-based panic</small>
-      </button>
-
-    </div>
-
-    <div class="reveal" id="riskReveal">
-
-      <div class="card">
-        <div class="row">
-          <span>Smiles</span>
-          <strong>Detected</strong>
-        </div>
-
-        <div class="row">
-          <span>“Where are you from?”</span>
-          <strong>Detected</strong>
-        </div>
-
-        <div class="row">
-          <span>“Are you here for long?”</span>
-          <strong>Possibly detected</strong>
-        </div>
-
-        <div class="row">
-          <span>Actual flirting</span>
-          <strong>Cannot confirm</strong>
-        </div>
-      </div>
-
-      <button class="btn secondary" onclick="askAgain()" id="askAgainBtn">
-        ASK AGAIN
-      </button>
-
-      <div class="reveal" id="askAgainReveal">
-        <div class="system-msg">
-          Still cannot confirm.
-        </div>
-
-        <button class="btn secondary" onclick="askHarder()">
-          ASK REALLY HARD
-        </button>
-      </div>
-
-      <div class="reveal" id="harderReveal">
-        <div class="system-msg red-text">
-          This website is actively trying to get Panagiotis killed.
-        </div>
-
-        <button class="btn red" onclick="goNext()">
-          INITIATE DAMAGE CONTROL
-        </button>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 11 -->
-  <section class="screen">
-    <div class="kicker">Emergency protocol</div>
-
-    <h2>
-      Kami is still here.
-    </h2>
-
-    <p>
-      Damage control is now mandatory.
-    </p>
-
-    <button class="btn red" onclick="damageControl()">
-      START DAMAGE CONTROL
-    </button>
-
-    <div class="reveal" id="damageReveal">
-
-      <div class="terminal">
-        Deleting flirting... <strong>DONE</strong><br>
-        Deleting Italian girls... <strong>DONE</strong><br>
-        Deleting suspicious social life... <strong>DONE</strong><br>
-        Deleting priority list... <strong>FAILED</strong><br>
-        Deleting cologne evidence... <strong>IMPOSSIBLE</strong>
-      </div>
-
-      <button class="btn" onclick="goNext()">
-        RUN FINAL FACT CHECK
-      </button>
-
-    </div>
-  </section>
-
-  <!-- 12 -->
-  <section class="screen final">
-    <div class="kicker">Final fact check</div>
-
-    <h2>
-      Okay.
-      The truth.
-    </h2>
-
-    <div class="card">
-      <div class="row">
-        <span>Flirting</span>
-        <strong class="green-text">Invented</strong>
-      </div>
-
-      <div class="row">
-        <span>Girls</span>
-        <strong class="green-text">Irrelevant</strong>
-      </div>
-
-      <div class="row">
-        <span>Forgot Kami</span>
-        <strong class="green-text">Impossible</strong>
-      </div>
-
-      <div class="row">
-        <span>Missing Kami</span>
         <strong>100%</strong>
       </div>
 
       <div class="row">
-        <span>Thinking about Kami</span>
-        <strong>24/7</strong>
+        <span>Weather</span>
+        <strong>98%</strong>
+      </div>
+
+      <div class="row">
+        <span>Sea</span>
+        <strong>100%</strong>
+      </div>
+
+      <div class="row">
+        <span>Overall mood</span>
+        <strong>99%</strong>
+      </div>
+
+      <div class="row">
+        <span>Desire to leave Italy</span>
+        <strong>1%</strong>
       </div>
     </div>
 
-    <button class="btn" onclick="showFinalChoice()">
-      ONE LAST QUESTION
+    <div class="system success">
+      Conclusion: Panagiotis appears to be having an extremely good time.
+    </div>
+
+    <button class="button" onclick="nextScreen()">
+      CHECK TODAY'S ACTIVITY
+    </button>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="screen">
+  <div class="kicker">Daily behaviour</div>
+
+  <h2>
+    Italy activity report.
+  </h2>
+
+  <div class="card">
+    <div class="row">
+      <span>Morning</span>
+      <strong>Espresso</strong>
+    </div>
+
+    <div class="row">
+      <span>Midday</span>
+      <strong>Explore Italy</strong>
+    </div>
+
+    <div class="row">
+      <span>Afternoon</span>
+      <strong>Food + sea</strong>
+    </div>
+
+    <div class="row">
+      <span>Evening</span>
+      <strong>Go out</strong>
+    </div>
+
+    <div class="row">
+      <span>Late evening</span>
+      <strong>Stay out</strong>
+    </div>
+  </div>
+
+  <div class="system">
+    Behaviour is consistent with someone enjoying Italy significantly too much.
+  </div>
+
+  <button class="button" onclick="nextScreen()">
+    ANALYSE SOCIAL ACTIVITY
+  </button>
+</section>
+
+<!-- 5 -->
+<section class="screen">
+  <div class="kicker">Social behaviour module</div>
+
+  <h2>
+    Social activity detected.
+  </h2>
+
+  <p>
+    The visitor appears to have become considerably more social since entering Italy.
+  </p>
+
+  <button class="button secondary" onclick="socialScan()">
+    RUN SOCIAL SCAN
+  </button>
+
+  <div class="reveal" id="socialReveal">
+
+    <div class="card">
+      <div class="row">
+        <span>New people met</span>
+        <strong>Several</strong>
+      </div>
+
+      <div class="row">
+        <span>Long conversations</span>
+        <strong>Detected</strong>
+      </div>
+
+      <div class="row">
+        <span>People smiling</span>
+        <strong>Detected</strong>
+      </div>
+
+      <div class="row">
+        <span>Smiling back</span>
+        <strong>Detected</strong>
+      </div>
+
+      <div class="row">
+        <span>“Where are you from?”</span>
+        <strong>Detected</strong>
+      </div>
+
+      <div class="row">
+        <span>Plans later</span>
+        <strong>Likely</strong>
+      </div>
+    </div>
+
+    <div class="system warning">
+      Italy appears to be encouraging unnecessary levels of social confidence.
+    </div>
+
+    <button class="button" onclick="nextScreen()">
+      CHECK POSSIBLE CAUSE
+    </button>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="screen">
+  <div class="badge">
+    New variable detected
+  </div>
+
+  <h2>
+    One packed item may be affecting the results.
+  </h2>
+
+  <p>
+    Behavioural confidence analysis found one additional variable worth investigating.
+  </p>
+
+  <button class="button secondary" onclick="cologneScan()">
+    REVEAL VARIABLE
+  </button>
+
+  <div class="reveal" id="cologneReveal">
+
+    <div class="number">
+      THE<br>COLOGNE.
+    </div>
+
+    <p style="margin-top:23px;font-size:18px;color:white">
+      Yes.
+    </p>
+
+    <p style="font-size:26px;font-weight:900;color:white;margin-top:5px">
+      That one.
+    </p>
+
+    <div class="system warning">
+      Social risk calculation has been updated.
+    </div>
+
+    <button class="button" onclick="nextScreen()">
+      CALCULATE CURRENT PRIORITIES
     </button>
 
-    <div class="reveal" id="finalChoice">
+  </div>
+</section>
 
-      <h2 style="margin-top:26px">
-        Who does Panagiotis actually want?
+<!-- 7 -->
+<section class="screen">
+  <div class="kicker">Behavioural priority engine</div>
+
+  <h2>
+    Current priorities.
+  </h2>
+
+  <p>
+    Reveal each detected priority individually.
+  </p>
+
+  <button class="button secondary" id="priorityBtn" onclick="priorityReveal()">
+    REVEAL PRIORITY #1
+  </button>
+
+  <div class="priority-list" id="priorities"></div>
+
+  <div class="reveal" id="priorityComplete">
+    <div class="system warning">
+      Warning: expected relationship data is missing from this ranking.
+    </div>
+
+    <button class="button danger" onclick="nextScreen()">
+      INVESTIGATE MISSING DATA
+    </button>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="screen">
+  <div class="badge">
+    Data inconsistency
+  </div>
+
+  <h2>
+    Relationship file detected.
+  </h2>
+
+  <p>
+    The visitor's profile contains information not included in the previous behavioural analysis.
+  </p>
+
+  <div class="loader" id="relationshipLoader">
+    <span></span>
+  </div>
+
+  <button class="button secondary" onclick="openRelationship()">
+    OPEN FILE
+  </button>
+
+  <div class="reveal" id="relationshipReveal">
+
+    <div class="card">
+      <div class="row">
+        <span>Relationship status</span>
+        <strong>TAKEN</strong>
+      </div>
+
+      <div class="row">
+        <span>Girlfriend</span>
+        <strong>Confirmed</strong>
+      </div>
+
+      <div class="row">
+        <span>Name</span>
+        <strong>Kami</strong>
+      </div>
+
+      <div class="row">
+        <span>Current location</span>
+        <strong>Kaunas, Lithuania</strong>
+      </div>
+    </div>
+
+    <div class="system warning">
+      This information should probably have appeared much earlier.
+    </div>
+
+    <button class="button" onclick="nextScreen()">
+      RUN GIRLFRIEND ANALYSIS
+    </button>
+
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="screen">
+  <div class="kicker">Girlfriend profile analysis</div>
+
+  <h2>
+    One question changes everything.
+  </h2>
+
+  <p>
+    How much does Kami like Italy?
+  </p>
+
+  <div class="choice-grid">
+    <button class="choice" onclick="kamiItaly()">
+      A normal amount
+    </button>
+
+    <button class="choice" onclick="kamiItaly()">
+      Quite a lot
+    </button>
+
+    <button class="choice" onclick="kamiItaly()">
+      An unreasonable amount
+    </button>
+  </div>
+
+  <div class="reveal" id="kamiItalyReveal">
+
+    <div class="number">
+      VERY<br>MUCH.
+    </div>
+
+    <div class="system warning">
+      Updated assessment: this trip is now considered personally offensive to Kami.
+    </div>
+
+    <button class="button" onclick="nextScreen()">
+      RUN LOCATION COMPARISON
+    </button>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="screen">
+  <div class="kicker">Location comparison</div>
+
+  <h2>
+    Current distribution of Italy-related happiness.
+  </h2>
+
+  <div class="card">
+    <div class="row">
+      <span>Italy</span>
+      <strong>Panagiotis ✓</strong>
+    </div>
+
+    <div class="row">
+      <span>Mediterranean Sea</span>
+      <strong>Panagiotis ✓</strong>
+    </div>
+
+    <div class="row">
+      <span>Italian food</span>
+      <strong>Panagiotis ✓</strong>
+    </div>
+
+    <div class="row">
+      <span>Social life</span>
+      <strong>Panagiotis ✓</strong>
+    </div>
+
+    <div class="row">
+      <span>The cologne</span>
+      <strong>Panagiotis ✓</strong>
+    </div>
+
+    <div class="row">
+      <span>Kami</span>
+      <strong>Kaunas</strong>
+    </div>
+  </div>
+
+  <div class="system warning">
+    Fairness rating: critically low.
+  </div>
+
+  <button class="button" onclick="nextScreen()">
+    SIMULATE JEALOUSY
+  </button>
+</section>
+
+<!-- 11 -->
+<section class="screen">
+  <div class="kicker">Predictive analysis</div>
+
+  <h2>
+    Kami jealousy simulation.
+  </h2>
+
+  <p>
+    Estimate emotional response using Italy exposure, social activity and cologne variables.
+  </p>
+
+  <button class="button danger" onclick="startJealousy()">
+    START SIMULATION
+  </button>
+
+  <div class="reveal" id="jealousyReveal">
+    <div class="jealousy">
+      <div class="jealousy-circle">
+        <strong id="jealousyNumber">0%</strong>
+      </div>
+    </div>
+
+    <div class="system warning" id="jealousyText">
+      Calculating...
+    </div>
+
+    <button class="button secondary hidden" id="riskBtn" onclick="nextScreen()">
+      INVESTIGATE SOCIAL RISK
+    </button>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="screen">
+  <div class="kicker">Social risk investigation</div>
+
+  <h2>
+    Does Kami have anything to worry about?
+  </h2>
+
+  <div class="choice-grid">
+
+    <button class="choice" onclick="socialRisk()">
+      No
+      <small>Everything is completely normal</small>
+    </button>
+
+    <button class="choice" onclick="socialRisk()">
+      Maybe
+      <small>There are several suspicious variables</small>
+    </button>
+
+    <button class="choice" onclick="socialRisk()">
+      The cologne is involved
+      <small>This seems unnecessarily dangerous</small>
+    </button>
+
+  </div>
+
+  <div class="reveal" id="riskReveal">
+
+    <div class="card">
+      <div class="row">
+        <span>Smiles</span>
+        <strong>Detected</strong>
+      </div>
+
+      <div class="row">
+        <span>Eye contact</span>
+        <strong>Possible</strong>
+      </div>
+
+      <div class="row">
+        <span>“Where are you from?”</span>
+        <strong>Detected</strong>
+      </div>
+
+      <div class="row">
+        <span>“Are you here for long?”</span>
+        <strong>Potentially detected</strong>
+      </div>
+
+      <div class="row">
+        <span>Actual flirting</span>
+        <strong>Cannot confirm</strong>
+      </div>
+    </div>
+
+    <button class="button secondary" id="againBtn" onclick="askAgain()">
+      ASK AGAIN
+    </button>
+
+    <div class="reveal" id="againReveal">
+      <div class="system">
+        Result unchanged: cannot confirm.
+      </div>
+
+      <button class="button secondary" onclick="askHarder()">
+        ASK REALLY HARD
+      </button>
+    </div>
+
+    <div class="reveal" id="hardReveal">
+      <div class="system warning">
+        This system is now actively trying to get Panagiotis killed.
+      </div>
+
+      <button class="button danger" onclick="nextScreen()">
+        START DAMAGE CONTROL
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- 13 -->
+<section class="screen">
+  <div class="badge">
+    Emergency protocol
+  </div>
+
+  <h2>
+    Kami is still here.
+  </h2>
+
+  <p>
+    Immediate deletion of suspicious information is recommended.
+  </p>
+
+  <button class="button danger" onclick="damageControl()">
+    INITIATE DAMAGE CONTROL
+  </button>
+
+  <div class="reveal" id="damageReveal">
+
+    <div class="terminal">
+      Deleting flirting...
+      <span class="ok">DONE</span><br>
+
+      Deleting Italian girls...
+      <span class="ok">DONE</span><br>
+
+      Deleting suspicious smiles...
+      <span class="ok">DONE</span><br>
+
+      Deleting social-risk analysis...
+      <span class="ok">DONE</span><br>
+
+      Deleting priority ranking...
+      <span class="fail">FAILED</span><br>
+
+      Deleting cologne evidence...
+      <span class="fail">PERMISSION DENIED</span>
+    </div>
+
+    <button class="button" onclick="nextScreen()">
+      RUN FINAL FACT CHECK
+    </button>
+
+  </div>
+</section>
+
+<!-- 14 -->
+<section class="screen final">
+  <div class="kicker">Verified information</div>
+
+  <h2>
+    Okay.
+    Here's the truth.
+  </h2>
+
+  <div class="card">
+    <div class="row">
+      <span>Flirting</span>
+      <strong class="ok">Invented</strong>
+    </div>
+
+    <div class="row">
+      <span>Girls</span>
+      <strong class="ok">Irrelevant</strong>
+    </div>
+
+    <div class="row">
+      <span>Forgot Kami</span>
+      <strong class="ok">Impossible</strong>
+    </div>
+
+    <div class="row">
+      <span>Fake priority ranking</span>
+      <strong class="ok">Manipulated</strong>
+    </div>
+
+    <div class="row">
+      <span>Having an amazing time</span>
+      <strong>True</strong>
+    </div>
+
+    <div class="row">
+      <span>Missing Kami</span>
+      <strong>100%</strong>
+    </div>
+  </div>
+
+  <button class="button" onclick="finalQuestion()">
+    FINAL QUESTION
+  </button>
+
+  <div class="reveal" id="finalQuestion">
+
+    <h2 style="margin-top:30px">
+      Who is Panagiotis actually thinking about?
+    </h2>
+
+    <div class="choice-grid">
+
+      <button class="choice" id="italyChoice" onclick="wrongFinal()">
+        Italy 🇮🇹
+      </button>
+
+      <button class="choice" onclick="correctFinal()">
+        Kami ❤️
+      </button>
+
+    </div>
+
+    <div class="reveal" id="wrongFinal">
+      <div class="system warning">
+        Wrong answer. Please try again.
+      </div>
+    </div>
+
+    <div class="reveal" id="correctFinal">
+
+      <div class="heart">❤️</div>
+
+      <h2>
+        Correct.
       </h2>
 
-      <div class="choice-grid">
+      <img
+        class="photo"
+        src="F5851BBC-1097-4DA2-A729-063B29EC89F4 (1).jpeg"
+        alt=""
+      >
 
-        <button class="choice" onclick="wrongAnswer()">
-          Italy 🇮🇹
-        </button>
+      <div class="final-copy">
+        Italy is amazing.<br><br>
 
-        <button class="choice" onclick="correctAnswer()">
-          Kami ❤️
-        </button>
+        I'm having an incredible time here.<br><br>
 
+        But I didn't forget you. Not even close.<br><br>
+
+        Being somewhere you love just makes me think about how much
+        you would love everything I'm seeing too.<br><br>
+
+        <strong>You're still the person I wish was here.</strong>
       </div>
 
-      <div class="reveal" id="wrongReveal">
-        <div class="system-msg red-text">
-          Wrong answer. Try again.
-        </div>
+      <img
+        class="photo"
+        src="IMG_2328.jpeg"
+        alt=""
+      >
+
+      <div class="system success">
+        Final status:<br><br>
+        Italy until August 25.<br>
+        Kami on August 26. ❤️
       </div>
 
-      <div class="reveal" id="correctReveal">
-
-        <img
-          class="photo"
-          src="F5851BBC-1097-4DA2-A729-063B29EC89F4 (1).jpeg"
-          alt=""
-        >
-
-        <img
-          class="photo"
-          src="IMG_2328.jpeg"
-          alt=""
-        >
-
-        <div class="final-note">
-          Italy is amazing.<br><br>
-
-          But you're still the person I wish was here with me.<br><br>
-
-          I'm having an amazing time, but I haven't forgotten you for even a second.<br><br>
-
-          <strong>See you August 26. ❤️</strong>
-        </div>
-
-        <div class="system-msg" style="margin-top:24px">
-          P.S. The cologne needs refilling before I came here.
-        </div>
-
+      <div class="system" style="margin-top:12px">
+        P.S. The cologne variable remains classified.
       </div>
 
     </div>
 
-  </section>
+  </div>
+</section>
 
 </div>
 
@@ -1021,116 +1356,151 @@ p{
 const screens = [...document.querySelectorAll(".screen")];
 let current = 0;
 
-const stepText = document.getElementById("stepText");
-const progressBar = document.getElementById("progressBar");
+const progress = document.getElementById("progress");
 
-function vibrate(pattern=10){
+function haptic(pattern=10){
   if(navigator.vibrate){
     navigator.vibrate(pattern);
   }
 }
 
-function updateUI(){
-  stepText.textContent =
-    String(current + 1).padStart(2,"0") +
-    " / " +
-    String(screens.length).padStart(2,"0");
-
-  progressBar.style.width =
-    ((current + 1) / screens.length * 100) + "%";
+function show(id){
+  const el = document.getElementById(id);
+  if(el){
+    el.classList.add("show");
+  }
 }
 
-function goNext(){
-  vibrate(8);
+function toast(text){
+  const box = document.getElementById("toast");
+  const txt = document.getElementById("toastText");
 
+  txt.textContent = text;
+  box.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer = setTimeout(()=>{
+    box.classList.remove("show");
+  },2500);
+}
+
+function nextScreen(){
   if(current >= screens.length - 1) return;
+
+  haptic(8);
 
   screens[current].classList.remove("active");
   current++;
+
   screens[current].classList.add("active");
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+  progress.style.width =
+    ((current + 1) / screens.length * 100) + "%";
 
-  updateUI();
+  window.scrollTo(0,0);
 }
 
-function show(id){
-  document.getElementById(id).classList.add("show");
-  vibrate(12);
-}
-
-function runStatus(button){
-  button.disabled = true;
-  button.textContent = "CHECKING...";
+function startSystem(){
+  nextScreen();
 
   setTimeout(()=>{
-    show("statusReveal");
-    button.style.display = "none";
-  },900);
+    document.getElementById("visitorStatus").textContent =
+      "VISITOR DETECTED";
+
+    haptic([20,30,20]);
+
+    setTimeout(()=>{
+      show("visitorReveal");
+
+      toast("Visitor profile successfully identified.");
+    },600);
+
+  },1800);
+}
+
+function runExperience(){
+  toast("Collecting Italian experience data...");
+
+  setTimeout(()=>{
+    show("experienceReveal");
+    haptic(20);
+  },1200);
 }
 
 function socialScan(){
-  const reveal = document.getElementById("socialReveal");
+  toast("Analysing conversations and social behaviour...");
 
-  reveal.classList.add("show");
-  vibrate([20,30,20]);
+  setTimeout(()=>{
+    show("socialReveal");
+    haptic([15,20,15]);
+  },1200);
 }
 
-function revealCologne(){
-  show("cologneReveal");
+function cologneScan(){
+  toast("Unidentified confidence variable found.");
+
+  setTimeout(()=>{
+    show("cologneReveal");
+    haptic([30,30,30]);
+  },1000);
 }
 
 const priorities = [
   "Italy",
   "Italian food",
-  "Sea",
+  "The sea",
   "Going out",
   "Socialising",
   "Coffee",
   "Enjoying Italy even more",
-  "Sleep eventually"
+  "Sleeping eventually"
 ];
 
 let priorityIndex = 0;
 
-function revealPriority(){
+function priorityReveal(){
 
   if(priorityIndex >= priorities.length) return;
 
-  const list = document.getElementById("priorityList");
+  const container =
+    document.getElementById("priorities");
 
-  const item = document.createElement("div");
-  item.className = "priority";
+  const row =
+    document.createElement("div");
 
-  item.innerHTML = `
-    <div class="priority-num">
+  row.className = "priority";
+
+  row.innerHTML = `
+    <div class="priority-number">
       ${String(priorityIndex + 1).padStart(2,"0")}
     </div>
+
     <div class="priority-text">
       ${priorities[priorityIndex]}
     </div>
   `;
 
-  list.appendChild(item);
+  container.appendChild(row);
 
   priorityIndex++;
 
-  vibrate(8);
+  haptic(7);
 
-  const button = document.getElementById("priorityButton");
+  const btn =
+    document.getElementById("priorityBtn");
 
   if(priorityIndex < priorities.length){
-    button.textContent =
-      "REVEAL #" + (priorityIndex + 1);
+    btn.textContent =
+      "REVEAL PRIORITY #" + (priorityIndex + 1);
   }else{
-    button.style.display = "none";
+
+    btn.style.display = "none";
 
     setTimeout(()=>{
-      show("priorityEnd");
-    },400);
+      show("priorityComplete");
+      toast("Relationship-related priority missing.");
+    },500);
   }
 }
 
@@ -1139,57 +1509,113 @@ function openRelationship(){
   const loader =
     document.getElementById("relationshipLoader");
 
-  loader.classList.add("animate-load");
+  loader.classList.add("run");
+
+  toast("Opening encrypted relationship data...");
 
   setTimeout(()=>{
     show("relationshipReveal");
-  },1800);
+    haptic([25,30,25]);
+  },1900);
 }
 
-function italyAnswer(){
-  show("italyAnswerReveal");
+function kamiItaly(){
+  show("kamiItalyReveal");
+  toast("Jealousy risk increased.");
+  haptic([20,20,30]);
 }
 
-function riskChoice(){
+function startJealousy(){
+
+  show("jealousyReveal");
+
+  let number = 0;
+  const numberEl =
+    document.getElementById("jealousyNumber");
+
+  const text =
+    document.getElementById("jealousyText");
+
+  const timer = setInterval(()=>{
+
+    number += Math.floor(Math.random()*7)+2;
+
+    if(number >= 97){
+      number = 97;
+      clearInterval(timer);
+
+      text.textContent =
+        "Estimated jealousy: critically high.";
+
+      document.getElementById("riskBtn")
+        .classList.remove("hidden");
+
+      haptic([25,30,25,30,40]);
+    }
+
+    numberEl.textContent = number + "%";
+
+  },100);
+}
+
+function socialRisk(){
   show("riskReveal");
 }
 
 function askAgain(){
-  show("askAgainReveal");
 
-  document.getElementById("askAgainBtn")
+  document.getElementById("againBtn")
     .style.display = "none";
+
+  show("againReveal");
 }
 
 function askHarder(){
-  show("harderReveal");
-  vibrate([20,30,20,30,40]);
+  show("hardReveal");
+  haptic([20,20,20,20,40]);
 }
 
 function damageControl(){
-  show("damageReveal");
-  vibrate([30,30,30]);
+
+  toast("Emergency correction protocol activated.");
+
+  setTimeout(()=>{
+    show("damageReveal");
+    haptic([20,20,20]);
+  },800);
 }
 
-function showFinalChoice(){
-  show("finalChoice");
+function finalQuestion(){
+  show("finalQuestion");
 }
 
-function wrongAnswer(){
-  show("wrongReveal");
-  vibrate([30,30,30]);
+function wrongFinal(){
+
+  const btn =
+    document.getElementById("italyChoice");
+
+  btn.classList.remove("shake");
+
+  void btn.offsetWidth;
+
+  btn.classList.add("shake");
+
+  show("wrongFinal");
+
+  haptic([30,30,30]);
 }
 
-function correctAnswer(){
-  document.getElementById("wrongReveal")
+function correctFinal(){
+
+  document.getElementById("wrongFinal")
     .classList.remove("show");
 
-  show("correctReveal");
+  show("correctFinal");
 
-  vibrate([60,40,60]);
+  haptic([60,40,60]);
+
+  toast("Final answer verified.");
 }
-
-updateUI();
 
 </script>
 
